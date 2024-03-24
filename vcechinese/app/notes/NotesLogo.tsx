@@ -4,7 +4,7 @@ import GradientSquare from "../_assets/GradientSquare";
 
 const NotesLogo = () => {
   return (
-    <div className="flex items-center">
+    <div className="flex items-center p-2">
       <GradientSquare icon={<NotesIcon />} square={<Green />} />
       <Text />
     </div>
@@ -13,11 +13,11 @@ const NotesLogo = () => {
 
 function Text() {
   return (
-    <div className="inline-flex flex-col -space-y-[4px] -translate-y-[1px]">
-      <h1 className="text-[22px] font-bold">Notes</h1>
-      <h2 className="text-[8px] font-light tracking-[3.5px]">
+    <div className="inline-flex flex-col -space-y-[4px] -translate-y-[1px] px-2">
+      <p className="text-[22px] font-bold">Notes</p>
+      <p className="text-[8px] font-light tracking-[3.5px]">
         帮你轻松搞定最不擅长的一科
-      </h2>
+      </p>
     </div>
   );
 }
