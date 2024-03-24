@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Heebo } from "next/font/google";
 import "./globals.css";
 
-const font = Roboto({
-  weight: ["100", "300", "400", "500", "700", "900"],
+const font = Heebo({
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
 });
 
