@@ -4,7 +4,7 @@ import GradientSquare from "../_assets/GradientSquare";
 
 const NotesLogo = () => {
   return (
-    <div className="flex items-center w-[270px] bg-white py-2">
+    <div className="flex items-center w-[270px] bg-white h-[75px]">
       <GradientSquare icon={<Icons.NotesIcon />} square={<Icons.Red />} />
       <Text />
     </div>
