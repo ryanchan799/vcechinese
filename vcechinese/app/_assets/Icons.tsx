@@ -221,3 +221,7 @@ export const MoonFillIcon = () => {
     </svg>
   );
 };
+
+export const Divider = () => {
+  return <div className="h-[0.5px] bg-gray-300"></div>;
+};

@@ -1,17 +1,32 @@
 import React from "react";
 import { zhimangxing } from "../_assets/Fonts";
+import Contents from "./Contents";
 
 const MainPage = () => {
   return (
-    <div className="mx-20 w-2/3">
-      <div className={zhimangxing.className}>
-        <h1 className="text-6xl font-bold py-12">作文的五大文体与七大格式</h1>
+    <div className="flex flex-col items-center">
+      <div className="flex flex-row w-[71%]">
+        <Contents />
+        <Document />
       </div>
-      <div className="tracking-wide leading-9 font-light pb-20 space-y-6">
+    </div>
+  );
+};
+
+function Document() {
+  return (
+    <div>
+      <div>
+        <div className={zhimangxing.className}>
+          <h1 className="text-6xl font-bold pt-12">
+            高考中文到底应该怎么做才能考到高分？
+          </h1>
+        </div>
+        <SimplifiedTraditionalToggle />
+      </div>
+      <div className="font-light space-y-5 tracking-wide leading-9 py-16">
         <p>
           李鸿章是晚清的四大名臣之一。他出生于1823年，1901年去世，享年78岁。他是著名的政治及军事家，也是淮军和北洋水师的创始人，更是洋务运动的领袖。他依靠个人才华在动荡不堪的时代背景中脱颖而出，为清朝做出了巨大的贡献，但是也因签订了一系列不平等条约，最后背上了大汉奸、卖国贼的骂名。
-        </p>
-        <p>
           李鸿章的贡献不胜枚举。在军事方面，他不但创办了淮军，而且镇压了太平天国，还亲手建立了中国近代史上的第一支现代海军
           ——
           北洋水师。在改革方面，他领导了历史上著名的洋务运动，为中国走向现代化打下了不可磨灭的基础。在教育方面，他创办了很多新式学校，比如翻译机构、电报学堂等，培养出了很多近代中国所需要的人才，还派遣了中国的第一批留学生出国学习。而这一个个重大的成就把李鸿章一步一步推向了朝廷的巅峰之位。
@@ -28,6 +43,24 @@ const MainPage = () => {
       </div>
     </div>
   );
-};
+}
+
+function SimplifiedTraditionalToggle() {
+  return (
+    <div className="relative">
+      <div className="absolute scale-75">
+        <label className="flex cursor-pointer gap-1.5 items-center text-lg text-[#90939A] pt-2 -translate-x-4">
+          <p>简</p>
+          <input
+            type="checkbox"
+            value="synthwave"
+            className="toggle theme-controller"
+          />
+          <p>繁</p>
+        </label>
+      </div>
+    </div>
+  );
+}
 
 export default MainPage;

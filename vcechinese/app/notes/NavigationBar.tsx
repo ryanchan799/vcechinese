@@ -7,7 +7,7 @@ const NavigationBar = () => {
     <div className="w-screen flex flex-row bg-[#202123] text-white text-[11px]">
       <EmptySpace />
       <Text text="Feedback" />
-      <div className="flex-grow"></div>
+      <div className="grow"></div>
       <div className="flex flex-row items-center">
         <div className="h-2.5 px-2.5 fill-[#9437FF]">
           <MoonFillIcon />

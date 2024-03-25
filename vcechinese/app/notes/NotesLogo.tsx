@@ -1,11 +1,11 @@
 import React from "react";
-import { NotesIcon, Green } from "../_assets/Icons";
+import * as Icons from "../_assets/Icons";
 import GradientSquare from "../_assets/GradientSquare";
 
 const NotesLogo = () => {
   return (
-    <div className="flex items-center p-2">
-      <GradientSquare icon={<NotesIcon />} square={<Green />} />
+    <div className="flex items-center w-[270px] bg-white py-2">
+      <GradientSquare icon={<Icons.NotesIcon />} square={<Icons.Red />} />
       <Text />
     </div>
   );
