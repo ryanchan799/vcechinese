@@ -14,8 +14,8 @@ export const Green = () => {
           y2="5"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#55F" stop-opacity="0" />
-          <stop offset="1" stop-color="#55F" stop-opacity=".15" />
+          <stop stopColor="#55F" stopOpacity="0" />
+          <stop offset="1" stopColor="#55F" stopOpacity=".15" />
         </linearGradient>
       </defs>
     </svg>
@@ -36,8 +36,8 @@ export const Blue = () => {
           y2="48"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset=".111" stop-color="#0284c7" stop-opacity="0" />
-          <stop offset="1" stop-color="#0284c7" stop-opacity=".3" />
+          <stop offset=".111" stopColor="#0284c7" stopOpacity="0" />
+          <stop offset="1" stopColor="#0284c7" stopOpacity=".3" />
         </linearGradient>
       </defs>
     </svg>
@@ -58,8 +58,8 @@ export const Red = () => {
           y2="29"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset=".205" stop-color="#DD5CE5" stop-opacity="0" />
-          <stop offset="1" stop-color="#DD5CE5" stop-opacity=".25" />
+          <stop offset=".205" stopColor="#DD5CE5" stopOpacity="0" />
+          <stop offset="1" stopColor="#DD5CE5" stopOpacity=".25" />
         </linearGradient>
       </defs>
     </svg>
@@ -80,8 +80,8 @@ export const Orange = () => {
           y2="39"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#DD5CE5" stop-opacity="0" />
-          <stop offset="1" stop-color="#DD5CE5" stop-opacity=".15" />
+          <stop stopColor="#DD5CE5" stopOpacity="0" />
+          <stop offset="1" stopColor="#DD5CE5" stopOpacity=".15" />
         </linearGradient>
       </defs>
     </svg>
@@ -102,8 +102,8 @@ export const Purple = () => {
           y2="-7"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#DD5CE5" stop-opacity="0" />
-          <stop offset="1" stop-color="#DD5CE5" stop-opacity=".35" />
+          <stop stopColor="#DD5CE5" stopOpacity="0" />
+          <stop offset="1" stopColor="#DD5CE5" stopOpacity=".35" />
         </linearGradient>
       </defs>
     </svg>
@@ -120,9 +120,9 @@ export const NotesIcon = () => {
       viewBox="0 0 24 24"
     >
       <path
-        fill-rule="evenodd"
+        fillRule="evenodd"
         d="M16.793 2.793a3.121 3.121 0 1 1 4.414 4.414l-8.5 8.5A1 1 0 0 1 12 16H9a1 1 0 0 1-1-1v-3a1 1 0 0 1 .293-.707l8.5-8.5Zm3 1.414a1.121 1.121 0 0 0-1.586 0L10 12.414V14h1.586l8.207-8.207a1.121 1.121 0 0 0 0-1.586ZM6 5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-4a1 1 0 1 1 2 0v4a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h4a1 1 0 1 1 0 2H6Z"
-        clip-rule="evenodd"
+        clipRule="evenodd"
       ></path>
     </svg>
   );
@@ -138,9 +138,9 @@ export const ForumsIcon = () => {
       viewBox="0 0 24 24"
     >
       <path
-        fill-rule="evenodd"
+        fillRule="evenodd"
         d="M12 4a8 8 0 0 0-5.687 13.627 1 1 0 0 1 .147 1.217L5.766 20H12a8 8 0 1 0 0-16ZM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10H4a1 1 0 0 1-.857-1.515l1.218-2.03A9.964 9.964 0 0 1 2 12Z"
-        clip-rule="evenodd"
+        clipRule="evenodd"
       ></path>
       <path d="M9.25 12a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0Zm4 0a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0Zm4 0a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0Z"></path>
     </svg>
@@ -158,9 +158,9 @@ export const AskAiIcon = () => {
     >
       <path d="M11 7.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0ZM14.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
       <path
-        fill-rule="evenodd"
+        fillRule="evenodd"
         d="M12 1a1 1 0 0 1 1 1v.5h4a3 3 0 0 1 3 3V9a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V5.5a3 3 0 0 1 3-3h4V2a1 1 0 0 1 1-1ZM7 4.5h10a1 1 0 0 1 1 1V9a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V5.5a1 1 0 0 1 1-1Z"
-        clip-rule="evenodd"
+        clipRule="evenodd"
       ></path>
       <path d="M6 21c0-.974.551-1.95 1.632-2.722C8.71 17.508 10.252 17 12 17c1.749 0 3.29.508 4.369 1.278C17.449 19.05 18 20.026 18 21a1 1 0 1 0 2 0c0-1.788-1.016-3.311-2.469-4.35-1.455-1.038-3.414-1.65-5.53-1.65-2.118 0-4.077.611-5.532 1.65C5.016 17.69 4 19.214 4 21a1 1 0 1 0 2 0Z"></path>
     </svg>
