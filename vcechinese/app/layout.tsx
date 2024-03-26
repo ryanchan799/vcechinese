@@ -3,7 +3,7 @@ import "./globals.css";
 import { heebo } from "./_assets/Fonts";
 
 export const metadata: Metadata = {
-  title: "VCE Chinese SL & SLA - Helping you score high",
+  title: "VCE Chinese - Helping you score high",
 };
 
 export default function RootLayout({

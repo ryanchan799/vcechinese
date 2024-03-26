@@ -1,12 +1,12 @@
 import React from "react";
-import NotesLogo from "./NotesLogo";
+import NotesLogo from "./Logo";
 import Dropdown from "./Dropdown";
 import { Divider } from "../_assets/Icons";
 
 const HeaderBar = () => {
   return (
     <div className="flex flex-col items-center bg-white">
-      <div className="flex flex-row w-[71%] items-center">
+      <div className="flex flex-row w-[1150px] items-center">
         <NotesLogo />
         <Rhs />
       </div>
@@ -31,26 +31,25 @@ function Rhs() {
 
 function Tabs() {
   return (
-    <div className="flex flex-row items-end gap-5">
+    <div className="flex flex-row items-center gap-5">
       <Tab section={"作文"} isSelected={false} />
       <Tab section={"口语"} isSelected={true} />
       <Tab section={"阅读"} isSelected={false} />
-      <Tab section={"刷题"} isSelected={false} />
+      <Tab section={"题库"} isSelected={false} />
     </div>
   );
 }
 
 function Tab(props: { section: string; isSelected: boolean }) {
   return (
-    <div className="flex flex-col items-center text-[15px]">
-      <p className={`pb-3 ${props.isSelected ? "font-bold" : "font-light"}`}>
+    <div className="pr-5 text-[15px] font-bold">
+      <p
+        className={
+          props.isSelected ? "font-bold" : "font-light text-gray-500 opacity-75"
+        }
+      >
         {props.section}
       </p>
-      <div
-        className={`flex h-[2.5px] w-14 translate-y-[0.5px] ${
-          props.isSelected ? "bg-[#f23e50]" : ""
-        }`}
-      ></div>
     </div>
   );
 }

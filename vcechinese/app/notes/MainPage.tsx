@@ -5,7 +5,7 @@ import Contents from "./Contents";
 const MainPage = () => {
   return (
     <div className="flex flex-col items-center">
-      <div className="flex flex-row w-[71%]">
+      <div className="flex flex-row w-[1100px]">
         <Contents />
         <Document />
       </div>
@@ -16,22 +16,19 @@ const MainPage = () => {
 function Document() {
   return (
     <div className="flex flex-row">
-      <div className="flex-none w-[270px]"></div>
+      <div className="flex-none w-[270px] mr-7"></div>
       <div>
         <div>
           <div className={zhimangxing.className}>
-            <h1 className="text-6xl font-bold pt-12">
-              高考中文到底应该怎么做才能考到高分？
+            <h1 className="text-[66px] font-bold pt-12">
+              到底怎么做才能考到高分
             </h1>
           </div>
           <SimplifiedTraditionalToggle />
         </div>
-        <div className="font-light space-y-5 tracking-wide leading-9 py-16">
+        <div className="text-[17.5px] font-light space-y-5 tracking-wide leading-[35px] py-14">
           <p>
             李鸿章是晚清的四大名臣之一。他出生于1823年，1901年去世，享年78岁。他是著名的政治及军事家，也是淮军和北洋水师的创始人，更是洋务运动的领袖。他依靠个人才华在动荡不堪的时代背景中脱颖而出，为清朝做出了巨大的贡献，但是也因签订了一系列不平等条约，最后背上了大汉奸、卖国贼的骂名。
-            李鸿章的贡献不胜枚举。在军事方面，他不但创办了淮军，而且镇压了太平天国，还亲手建立了中国近代史上的第一支现代海军
-            ——
-            北洋水师。在改革方面，他领导了历史上著名的洋务运动，为中国走向现代化打下了不可磨灭的基础。在教育方面，他创办了很多新式学校，比如翻译机构、电报学堂等，培养出了很多近代中国所需要的人才，还派遣了中国的第一批留学生出国学习。而这一个个重大的成就把李鸿章一步一步推向了朝廷的巅峰之位。
           </p>
           <p>
             李鸿章是个胸怀大志、坚持不懈、勇往直前的人。他希望自己的国家能往更好的方向去发展，所以他创办了洋务运动，组建了北洋水师，穷尽一生之心血试着去为国家做出一些改变。而同时，他忍辱负重。尽管他明明知道自己如果出面签条约必然会成为千古罪人，却希望能够凭借一己之力最大限度地挽回国家损失，所以依然心甘情愿地出面签订这些条约。李鸿章就是这样一个愿意为国家鞠躬尽瘁的人。
@@ -52,7 +49,7 @@ function SimplifiedTraditionalToggle() {
   return (
     <div className="relative">
       <div className="absolute scale-75">
-        <label className="flex cursor-pointer gap-1.5 items-center text-lg text-[#90939A] pt-2 -translate-x-4">
+        <label className="flex cursor-pointer gap-1.5 items-center text-lg text-[#90939A] -translate-x-4 -translate-y-2">
           <p>简</p>
           <input
             type="checkbox"
