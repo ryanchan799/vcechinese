@@ -1,11 +1,10 @@
 import Link from "next/link";
-import React, { useEffect, useRef } from "react";
 
 const Contents = () => {
   const zuowen = contents.get("作文");
 
   return (
-    <div className="fixed flex-none py-10 pt-16 font-light">
+    <div className="fixed flex-none pl-5 py-10 pt-14 font-light">
       <div className="flex flex-row justify-center">
         <VerticalLine />
         <div className="flex-none w-[270px]">
@@ -33,13 +32,13 @@ function Topic(props: { topic: string; isSelected: boolean }) {
     <div className="flex flex-row items-center">
       <div
         className={`flex-none w-[1px] -translate-x-[1px] mr-4 ${
-          props.isSelected ? "bg-black h-[30.5px]" : ""
+          props.isSelected ? "bg-black h-[27.5px]" : ""
         }`}
       ></div>
-      <div className="pr-14 truncate py-[3px]">
+      <div className="pr-16 truncate py-[2px]">
         <Link
           href="/forums"
-          className={`text-[13px] hover:font-bold ${
+          className={`text-[12.5px] hover:font-bold ${
             props.isSelected
               ? "text-black font-semibold"
               : "text-gray-500 opacity-70"

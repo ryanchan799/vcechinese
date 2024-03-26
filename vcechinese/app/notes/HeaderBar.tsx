@@ -6,7 +6,7 @@ import { Divider } from "../_assets/Icons";
 const HeaderBar = () => {
   return (
     <div className="flex flex-col items-center bg-white">
-      <div className="flex flex-row w-[1150px] items-center">
+      <div className={`flex flex-row w-[1050px] items-center`}>
         <NotesLogo />
         <Rhs />
       </div>
