@@ -2,7 +2,6 @@ import React from "react";
 import NavigationBar from "./NavigationBar";
 import MainPage from "./MainPage";
 import HeaderBar from "./HeaderBar";
-import Contents from "./Contents";
 
 const page = () => {
   return (

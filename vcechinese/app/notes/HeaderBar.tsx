@@ -32,9 +32,8 @@ function Rhs() {
 function Tabs() {
   return (
     <div className="flex flex-row items-center gap-5">
-      <Tab section={"作文"} isSelected={false} />
-      <Tab section={"口语"} isSelected={true} />
-      <Tab section={"阅读"} isSelected={false} />
+      <Tab section={"作文"} isSelected={true} />
+      <Tab section={"口语"} isSelected={false} />
       <Tab section={"题库"} isSelected={false} />
     </div>
   );

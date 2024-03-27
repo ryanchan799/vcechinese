@@ -7,7 +7,7 @@ const Logo = () => {
         <div className="inline-flex flex-col -space-y-[4px] -translate-y-[1px]">
           <p className="text-[24px] font-bold">Notes</p>
           <p className="text-[9px] font-light tracking-[3.5px]">
-            帮你轻松搞定最不擅长的一科
+            帮你轻松搞定你最不擅长的一科
           </p>
         </div>
       </div>
