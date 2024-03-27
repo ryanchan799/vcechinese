@@ -54,7 +54,7 @@ function Topic(props: { topic: string; isSelected: boolean }) {
 const contents = new Map();
 
 contents.set("作文", [
-  // "把作文练好有多重要？",
+  // "把写作练好有多重要？",
   // "写作的黄金三要素",
   // "怎样才能写好一篇记叙文",
   // "把评估文和说服文写好的窍门妙招",
