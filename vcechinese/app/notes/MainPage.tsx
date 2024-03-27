@@ -25,13 +25,14 @@ function Document() {
       <div>
         <div>
           <div className={zhimangxing.className}>
-            <h1 className="text-[66px] font-bold pt-10">
-              到底怎么做才能考到高分
-            </h1>
+            <div className="text-[68px] font-bold font-serif -space-y-7 pt-12">
+              <h1>写作</h1>
+              <h1>千万别踩的坑</h1>
+            </div>
           </div>
           <SimplifiedTraditionalToggle />
         </div>
-        <div className="text-[16.5px] font-light space-y-7 tracking-wider leading-[32px] py-14">
+        <div className="text-[16.5px] font-light space-y-7 tracking-wider leading-[32px] py-16">
           <p>
             &emsp;&emsp;李鸿章是晚清的四大名臣之一。他出生于1823年，1901年去世，享年78岁。他是著名的政治及军事家，也是淮军和北洋水师的创始人，更是洋务运动的领袖。他依靠个人才华在动荡不堪的时代背景中脱颖而出，为清朝做出了巨大的贡献，但是也因签订了一系列不平等条约，最后背上了大汉奸、卖国贼的骂名。
             李鸿章是个胸怀大志、坚持不懈、勇往直前的人。他希望自己的国家能往更好的方向去发展，所以他创办了洋务运动，组建了北洋水师，穷尽一生之心血试着去为国家做出一些改变。而同时，他忍辱负重。尽管他明明知道自己如果出面签条约必然会成为千古罪人，却希望能够凭借一己之力最大限度地挽回国家损失，所以依然心甘情愿地出面签订这些条约。李鸿章就是这样一个愿意为国家鞠躬尽瘁的人。
@@ -52,7 +53,7 @@ function SimplifiedTraditionalToggle() {
   return (
     <div className="relative">
       <div className="absolute scale-75">
-        <label className="flex cursor-pointer gap-1.5 items-center text-lg text-[#90939A] -translate-x-4 -translate-y-2">
+        <label className="flex cursor-pointer gap-1.5 items-center text-lg text-[#90939A] pt-1 -translate-x-4">
           <p>简</p>
           <input
             type="checkbox"
