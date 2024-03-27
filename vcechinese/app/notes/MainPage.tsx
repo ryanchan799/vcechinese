@@ -25,7 +25,7 @@ function Document() {
       <div>
         <div>
           <div className={zhimangxing.className}>
-            <div className="text-[68px] font-bold font-serif -space-y-7 pt-12">
+            <div className="text-[68px] font-bold font-serif -space-y-7 pt-14">
               <h1>写作</h1>
               <h1>千万别踩的坑</h1>
             </div>
