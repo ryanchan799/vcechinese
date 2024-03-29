@@ -1,6 +1,6 @@
 import React from "react";
 
-const Logo = () => {
+export default function Logo() {
   return (
     <div className="pr-[1px]">
       <div className="flex items-center w-[270px] h-[75px] mr-5">
@@ -13,6 +13,4 @@ const Logo = () => {
       </div>
     </div>
   );
-};
-
-export default Logo;
+}

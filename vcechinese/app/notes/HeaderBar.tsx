@@ -3,7 +3,7 @@ import NotesLogo from "./Logo";
 import Dropdown from "./Dropdown";
 import { Divider } from "../_assets/Icons";
 
-const HeaderBar = () => {
+export default function HeaderBar() {
   return (
     <div className="flex flex-col items-center bg-white">
       <div className={`flex flex-row w-[1050px] items-center`}>
@@ -15,7 +15,7 @@ const HeaderBar = () => {
       </div>
     </div>
   );
-};
+}
 
 function Rhs() {
   return (
@@ -52,5 +52,3 @@ function Tab(props: { section: string; isSelected: boolean }) {
     </div>
   );
 }
-
-export default HeaderBar;

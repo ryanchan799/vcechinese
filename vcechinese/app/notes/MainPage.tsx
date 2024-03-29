@@ -4,7 +4,7 @@ import Contents from "./Contents";
 import Image from "next/image";
 import ResourcesPromotion from "../../public/ResourcesPromotion.png";
 
-const MainPage = () => {
+export default function MainPage() {
   return (
     <div className="flex flex-col items-center">
       <div className="flex flex-row w-[1050px]">
@@ -16,7 +16,7 @@ const MainPage = () => {
       </div>
     </div>
   );
-};
+}
 
 function Document() {
   return (
@@ -66,5 +66,3 @@ function SimplifiedTraditionalToggle() {
     </div>
   );
 }
-
-export default MainPage;

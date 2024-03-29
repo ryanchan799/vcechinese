@@ -3,7 +3,7 @@ import NavigationBar from "./NavigationBar";
 import MainPage from "./MainPage";
 import HeaderBar from "./HeaderBar";
 
-const page = () => {
+export default function page() {
   return (
     <div>
       <div>
@@ -25,6 +25,4 @@ const page = () => {
       </div>
     </div>
   );
-};
-
-export default page;
+}

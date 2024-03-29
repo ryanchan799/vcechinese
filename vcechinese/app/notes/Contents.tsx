@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const Contents = () => {
+export default function Contents() {
   const zuowen = contents.get("作文");
 
   return (
@@ -21,7 +21,7 @@ const Contents = () => {
       </div>
     </div>
   );
-};
+}
 
 function VerticalLine() {
   return <div className="flex-none w-[1px] bg-gray-200"></div>;
@@ -78,5 +78,3 @@ contents.set("作文", [
   // "口试题大合集",
   // "模考卷大合集",
 ]);
-
-export default Contents;

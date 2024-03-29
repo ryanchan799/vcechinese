@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "VCE Chinese - Helping you score high",
+  title:
+    "vcechinese.com - The Ultimate Place to Supercharge Your VCE Chinese Studies",
 };
 
 export default function RootLayout({

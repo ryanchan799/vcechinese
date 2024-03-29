@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { MoonFillIcon } from "../_assets/Icons";
 
-const NavigationBar = () => {
+export default function NavigationBar() {
   return (
     <div className="w-screen flex flex-row text-[11px] py-0.5 translate-y-2">
       <div className="grow"></div>
@@ -19,7 +19,7 @@ const NavigationBar = () => {
       </div>
     </div>
   );
-};
+}
 
 function Text(props: { text: string }) {
   return (
@@ -30,5 +30,3 @@ function Text(props: { text: string }) {
     </div>
   );
 }
-
-export default NavigationBar;

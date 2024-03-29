@@ -1,7 +1,13 @@
 import React from "react";
+import TogetherApi from "./TogetherApi";
 
-const page = () => {
-  return <div>AskAI</div>;
-};
+export default function page() {
+  let answer;
 
-export default page;
+  return (
+    <div>
+      AskAi
+      <TogetherApi />
+    </div>
+  );
+}

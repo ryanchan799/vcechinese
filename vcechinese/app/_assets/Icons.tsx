@@ -1,6 +1,6 @@
 import React from "react";
 
-export const MoonFillIcon = () => {
+export function MoonFillIcon() {
   return (
     <svg
       version="1.1"
@@ -15,8 +15,8 @@ export const MoonFillIcon = () => {
       </g>
     </svg>
   );
-};
+}
 
-export const Divider = () => {
+export function Divider() {
   return <div className="h-[0.5px] bg-gray-300"></div>;
-};
+}
