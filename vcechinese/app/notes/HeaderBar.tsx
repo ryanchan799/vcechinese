@@ -10,9 +10,7 @@ export default function HeaderBar() {
         <NotesLogo />
         <Rhs />
       </div>
-      <div className="w-screen">
-        <Divider />
-      </div>
+      <Divider />
     </div>
   );
 }

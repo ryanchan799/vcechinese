@@ -1,4 +1,3 @@
-import Link from "next/link";
 import React from "react";
 import { MoonFillIcon } from "../_assets/Icons";
 
@@ -24,9 +23,9 @@ export default function NavigationBar() {
 function Text(props: { text: string }) {
   return (
     <div>
-      <Link href={`/${props.text.toLowerCase()}`}>
+      <a href={`/${props.text.toLowerCase()}`}>
         <div className="px-2.5 py-[2px] hover:underline">{props.text}</div>
-      </Link>
+      </a>
     </div>
   );
 }

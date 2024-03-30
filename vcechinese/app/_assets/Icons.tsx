@@ -18,5 +18,5 @@ export function MoonFillIcon() {
 }
 
 export function Divider() {
-  return <div className="h-[0.5px] bg-gray-300"></div>;
+  return <div className="w-screen h-[0.5px] bg-gray-300"></div>;
 }
