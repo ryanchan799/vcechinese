@@ -7,7 +7,7 @@ export default function Contents() {
     <div className="fixed flex-none pl-5 py-10 pt-12 font-light">
       <div className="flex flex-row justify-center">
         <VerticalLine />
-        <div className="flex-none w-[270px]">
+        <div className="flex-none w-[285px]">
           <ul>
             {zuowen.map((topic: string, index: number) => (
               <Topic

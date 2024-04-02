@@ -3,7 +3,7 @@ import { MoonFillIcon } from "../_assets/Icons";
 
 export default function NavigationBar() {
   return (
-    <div className="w-screen flex flex-row text-[11px] py-0.5 translate-y-2">
+    <div className="flex flex-row text-[11px] py-0.5 translate-y-2">
       <div className="grow"></div>
       <div className="flex flex-row items-center">
         <div className="h-2.5 px-2.5 fill-black hover:fill-[#9437FF]">

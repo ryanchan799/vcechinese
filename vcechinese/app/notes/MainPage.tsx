@@ -118,7 +118,7 @@ function ImagePromotion() {
 }
 
 function DummyContents() {
-  return <div className="flex-none w-[270px] mr-5"></div>;
+  return <div className="flex-none w-[285px] mr-5"></div>;
 }
 
 function SimplifiedTraditionalToggle() {
