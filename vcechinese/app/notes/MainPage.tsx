@@ -3,6 +3,12 @@ import { zhimangxing } from "../_assets/Fonts";
 import Contents from "./Contents";
 import Image from "next/image";
 import ResourcesPromotion from "../../public/ResourcesPromotion.png";
+import {
+  NumberedList,
+  PlainText,
+  Subheading,
+  TextDisplay,
+} from "./TextDisplay";
 
 export default function MainPage() {
   return (
@@ -11,9 +17,7 @@ export default function MainPage() {
         <Contents />
         <Document />
       </div>
-      <div className="fixed left-0 bottom-0 w-[330px] ml-24 mb-10">
-        <Image src={ResourcesPromotion} alt="Raw 50 + 99.95 Resources" />
-      </div>
+      <ImagePromotion />
     </div>
   );
 }
@@ -21,32 +25,100 @@ export default function MainPage() {
 function Document() {
   return (
     <div className="flex flex-row">
-      <div className="flex-none w-[270px] mr-5"></div>
+      <DummyContents />
       <div>
-        <div>
-          <div className={zhimangxing.className}>
-            <div className="text-[68px] font-bold font-serif -space-y-7 pt-14">
-              <h1>写作</h1>
-              <h1>千万别踩的坑</h1>
-            </div>
-          </div>
-          <SimplifiedTraditionalToggle />
-        </div>
-        <div className="text-[16.5px] font-light space-y-7 tracking-wider leading-[32px] py-16">
-          <p>
-            &emsp;&emsp;李鸿章是晚清的四大名臣之一。他出生于1823年，1901年去世，享年78岁。他是著名的政治及军事家，也是淮军和北洋水师的创始人，更是洋务运动的领袖。他依靠个人才华在动荡不堪的时代背景中脱颖而出，为清朝做出了巨大的贡献，但是也因签订了一系列不平等条约，最后背上了大汉奸、卖国贼的骂名。
-            李鸿章是个胸怀大志、坚持不懈、勇往直前的人。他希望自己的国家能往更好的方向去发展，所以他创办了洋务运动，组建了北洋水师，穷尽一生之心血试着去为国家做出一些改变。而同时，他忍辱负重。尽管他明明知道自己如果出面签条约必然会成为千古罪人，却希望能够凭借一己之力最大限度地挽回国家损失，所以依然心甘情愿地出面签订这些条约。李鸿章就是这样一个愿意为国家鞠躬尽瘁的人。
-          </p>
-          <p>
-            &emsp;&emsp;洋务运动可以分成为四个方面。第一个方面是创办军事工业，比如安庆内军械所、江南制造总局、福州船政局等。第二个方面是创办民用工业，比如轮船招商局、汉阳铁厂、湖北织布局等。第三个方面是筹划海防，这是指李鸿章呕心沥血、亲手建立的北洋水师。第四个方面是创办新式学校，比如翻译机构、电报学堂等，培养出了很多近代中国所需要的人才。而从以上四点足以看出洋务运动在中国历史上是非常重要的一页。
-          </p>
-          <p>
-            &emsp;&emsp;人们对李鸿章的评价褒贬不一。有人说他是中国近代化之父。他领导了洋务运动，组建了北洋水师，自始至终站在时代的最前端呼吁改革，实行改革。但是也有人说他是个卖国贼，代表国家签订了那么多个不平等条约。而现在随着时代的发展，人们开始站在更加公平公正的角度来评价李鸿章，意识到他当时只是作为朝廷的代表签署的条约，他不过是成为了别人的替罪羊而已。其实在签署条约时，李鸿章非但没有卖国求荣，还始终在尽力挽回国家损失，甚至不怕自己背上骂名也要为国家谋利益。所以现在人们逐渐意识到把卖国贼的帽子扣在李鸿章的头上是非常不公平的。
-          </p>
+        <Heading />
+        <div className="text-[16.5px] font-light tracking-wider leading-[32px] py-16">
+          <ul>{RenderParagraphs()}</ul>
         </div>
       </div>
     </div>
   );
+}
+
+function Heading() {
+  return (
+    <div>
+      <div className={zhimangxing.className}>
+        <div className="text-[68px] font-bold font-serif -space-y-7 pt-14">
+          <h1>写作</h1>
+          <h1>千万别踩的坑</h1>
+        </div>
+      </div>
+      <SimplifiedTraditionalToggle />
+    </div>
+  );
+}
+
+function RenderParagraphs() {
+  const paragraphs: TextDisplay[] = [];
+
+  paragraphs.push(
+    new TextDisplay(
+      "plaintext",
+      "写作难吗？它的确难，且它的难度是客观存在的。每一次的写作，都是对我们综合能力的全方位考核。作文要想写得好，首先要有丰富的词汇储备、扎实的语言基础、敏捷的思维能力，要做到用词精确、结构合理、逻辑清晰，还要保证内容充分且详细，不可泛泛而谈。写作有多难由此可见一斑。我们的首要任务就是把写作给练好。"
+    )
+  );
+
+  paragraphs.push(
+    new TextDisplay(
+      "numberedlist",
+      "写作：决定成败的关键 \n重视写作，高分不再是梦 \n该怎么练？ \n故事的情感 "
+    )
+  );
+
+  paragraphs.push(new TextDisplay("subheading", "写作：决定成败的关键"));
+
+  paragraphs.push(
+    new TextDisplay(
+      "plaintext",
+      "VCE中文大致可划分为三大板块：SACs、口试、笔试。且不说六次SAC考试中就有两个直接考你作文，在年底最关键的口试和笔试中，写作更是占据了至关重要的位置。口试本质上是什么？它本质上是写作与口语相结合的产物。让我来给大家分析一下。口试要想考得好，离不开充分的准备，有可能会被问到的问题，我们都要提前一一写好答案，以确保在实战时能做到临危不惧、对答如流。而且不但要写，还要写得好，写得精彩。写到最后，字数过万也是很正常的。要是写作不过关，口试真的能考好吗？只能说很难。尤其是重点研究，写起来更难。在口试中被问到的问题无非就两种：要么是准备过的，要么是没有准备过的。而面对没准备过的问题时，需要灵活应变，短时间内要在脑子里构建成一个大致的框架，明确要表达的内容，并快速地组织语言、梳理信息、给出回答。这不就是写作吗？可见口试要想考得好，写作要好，口语要好，缺一不可。"
+    )
+  );
+
+  paragraphs.push(
+    new TextDisplay(
+      "plaintext",
+      "笔试更不用说了，写作绝对是重头戏。光是笔试中的两篇作文就占据了卷子将近一半的分数，其重要性不容小觑。写作要是不过关，扣分是必然的。内容不充分、用词不得当、语言不流畅、结构不合理、逻辑不清晰、作文不扣题，都是扣分的理由，亦是你做得不够好的地方。笔试中的两篇作文占据了将近一半的分数，要是写不出好的作文，少则扣十分，多则扣二十，甚至更多，代价相当沉重！在时间紧促的笔试中，应争分夺秒，然而写作要是不过关，就注定要花更久才能写完一篇作文，何况有两篇，留给听力和阅读的时间自然就少了许多，稍有不慎，时间就会不够用。这是我们最不愿意看到的，但却频频发生。反之，一旦练好了写作，不但能在更短的时间内快速写完作文，而且还写得好，写得精彩，从内容、语言、结构、逻辑等方面来看，都是高水准的。作文，是笔试的重中之重，毋庸置疑。"
+    )
+  );
+
+  paragraphs.push(
+    new TextDisplay(
+      "plaintext",
+      "写作，是对综合能力的全方位考核。一篇好的作文，要做到用词精确、结构合理、内容充分、逻辑清晰、语言流畅。擅长写作的人，往往综合能力都很强，且词汇储备丰富、语言基础扎实、思维能力敏捷。而这些能力并不只限于写作，它们更是听力、阅读、口试等考试中，不可或缺的重要技能。写作要是练好了，听、说、读、写，都会变得容易许多，因为写作能力的提高，能带动整体综合能力的全面提升。久而久之，你的词汇储备会变得更加丰富，从前不熟悉的词汇也能轻松读懂并运用；你的逻辑思维也会变得更加敏锐，能迅速构建出清晰的思维框架，全面而透彻地剖析问题；你的文字驾驭能力更是会变得更强，能做到用词精准、表达清晰、文笔流畅。可见写作是很锻炼人的，且这种锻炼是多方面的。写作一旦练成，听、说、读、写，都能轻松搞定，VCE中文不再困难！"
+    )
+  );
+
+  paragraphs.push(
+    new TextDisplay(
+      "note",
+      "在VCE中文里，写作的身影可谓是无处不在。写作，是决定成败的关键。不但有两次SAC考试考作文，而且笔试中的两篇作文还占据了卷子将近一半的分数，就连口试也处处是写作的身影。写作要是练好了，便可轻松搞定VCE中文。"
+    )
+  );
+
+  return paragraphs.map((textdisplay, index) => {
+    switch (textdisplay.type) {
+      case "plaintext":
+        return <PlainText text={textdisplay.text} className="py-2.5" />;
+      case "subheading":
+        return <Subheading text={textdisplay.text} className="pt-9 pb-2" />;
+      case "numberedlist":
+        return <NumberedList text={textdisplay.text} className="py-2" />;
+    }
+  });
+}
+
+function ImagePromotion() {
+  return (
+    <div className="fixed left-0 bottom-0 w-[330px] ml-24 mb-10">
+      <Image src={ResourcesPromotion} alt="Raw 50 + 99.95 Resources" />
+    </div>
+  );
+}
+
+function DummyContents() {
+  return <div className="flex-none w-[270px] mr-5"></div>;
 }
 
 function SimplifiedTraditionalToggle() {
