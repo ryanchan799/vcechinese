@@ -1,5 +1,5 @@
 import React from "react";
-import NotesLogo from "./Logo";
+import NotesLogo from "./NotesLogo";
 import Dropdown from "./Dropdown";
 import { Divider } from "../_assets/Icons";
 

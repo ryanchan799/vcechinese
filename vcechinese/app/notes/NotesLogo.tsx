@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Logo() {
+export default function NotesLogo() {
   return (
     <div className="pr-[1px] text-black">
       <div className="flex items-center w-[285px] h-[75px] mr-5">
