@@ -1,3 +1,5 @@
-import { Zhi_Mang_Xing } from "next/font/google";
+import localFont from "next/font/local";
 
-export const zhimangxing = Zhi_Mang_Xing({ weight: "400", subsets: ["latin"] });
+export const zixiaohunshuxinti = localFont({
+  src: "../../public/fonts/zixiaohunshuxinti.ttf",
+});

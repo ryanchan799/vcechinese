@@ -1,5 +1,6 @@
 import React from "react";
-import { InfoIcon } from "../_assets/Icons";
+import { InfoIcon, PenIcon } from "../_assets/Icons";
+import { zixiaohunshuxinti } from "../_assets/Fonts";
 
 export class TextDisplay {
   type: string;
@@ -18,7 +19,7 @@ export function PlainText(props: { text: string; className: string }) {
 export function Subheading(props: { text: string; className: string }) {
   return (
     <div className={props.className}>
-      <p className="font-bold text-[18px]">{props.text}</p>
+      <p className="font-bold text-[20px] tracking-[0.2px]">{props.text}</p>
     </div>
   );
 }
@@ -60,6 +61,40 @@ export function NotesBox(props: { text: string; className: string }) {
             <InfoIcon />
             <p className="text-[16px]">{props.text}</p>
           </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function DoubleContainer(props: { text: string; className: string }) {
+  const items = props.text.split("\n");
+
+  function ParagraphBox(props: { caption: string; paragraph: string }) {
+    return (
+      <div className="relative">
+        <p className="absolute text-[11px] px-3 -translate-y-7 text-gray-400">
+          {props.caption}
+        </p>
+        <div className="flex flex-row px-10 py-9 bg-gray-50 rounded-lg border-[0.5px] border-gray-300">
+          <PenIcon className="flex-none mr-7 mt-3" />
+          <p
+            className={`${zixiaohunshuxinti.className}  text-[26px] mr-2 tracking-tight leading-[39px]`}
+          >
+            {props.paragraph}
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className={props.className}>
+      <div className="flex flex-col items-center">
+        <div className="flex flex-col w-[85%] items-center">
+          <ParagraphBox caption={items[0]} paragraph={items[1]} />
+          <div className="flex-none h-[140px] w-[1px] bg-gray-200"></div>
+          <ParagraphBox caption={items[2]} paragraph={items[3]} />
         </div>
       </div>
     </div>

@@ -1,9 +1,9 @@
 import React from "react";
-import { zhimangxing } from "../_assets/Fonts";
 import Contents from "./Contents";
 import Image from "next/image";
-import ResourcesPromotion from "../../public/ResourcesPromotion.png";
+import ResourcesPromotion from "../../public/images/ResourcesPromotion.png";
 import {
+  DoubleContainer,
   NotesBox,
   NumberedList,
   PlainText,
@@ -40,7 +40,7 @@ function Document() {
 function Heading() {
   return (
     <div>
-      <div className={zhimangxing.className}>
+      <div>
         <div className="text-[68px] font-bold font-serif -space-y-7 pt-14">
           <h1>练好</h1>
           <h1>写作有多重要</h1>
@@ -103,7 +103,14 @@ function RenderParagraphs() {
   paragraphs.push(
     new TextDisplay(
       "plaintext",
-      "作文是最容易得分，亦是最容易丢分的部分。一篇作文写得好不好，只需看一眼，就能知道。优秀的作文，往往会在用词、结构、内容、逻辑、语言等方面，做得很好，能让读者眼前一亮。而差的作文，则是有挑不完的毛病。作文，是笔试的重中之重，也是最能拉开分数差距的关键部分，大家一定要高度重视起来。下面我们来看一下两个片段，分别取自两篇标题均为《我的十八岁生日》的记叙文。"
+      "作文是最容易得分，亦是最容易丢分的部分。一篇作文写得好不好，只需看一眼，就能知道。优秀的作文，往往会在用词、结构、内容、逻辑、语言等方面，做得很好，能让读者眼前一亮。而差的作文，则是有挑不完的毛病。作文，是笔试的重中之重，也是最能拉开分数差距的关键部分，大家一定要高度重视起来。接下来我们来对下面的这两个片段进行对比和学习，题目是《我的十八岁生日》。"
+    )
+  );
+
+  paragraphs.push(
+    new TextDisplay(
+      "doublecontainer",
+      "文字乏味无趣 低级玩家 \n首先，这使高中生可以赚到零花钱。据最新的调查数据表明，高中生每周的平均收入在几百块钱左右。他们靠自己的劳动赚的零花钱可以用来支付每天生活中的花费，不管是跟朋友出去吃饭、购物、看电影，还是买自己喜欢的衣服或玩具，都不再需要向父母伸手要钱。这样使他们在经济上不再过度依赖父母。\n生动的故事搭配优美的文字 王者碾压 \n首先，这有利于高中生赚零花钱。通过自己的努力赚取额外的收入，他们能够更早地建立理财观念，学会合理规划和使用金钱。这不仅有助于培养他们的独立意识和责任感，还能让他们在经济上更加自主。同时，赚钱的过程也能让高中生学到许多书本之外的知识和技能，例如沟通能力、团队合作能力、时间管理能力等，拓展自己的视野和经验。"
     )
   );
 
@@ -133,6 +140,10 @@ function RenderParagraphs() {
         return <NumberedList text={textdisplay.text} className="pt-2" />;
       case "notesbox":
         return <NotesBox text={textdisplay.text} className="py-6" />;
+      case "doublecontainer":
+        return (
+          <DoubleContainer text={textdisplay.text} className="pt-12 pb-12" />
+        );
       default:
         return null;
     }
