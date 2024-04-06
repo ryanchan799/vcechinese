@@ -1,4 +1,5 @@
 import React from "react";
+import { InfoIcon } from "../_assets/Icons";
 
 export class TextDisplay {
   type: string;
@@ -16,7 +17,9 @@ export function PlainText(props: { text: string; className: string }) {
 
 export function Subheading(props: { text: string; className: string }) {
   return (
-    <p className={`${props.className} font-bold text-[21px]`}>{props.text}</p>
+    <div className={props.className}>
+      <p className="font-bold text-[18px]">{props.text}</p>
+    </div>
   );
 }
 
@@ -25,7 +28,7 @@ export function NumberedList(props: { text: string; className: string }) {
 
   function NumberTile(props: { number: number }) {
     return (
-      <div className="flex items-center justify-center h-[19px] w-[19px] rounded-full text-[11px] text-[#6E6E7F] ml-10 mr-4 bg-[#ECECF1]">
+      <div className="flex items-center justify-center h-[20px] w-[20px] rounded-full text-[11px] text-gray-600 ml-10 mr-5 bg-gray-200 opacity-80">
         {props.number}
       </div>
     );
@@ -43,6 +46,22 @@ export function NumberedList(props: { text: string; className: string }) {
           );
         })}
       </ul>
+    </div>
+  );
+}
+
+export function NotesBox(props: { text: string; className: string }) {
+  return (
+    <div className={props.className}>
+      <div className="flex flex-col items-center">
+        <div className="flex flex-row drop-shadow-[10px]">
+          <div className="w-2 bg-gray-300 opacity-70"></div>
+          <div className="flex flex-row items-center px-6 py-3 space-x-5 bg-gray-100 bg-opacity-50 text-gray-600 text-opacity-80">
+            <InfoIcon />
+            <p className="text-[16px]">{props.text}</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
