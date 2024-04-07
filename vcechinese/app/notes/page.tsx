@@ -8,12 +8,12 @@ export default function page() {
     <div>
       <div>
         <div>
-          <div className="sticky top-0 z-20">
+          <div className="sticky top-0 z-50">
             <NavigationBar />
           </div>
         </div>
         <div>
-          <div className="sticky top-0 z-10">
+          <div className="sticky top-0 z-50">
             <HeaderBar />
           </div>
           <div>
