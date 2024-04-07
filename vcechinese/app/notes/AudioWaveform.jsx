@@ -65,7 +65,7 @@ export default function AudioWaveform() {
           onClick={playAudioByClickingOnWaveform}
         />
         {!waveform.current ? null : (
-          <div className="absolute bottom-0 -right-4 rounded-sm bg-black z-10 px-1 py-[1px] text-[8px] text-white">
+          <div className="absolute bottom-0 -right-4 rounded-sm bg-black z-10 px-[3px] text-[8px] text-white">
             {audioDuration}
           </div>
         )}

@@ -1,6 +1,6 @@
 import React from "react";
 
-export function MoonFillIcon() {
+export function MoonFillIcon(props: { className: string }) {
   return (
     <svg
       version="1.1"
@@ -8,6 +8,7 @@ export function MoonFillIcon() {
       width="100%"
       height="100%"
       viewBox="0 0 29 29"
+      className={props.className}
     >
       <g>
         <rect height="29.0771" opacity="0" width="28.9014" x="0" y="0" />
