@@ -4,7 +4,7 @@ import Wavesurfer from "wavesurfer.js";
 import { PauseIcon, PlayIcon } from "../_assets/Icons";
 
 export default function AudioWaveform() {
-  const waveform = useRef(null);
+  const waveform: React.MutableRefObject<Wavesurfer | null> = useRef(null);
   const [audioDuration, setAudioDuration] = useState("");
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -22,7 +22,7 @@ export default function AudioWaveform() {
       });
       waveform.current.load("recordings/sampleaudio.MP3");
       waveform.current.on("ready", () => {
-        const duration = Math.round(waveform.current.getDuration());
+        const duration = Math.round(waveform.current!.getDuration());
         setAudioDuration(
           Math.floor(duration / 60) + ":" + Math.floor(duration % 60)
         );
@@ -33,24 +33,24 @@ export default function AudioWaveform() {
   useEffect(() => {}, [isPlaying]);
 
   const playAudioByClickingOnIcon = () => {
-    if (waveform.current.isPlaying()) {
-      waveform.current.pause();
+    if (waveform.current!.isPlaying()) {
+      waveform.current!.pause();
       setIsPlaying(false);
     } else {
-      waveform.current.play();
+      waveform.current!.play();
       setIsPlaying(true);
     }
   };
 
   const playAudioByClickingOnWaveform = () => {
-    if (!waveform.current.isPlaying()) {
-      waveform.current.play();
+    if (!waveform.current!.isPlaying()) {
+      waveform.current!.play();
       setIsPlaying(true);
     }
   };
 
   if (waveform.current && isPlaying) {
-    waveform.current.media.addEventListener("ended", function () {
+    waveform.current!.getMediaElement().addEventListener("ended", function () {
       setIsPlaying(false);
     });
   }
