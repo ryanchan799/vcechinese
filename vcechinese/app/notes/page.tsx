@@ -9,12 +9,12 @@ export default function page() {
       <div>
         <div>
           <div className="sticky top-0 z-50">
-            <NavigationBar />
+            <NavigationBar tab="Notes" />
           </div>
         </div>
         <div>
           <div className="sticky top-0 z-40">
-            <HeaderBar />
+            <HeaderBar heading="Notes" caption="帮你轻松搞定你最不擅长的一科" />
           </div>
           <div>
             <div>

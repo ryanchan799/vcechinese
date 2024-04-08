@@ -17,6 +17,7 @@ export default function AudioWaveform() {
         progressColor: "#FF5501",
         height: 100,
         interact: true,
+        dragToSeek: true,
       });
       waveform.current.load("recordings/sampleaudio.MP3");
       waveform.current.on("ready", () => {
@@ -54,8 +55,8 @@ export default function AudioWaveform() {
           {isPlaying ? <PauseIcon /> : <PlayIcon />}
         </button>
         <div>
-          <p className="text-[11px] text-gray-400">第一章 ｜ 第一节</p>
-          <p className="text-[11px] tracking-widest">作文 · 练好写作有多重要</p>
+          <p className="text-[10px] text-gray-400">第一章 ｜ 第一节</p>
+          <p className="text-[10px] tracking-widest">作文 · 练好写作有多重要</p>
         </div>
       </div>
       <div className="relative w-[80%]">

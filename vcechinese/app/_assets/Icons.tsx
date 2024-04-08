@@ -49,39 +49,51 @@ export function PenIcon(props: { className: string }) {
 
 export function PlayIcon() {
   return (
-    <svg
-      version="1.1"
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 30 30"
-      fill="#FF5501"
-      className="w-9 h-9"
-    >
-      <g>
-        <rect height="29.8975" opacity="0" width="29.8828" x="0" y="0" />
-        <path d="M14.9414 29.8828C23.1152 29.8828 29.8828 23.1006 29.8828 14.9414C29.8828 6.76758 23.1006 0 14.9268 0C6.76758 0 0 6.76758 0 14.9414C0 23.1006 6.78223 29.8828 14.9414 29.8828ZM12.1582 20.8447C11.4551 21.2695 10.6494 20.9326 10.6494 20.2002L10.6494 9.69727C10.6494 8.97949 11.5137 8.67188 12.1582 9.05273L20.7568 14.1504C21.3721 14.5166 21.3867 15.3955 20.7568 15.7764Z" />
-      </g>
-    </svg>
+    <div className="bg-[#FF5501] rounded-full">
+      <svg
+        width="18px"
+        height="29px"
+        viewBox="0 0 18 29"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        className="fill-white w-7 h-7 py-[6.5px]"
+      >
+        <title>Play</title>
+        <g
+          id="Page-1"
+          stroke="none"
+          stroke-width="1"
+          fill-rule="evenodd"
+          className="translate-x-0.5"
+        >
+          <g id="buttons" transform="translate(-1665.000000, -818.000000)">
+            <path d="M1665,847 L1669.15385,832.5 L1665,818 L1683,832.5 L1665,847 Z"></path>
+          </g>
+        </g>
+      </svg>
+    </div>
   );
 }
 
 export function PauseIcon() {
   return (
-    <svg
-      version="1.1"
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-      viewBox="0 0 30 30"
-      fill="#FF5501"
-      className="w-9 h-9"
-    >
-      <g>
-        <rect height="29.8975" opacity="0" width="29.8828" x="0" y="0" />
-        <path d="M14.9414 29.8828C23.1152 29.8828 29.8828 23.1006 29.8828 14.9414C29.8828 6.76758 23.1006 0 14.9268 0C6.76758 0 0 6.76758 0 14.9414C0 23.1006 6.78223 29.8828 14.9414 29.8828ZM10.6787 20.8301C9.93164 20.8301 9.59473 20.4199 9.59473 19.834L9.59473 10.0195C9.59473 9.44824 9.93164 9.03809 10.6787 9.03809L12.1582 9.03809C12.9199 9.03809 13.2568 9.44824 13.2568 10.0195L13.2568 19.834C13.2568 20.4199 12.9199 20.8301 12.1582 20.8301ZM17.7539 20.8301C16.9922 20.8301 16.6553 20.4199 16.6553 19.834L16.6553 10.0195C16.6553 9.44824 16.9922 9.03809 17.7539 9.03809L19.2334 9.03809C19.9658 9.03809 20.3027 9.44824 20.3027 10.0195L20.3027 19.834C20.3027 20.4199 19.9658 20.8301 19.2334 20.8301Z" />
-      </g>
-    </svg>
+    <div className="bg-[#FF5501] rounded-full">
+      <svg
+        width="18px"
+        height="29px"
+        viewBox="0 0 18 29"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        className="fill-white w-7 h-7 py-[7.5px]"
+      >
+        <title>Pause</title>
+        <g id="Page-1" stroke="none" stroke-width="1" fill-rule="evenodd">
+          <g id="buttons" transform="translate(-1741.000000, -818.000000)">
+            <path d="M1752,818 L1752,845 L1759,845 L1759,818 L1752,818 Z M1741,818 L1741,845 L1748,845 L1748,818 L1741,818 Z"></path>
+          </g>
+        </g>
+      </svg>
+    </div>
   );
 }
 

@@ -9,7 +9,7 @@ import {
   PlainText,
   Subheading,
 } from "./TextDisplay";
-import { Lianhaoxiezuoyouduozhongyao } from "../_assets/Notesbook";
+import { Lianhaoxiezuoyouduozhongyao } from "../_assets/Notes";
 import AudioVisualiser from "./AudioWaveform";
 
 export default function MainPage() {
@@ -91,7 +91,7 @@ function RenderParagraphs() {
 
 function ImagePromotion() {
   return (
-    <div className="fixed left-0 bottom-0 w-[330px] ml-24 mb-10">
+    <div className="fixed left-0 bottom-0 w-[300px] ml-24 mb-10">
       <Image src={ResourcesPromotion} alt="Raw 50 + 99.95 Resources" />
     </div>
   );

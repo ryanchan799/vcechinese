@@ -1,16 +1,17 @@
 import React from "react";
 import { MoonFillIcon } from "../_assets/Icons";
 
-export default function NavigationBar() {
+export default function NavigationBar(props: { tab: string }) {
+  const tabs = ["Notes", "Forums", "AskAI", "Resources", "Tutoring"];
+
   return (
     <div className="flex flex-row text-[11px] py-0.5 translate-y-2">
       <div className="grow"></div>
       <div className="flex flex-row pr-8 items-center">
         <MoonFillIcon className="h-2.5 w-2.5 mr-3.5 fill-black hover:fill-[#9437FF]" />
-        <Text text="Forums" />
-        <Text text="AskAI" />
-        <Text text="Resources" />
-        <Text text="Tutoring" />
+        {tabs.map((tab, index) =>
+          tab == props.tab ? null : <Text text={tab} />
+        )}
       </div>
     </div>
   );

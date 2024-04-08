@@ -1,13 +1,13 @@
 import React from "react";
-import NotesLogo from "./NotesLogo";
+import Logo from "./Logo";
 import Dropdown from "./Dropdown";
 import { Divider } from "../_assets/Icons";
 
-export default function HeaderBar() {
+export default function HeaderBar(props: { heading: string; caption: string }) {
   return (
     <div className="flex flex-col items-center bg-white">
       <div className={`flex flex-row w-[1050px] items-center`}>
-        <NotesLogo />
+        <Logo heading={props.heading} caption={props.caption} />
         <Rhs />
       </div>
       <Divider />
