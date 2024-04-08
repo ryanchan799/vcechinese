@@ -49,22 +49,22 @@ export function PenIcon(props: { className: string }) {
 
 export function PlayIcon() {
   return (
-    <div className="bg-[#FF5501] rounded-full">
+    <div className="bg-zinc-900 hover:scale-105">
       <svg
         width="18px"
         height="29px"
         viewBox="0 0 18 29"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
-        className="fill-white w-7 h-7 py-[6.5px]"
+        className="fill-white w-9 h-9 py-[9px]"
       >
         <title>Play</title>
         <g
           id="Page-1"
           stroke="none"
-          stroke-width="1"
-          fill-rule="evenodd"
-          className="translate-x-0.5"
+          strokeWidth="1"
+          fillRule="evenodd"
+          className="translate-x-[1.5px]"
         >
           <g id="buttons" transform="translate(-1665.000000, -818.000000)">
             <path d="M1665,847 L1669.15385,832.5 L1665,818 L1683,832.5 L1665,847 Z"></path>
@@ -77,17 +77,17 @@ export function PlayIcon() {
 
 export function PauseIcon() {
   return (
-    <div className="bg-[#FF5501] rounded-full">
+    <div className="bg-zinc-900 hover:scale-105">
       <svg
         width="18px"
         height="29px"
         viewBox="0 0 18 29"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
-        className="fill-white w-7 h-7 py-[7.5px]"
+        className="fill-white w-9 h-9 py-[10px]"
       >
         <title>Pause</title>
-        <g id="Page-1" stroke="none" stroke-width="1" fill-rule="evenodd">
+        <g id="Page-1" stroke="none" strokeWidth="1" fillRule="evenodd">
           <g id="buttons" transform="translate(-1741.000000, -818.000000)">
             <path d="M1752,818 L1752,845 L1759,845 L1759,818 L1752,818 Z M1741,818 L1741,845 L1748,845 L1748,818 L1741,818 Z"></path>
           </g>

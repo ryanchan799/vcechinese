@@ -12,10 +12,11 @@ export default function AudioWaveform() {
     if (!waveform.current) {
       waveform.current = Wavesurfer.create({
         container: "#waveform",
-        barHeight: 1.75,
+        barHeight: 1.5,
+        barWidth: 2,
         cursorWidth: 0,
-        progressColor: "#FF5501",
-        height: 100,
+        progressColor: "#111111",
+        height: 80,
         interact: true,
         dragToSeek: true,
       });
@@ -48,22 +49,28 @@ export default function AudioWaveform() {
     }
   };
 
+  if (waveform.current && isPlaying) {
+    waveform.current.media.addEventListener("ended", function () {
+      setIsPlaying(false);
+    });
+  }
+
   return (
     <div>
-      <div className="flex flex-row items-center gap-2 translate-y-2">
+      <div className="flex flex-row items-center gap-4 translate-y-1">
         <button onClick={playAudioByClickingOnIcon}>
           {isPlaying ? <PauseIcon /> : <PlayIcon />}
         </button>
-        <div>
-          <p className="text-[10px] text-gray-400">第一章 ｜ 第一节</p>
-          <p className="text-[10px] tracking-widest">作文 · 练好写作有多重要</p>
+        <div className="flex flex-col text-[9.5px] -space-y-[0.5px]">
+          <p className="text-gray-400">第一章 ｜ 第一节</p>
+          <p className="tracking-widest">作文 · 练好写作有多重要</p>
         </div>
       </div>
       <div className="relative w-[80%]">
         <div
           id="waveform"
-          className="h-[50px] overflow-hidden"
-          onClick={playAudioByClickingOnWaveform}
+          className="h-[40px] overflow-hidden"
+          onMouseDown={playAudioByClickingOnWaveform}
         />
         {!waveform.current ? null : (
           <div className="absolute bottom-0 -right-4 rounded-sm bg-black z-10 px-[3px] text-[8px] text-white">

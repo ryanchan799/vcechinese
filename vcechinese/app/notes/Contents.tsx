@@ -38,7 +38,7 @@ function Topic(props: { topic: string; isSelected: boolean }) {
       <div className="pr-16 truncate py-[2px]">
         <Link
           href="/forums"
-          className={`text-[12.5px] hover:font-bold ${
+          className={`text-[12.5px] hover:underline ${
             props.isSelected
               ? "text-black font-semibold"
               : "text-gray-500 opacity-85"
