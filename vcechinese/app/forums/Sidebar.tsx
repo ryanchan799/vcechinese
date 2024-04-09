@@ -47,5 +47,5 @@ function Category(props: { category: string; color: string }) {
 const sidebarWidth = "w-[330px]";
 
 export function DummySidebar() {
-  return <div className={sidebarWidth}></div>;
+  return <div className={`flex-none ${sidebarWidth}`}></div>;
 }
