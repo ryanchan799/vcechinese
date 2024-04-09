@@ -1,7 +1,12 @@
 import React from "react";
-import NavigationBar from "../notes/NavigationBar";
-import HeaderBar from "../notes/HeaderBar";
-import MainPage from "../notes/MainPage";
+import NavigationBar from "../_components/NavigationBar";
+import HeaderBar from "../_components/HeaderBar";
+import ForumHome from "./ForumHome";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Forums",
+};
 
 export default function page() {
   return (
@@ -17,11 +22,12 @@ export default function page() {
             <HeaderBar
               heading="Forums"
               caption="欢迎大家交流探讨起来 迅速解决一切难题"
+              rhs={<div></div>}
             />
           </div>
           <div>
             <div>
-              <MainPage />
+              <ForumHome />
             </div>
           </div>
         </div>

@@ -19,7 +19,7 @@ export function PlainText(props: { text: string; className: string }) {
 export function Subheading(props: { text: string; className: string }) {
   return (
     <div className={props.className}>
-      <p className="font-bold text-[20px] tracking-[0.2px]">{props.text}</p>
+      <p className="font-bold text-[19px] tracking-[0.2px]">{props.text}</p>
     </div>
   );
 }

@@ -80,7 +80,7 @@ function RenderParagraphs() {
           <DoubleContainer
             key={index}
             text={textdisplay.text}
-            className="pt-12 pb-12"
+            className="pt-14 pb-12"
           />
         );
       default:

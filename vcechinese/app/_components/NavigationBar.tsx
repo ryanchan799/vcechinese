@@ -2,8 +2,6 @@ import React from "react";
 import { MoonFillIcon } from "../_assets/Icons";
 
 export default function NavigationBar(props: { tab: string }) {
-  const tabs = ["Notes", "Forums", "AskAI", "Resources", "Tutoring"];
-
   return (
     <div className="flex flex-row text-[11px] py-0.5 translate-y-2">
       <div className="grow"></div>
@@ -16,6 +14,8 @@ export default function NavigationBar(props: { tab: string }) {
     </div>
   );
 }
+
+export const tabs = ["Notes", "Forums", "AskAI", "Resources", "Tutoring"];
 
 function Text(props: { text: string }) {
   return (

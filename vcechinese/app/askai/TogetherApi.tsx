@@ -27,12 +27,13 @@ export default async function TogetherApi() {
   //     .then((res) => res.json())
   //     .catch((err) => console.error(err));
 
-  //   const answer = response.choices[0].message.content;
   //   const numTokens = response.usage.total_tokens;
+  //   const answer = response.choices[0].message.content;
 
   const numTokens = 240;
   const answer =
     "林徽因（1904年3月10日-1955年4月1日）是中国近现代著名的建筑学家、诗人、作家和翻译家，出生于浙江杭州一个书香门第。她是中国现代文学史上的重要人物，与徐志摩、梁思成等人有着深厚的情感纠葛，被誉为“中国现代女性的典范”。\n\n林徽因在文学领域有着卓越的成就，她的诗歌清新脱俗，情感深沉，代表作有《你是人间的四月天》等，这些作品深受读者喜爱。在建筑学上，她与丈夫梁思成共同参与了中国许多重要建筑的修复和设计工作，如北京的天安门广场、人民英雄纪念碑等，对中国的建筑事业做出了重要贡献。她还是一位翻译家，翻译了多部英国文学作品，如英国诗人雪莱的《西风颂》等。\n\n林徽因的一生充满了才情与坎坷，她的作品和人格魅力至今仍被人们所敬仰。";
+
   return (
     <div className="flex flex-col h-screen items-center justify-center">
       <div className="w-[800px] m-6">

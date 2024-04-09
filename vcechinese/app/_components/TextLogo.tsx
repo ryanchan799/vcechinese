@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Logo(props: { heading: string; caption: string }) {
+export default function TextLogo(props: { heading: string; caption: string }) {
   return (
     <div className="pr-[1px] text-black">
       <div className="flex items-center w-[285px] h-[75px] mr-5">
