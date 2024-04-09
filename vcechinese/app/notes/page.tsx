@@ -45,24 +45,29 @@ function Rhs() {
 }
 
 function Tabs() {
+  const tabs = ["作文", "口语"];
+
+  function Tab(props: { section: string; isSelected: boolean }) {
+    return (
+      <div className="pr-5 text-[15px] font-bold">
+        <p
+          className={
+            props.isSelected
+              ? "font-bold"
+              : "font-light text-gray-500 opacity-75"
+          }
+        >
+          {props.section}
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-row items-center gap-5">
-      <Tab section={"作文"} isSelected={true} />
-      <Tab section={"口语"} isSelected={false} />
-    </div>
-  );
-}
-
-function Tab(props: { section: string; isSelected: boolean }) {
-  return (
-    <div className="pr-5 text-[15px] font-bold">
-      <p
-        className={
-          props.isSelected ? "font-bold" : "font-light text-gray-500 opacity-75"
-        }
-      >
-        {props.section}
-      </p>
+      {tabs.map((tab, index) => (
+        <Tab key={index} section={tab} isSelected={tab == "作文"} />
+      ))}
     </div>
   );
 }

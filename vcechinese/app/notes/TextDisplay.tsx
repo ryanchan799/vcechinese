@@ -79,7 +79,7 @@ export function DoubleContainer(props: { text: string; className: string }) {
         <div className="flex flex-row px-10 py-9 bg-gray-50 rounded-lg border-[0.5px] border-gray-300">
           <PenIcon className="flex-none mr-7 mt-3" />
           <p
-            className={`${zixiaohunshuxinti.className}  text-[26px] mr-2 tracking-tight leading-[39px]`}
+            className={`${zixiaohunshuxinti.className} text-[26px] mr-2 tracking-tight leading-[39px]`}
           >
             {props.paragraph}
           </p>

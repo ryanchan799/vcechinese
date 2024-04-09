@@ -1,0 +1,61 @@
+import React from "react";
+
+export default function ThreadsList() {
+  return (
+    <div className={`h-[600px] w-[400px] bg-green-200 overflow-y-auto`}>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+      <p>Hello</p>
+    </div>
+  );
+}
