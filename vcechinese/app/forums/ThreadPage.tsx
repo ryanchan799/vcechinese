@@ -2,8 +2,44 @@ import React from "react";
 
 export default function ThreadPage() {
   return (
-    <div className="flex flex-grow h-[600px] overflow-y-scroll bg-red-200">
-      <div className="grow">
+    <div className="w-full">
+      <div
+        className="ml-[750px] bg-red-200"
+        style={{
+          marginTop: "calc(-100vh + 75px)",
+        }}
+      >
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
         <p>Hello</p>
         <p>Hello</p>
         <p>Hello</p>

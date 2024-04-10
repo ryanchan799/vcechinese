@@ -1,10 +1,12 @@
 import React from "react";
 import NavigationBar from "../_components/NavigationBar";
 import HeaderBar from "../_components/HeaderBar";
-import ForumHome from "./ForumHome";
 import { Metadata } from "next";
 import { SearchIcon } from "../_assets/Icons";
 import ProfilePicture from "./ProfilePicture";
+import ThreadsList from "./ThreadsList";
+import Sidebar from "./Sidebar";
+import ThreadPage from "./ThreadPage";
 
 export const metadata: Metadata = {
   title: "Forums",
@@ -21,15 +23,17 @@ export default function page() {
         </div>
         <div>
           <div className="sticky top-0 z-40">
-            <div>
-              <HeaderBar
-                heading="Forums"
-                caption="欢迎大家交流探讨起来 迅速解决一切难题"
-                rhs={<Rhs />}
-              />
-            </div>
+            <HeaderBar
+              heading="Forums"
+              caption="欢迎大家交流探讨起来 迅速解决一切难题"
+              rhs={<Rhs />}
+              forumsThreadsList={<ThreadsList />}
+            />
           </div>
-          <ForumHome />
+          <div>
+            <Sidebar />
+            <ThreadPage />
+          </div>
         </div>
       </div>
     </div>

@@ -14,7 +14,7 @@ export default function Sidebar() {
   ]);
 
   return (
-    <div className={`fixed flex-none pl-36 py-8 ${sidebarWidth}`}>
+    <div className={`fixed top-[100px] flex-none pl-36 py-10 ${sidebarWidth}`}>
       <div className="flex flex-row items-center">
         <ChevronDownIcon className="w-2 h-2 mr-2.5" />
         <p className="text-[11px] font-extrabold tracking-wider py-2">
@@ -45,7 +45,3 @@ function Category(props: { category: string; color: string }) {
 }
 
 const sidebarWidth = "w-[330px]";
-
-export function DummySidebar() {
-  return <div className={`flex-none ${sidebarWidth}`}></div>;
-}

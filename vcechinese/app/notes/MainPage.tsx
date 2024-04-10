@@ -19,7 +19,6 @@ export default function MainPage() {
         <Contents />
         <Document />
       </div>
-      <ImagePromotion />
     </div>
   );
 }
@@ -87,14 +86,6 @@ function RenderParagraphs() {
         return null;
     }
   });
-}
-
-function ImagePromotion() {
-  return (
-    <div className="fixed left-0 bottom-0 w-[300px] ml-24 mb-10">
-      <Image src={ResourcesPromotion} alt="Raw 50 + 99.95 Resources" />
-    </div>
-  );
 }
 
 function DummyContents() {
