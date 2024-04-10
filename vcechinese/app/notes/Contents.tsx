@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { VerticalLine } from "../_assets/Icons";
 
 export default function Contents() {
   const zuowen = contents.get("作文");
@@ -21,10 +22,6 @@ export default function Contents() {
       </div>
     </div>
   );
-}
-
-function VerticalLine() {
-  return <div className="flex-none w-[1px] bg-gray-200"></div>;
 }
 
 function Topic(props: { topic: string; isSelected: boolean }) {

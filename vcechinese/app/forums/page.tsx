@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function page() {
   return (
-    <div>
+    <div className="scrollbar overflow-y-auto h-screen">
       <div>
         <div>
           <div className="sticky top-0 z-50">

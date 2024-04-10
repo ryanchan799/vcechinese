@@ -10,7 +10,7 @@ export default function HeaderBar(props: {
 }) {
   const widths = new Map([
     ["Notes", "w-[1050px]"],
-    ["Forums", "w-[100%] pl-28 pr-11"],
+    ["Forums", "w-[100%] pl-20 pr-11"],
   ]);
 
   return (

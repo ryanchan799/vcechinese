@@ -130,6 +130,12 @@ export function ChevronDownIcon(props: { className: string }) {
   );
 }
 
-export function Divider() {
-  return <div className="w-full h-[0.5px] bg-gray-300"></div>;
+export function Divider(props: { className?: string }) {
+  return (
+    <div className={`w-full h-[0.5px] bg-gray-300 ${props.className}`}></div>
+  );
+}
+
+export function VerticalLine() {
+  return <div className="flex-none w-[1px] bg-gray-200"></div>;
 }
