@@ -15,7 +15,7 @@ export default function Sidebar() {
 
   return (
     <div
-      className={`fixed top-[100px] flex-none pl-20 py-10 z-40 ${sidebarWidth}`}
+      className={`fixed top-[95px] left-[100px] flex-none py-10 z-50 ${sidebarWidth}`}
     >
       <div className="flex flex-row items-center">
         <ChevronDownIcon className="w-2 h-2 mr-2.5" />
@@ -32,14 +32,16 @@ export default function Sidebar() {
 
 function Category(props: { category: string; color: string }) {
   return (
-    <div className="flex flex-row items-center gap-2 py-[4px] hover:underline">
+    <div className="flex flex-row items-center gap-[8px] py-[4px]">
       <div
-        className="w-[8px] h-[8px] hover:w-[10px] hover:h-[10px]"
+        className="w-[9px] h-[9px]"
         style={{
           backgroundColor: props.color,
         }}
       ></div>
-      <p className="text-[12px] text-gray-600">{props.category}</p>
+      <p className="text-[12px] text-gray-500 hover:underline">
+        {props.category}
+      </p>
     </div>
   );
 }

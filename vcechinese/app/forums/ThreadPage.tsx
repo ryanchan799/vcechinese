@@ -3,13 +3,8 @@ import ProfilePicture from "./ProfilePicture";
 
 export default function ThreadPage() {
   return (
-    <div className="w-full">
-      <div
-        className="ml-[640px] flex justify-center"
-        style={{
-          marginTop: "calc(-100vh + 74px)",
-        }}
-      >
+    <div className="w-full pl-[670px]">
+      <div className="flex justify-center">
         <div className="w-[75%] py-16">
           <p className="text-2xl font-semibold pb-5">
             Partial marks for flipped logic for A2 Q3B

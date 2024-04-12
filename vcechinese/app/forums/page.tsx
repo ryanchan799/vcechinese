@@ -4,17 +4,16 @@ import HeaderBar from "../_components/HeaderBar";
 import { Metadata } from "next";
 import { SearchIcon } from "../_assets/Icons";
 import ProfilePicture from "./ProfilePicture";
-import ThreadsList from "./ThreadsList";
 import Sidebar from "./Sidebar";
 import ThreadPage from "./ThreadPage";
-
+import ThreadsList from "./ThreadsList";
 export const metadata: Metadata = {
   title: "Forums",
 };
 
 export default function page() {
   return (
-    <div className="scrollbar overflow-y-auto h-screen">
+    <div className="scrollbar-none overflow-y-auto h-screen">
       <div>
         <div>
           <div className="sticky top-0 z-50">
@@ -22,7 +21,7 @@ export default function page() {
           </div>
         </div>
         <div>
-          <div className="sticky top-0 z-40">
+          <div className="sticky top-0 z-50">
             <HeaderBar
               heading="Forums"
               caption="欢迎大家交流探讨起来 迅速解决一切难题"
@@ -30,10 +29,8 @@ export default function page() {
               forumsThreadsList={<ThreadsList />}
             />
           </div>
-          <div>
-            <Sidebar />
-            <ThreadPage />
-          </div>
+          <Sidebar />
+          <ThreadPage />
         </div>
       </div>
     </div>

@@ -13,16 +13,20 @@ export default function HeaderBar(props: {
     ["Forums", "w-[100%] pl-20 pr-11"],
   ]);
 
+  const ThreadsList = () => props.forumsThreadsList;
+
   return (
-    <div className="flex flex-col items-center">
-      <div className={`${widths.get(props.heading)} bg-white`}>
-        <div className="flex flex-row items-center">
-          <TextLogo heading={props.heading} caption={props.caption} />
-          {props.rhs}
+    <div className="flex flex-col w-full h-[75.5px] items-start overflow-visible">
+      <div className="flex flex-col w-full items-center">
+        <div className={`${widths.get(props.heading)} bg-white`}>
+          <div className="flex flex-row items-center">
+            <TextLogo heading={props.heading} caption={props.caption} />
+            {props.rhs}
+          </div>
         </div>
+        <Divider />
       </div>
-      <Divider />
-      {props.forumsThreadsList}
+      <ThreadsList />
     </div>
   );
 }

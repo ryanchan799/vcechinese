@@ -3,14 +3,15 @@ import { Divider } from "../_assets/Icons";
 
 export default function ThreadsList() {
   return (
-    <div className="w-full justify-start">
+    <div>
       <div
-        className="w-[380px] ml-[260px] border-l-[1px] border-gray-100 overflow-y-scroll"
-        style={{
-          height: `calc(100vh - 74px)`,
-        }}
+        className="ml-[290px] w-[380px] border-l-[1px] border-r-[1px] border-gray-200 border-opacity-50 overflow-y-scroll scrollbar-thin"
+        style={{ height: `calc(100vh - 74px)` }}
       >
-        <div className="grow pl-3">
+        <div className="grow">
+          <div className="h-[20px] bg-black bg-opacity-[2%] border-b-[1px] border-gray-200 border-opacity-60 font-semibold text-[9px] flex items-center px-4 tracking-[0.2px]">
+            DEC 19
+          </div>
           <Row />
           <Row />
           <Row />
@@ -67,10 +68,10 @@ export default function ThreadsList() {
 function Row() {
   return (
     <div>
-      <div className="flex flex-row text-gray-700 pl-2 py-3.5">
-        <div className="space-y-1">
-          <p className="text-[12px]">A2 mark not shown</p>
-          <p className="text-[9px]">
+      <div className="flex flex-row text-gray-700 pl-4 py-[14px]">
+        <div className="space-y-1.5">
+          <p className="text-[13px]">A2 mark not shown</p>
+          <p className="text-[9.5px]">
             <span className="text-[#EF4146] font-semibold">Announcements</span>
             <span className="px-2.5">Weilong CHEN</span>
             <span>5mth</span>
