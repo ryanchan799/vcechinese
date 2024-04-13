@@ -3,7 +3,7 @@ import NavigationBar from "../_components/NavigationBar";
 import HeaderBar from "../_components/HeaderBar";
 import { Metadata } from "next";
 import { SearchIcon } from "../_assets/Icons";
-import ProfilePicture from "./ProfilePicture";
+import { ProfilePictureBig } from "./ProfilePicture";
 import Sidebar from "./Sidebar";
 import ThreadPage from "./ThreadPage";
 import ThreadsList from "./ThreadsList";
@@ -21,7 +21,7 @@ export default function page() {
           </div>
         </div>
         <div>
-          <div className="sticky top-0 z-50">
+          <div className="sticky top-0">
             <HeaderBar
               heading="Forums"
               caption="欢迎大家交流探讨起来 迅速解决一切难题"
@@ -50,7 +50,7 @@ function Rhs() {
             placeholder="Search"
           />
         </div>
-        <ProfilePicture color="#065f46" letter="R" />
+        <ProfilePictureBig color="#065f46" letter="R" />
       </div>
     </div>
   );

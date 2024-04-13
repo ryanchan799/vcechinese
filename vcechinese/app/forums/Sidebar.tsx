@@ -15,13 +15,11 @@ export default function Sidebar() {
 
   return (
     <div
-      className={`fixed top-[95px] left-[100px] flex-none py-10 z-50 ${sidebarWidth}`}
+      className={`fixed top-[85px] left-[115px] flex-none py-10 ${sidebarWidth}`}
     >
       <div className="flex flex-row items-center">
-        <ChevronDownIcon className="w-2 h-2 mr-2.5" />
-        <p className="text-[11px] font-extrabold tracking-wider py-2">
-          CATEGORIES
-        </p>
+        <ChevronDownIcon className="w-1.5 h-1.5 ml-[1px] mr-2.5" />
+        <p className="text-[10px] font-extrabold py-1.5">TOPICS</p>
       </div>
       {Array.from(categories).map(([category, color], index) => (
         <Category key={index} category={category} color={color} />
@@ -32,16 +30,16 @@ export default function Sidebar() {
 
 function Category(props: { category: string; color: string }) {
   return (
-    <div className="flex flex-row items-center gap-[8px] py-[4px]">
+    <div className="flex flex-row items-center gap-[8px] py-[3px]">
       <div
         className="w-[9px] h-[9px]"
         style={{
           backgroundColor: props.color,
         }}
       ></div>
-      <p className="text-[12px] text-gray-500 hover:underline">
+      <button className="text-[11px] font-light text-gray-600 opacity-90 hover:underline">
         {props.category}
-      </p>
+      </button>
     </div>
   );
 }
