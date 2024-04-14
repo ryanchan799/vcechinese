@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import {
   ThreadsIcon,
@@ -8,8 +7,27 @@ import {
 } from "../_assets/Icons";
 import { ProfilePictureSmall } from "./ProfilePicture";
 import numeral from "numeral";
+import { users } from "@prisma/client";
+import { getRequest } from "@/script";
 
-export default function ThreadsList() {
+async function ApiResponse() {
+  const fetchedUsers: users[] = await getRequest("api/users");
+
+  return (
+    <div>
+      {fetchedUsers.map((user) => (
+        <li key={user.student_id}>
+          <p>Name: {user.student_name}</p>
+          <p>Gender: {user.gender}</p>
+          <p>Age: {user.age}</p>
+          <p>Teacher: {user.teacher}</p>
+        </li>
+      ))}
+    </div>
+  );
+}
+
+export default async function ThreadsList() {
   return (
     <div>
       <div
@@ -140,18 +158,5 @@ function StatsDisplay(props: { icon: React.JSX.Element; value: number }) {
         {props.value > 999 ? numeral(props.value).format("0.0a") : props.value}
       </p>
     </div>
-  );
-}
-
-function ApiResponse() {
-  async function getUsers() {
-    const res = await fetch("api/users");
-    console.log("Result: " + res);
-  }
-
-  return (
-    <button onClick={getUsers} className="hover:font-bold">
-      GetUsers
-    </button>
   );
 }
