@@ -1,8 +1,8 @@
+"use client";
 import React from "react";
 import {
   ThreadsIcon,
   Divider,
-  EyeFillIcon,
   MessageFillIcon,
   HeartFillIcon,
 } from "../_assets/Icons";
@@ -17,9 +17,7 @@ export default function ThreadsList() {
         style={{ height: `calc(100vh - 74px)` }}
       >
         <div className="grow">
-          {/* <div className="h-[20px] bg-black bg-opacity-[2%] border-b-[1px] border-gray-200 border-opacity-60 font-semibold text-[9px] flex items-center px-4 tracking-[0.2px]">
-            DEC 19
-          </div> */}
+          <ApiResponse />
           <Row />
           <Row />
           <Row />
@@ -142,5 +140,18 @@ function StatsDisplay(props: { icon: React.JSX.Element; value: number }) {
         {props.value > 999 ? numeral(props.value).format("0.0a") : props.value}
       </p>
     </div>
+  );
+}
+
+function ApiResponse() {
+  async function getUsers() {
+    const res = await fetch("api/users");
+    console.log("Result: " + res);
+  }
+
+  return (
+    <button onClick={getUsers} className="hover:font-bold">
+      GetUsers
+    </button>
   );
 }
