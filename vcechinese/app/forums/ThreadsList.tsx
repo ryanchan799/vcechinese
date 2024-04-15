@@ -1,4 +1,4 @@
-import React from "react";
+import React, { cache } from "react";
 import {
   ThreadsIcon,
   Divider,
@@ -7,16 +7,20 @@ import {
 } from "../_assets/Icons";
 import { ProfilePictureSmall } from "./ProfilePicture";
 import numeral from "numeral";
-import { users } from "@prisma/client";
-import { getRequest } from "@/script";
+import { DocumentData } from "firebase/firestore";
 
 async function ApiResponse() {
-  const fetchedUsers: users[] = await getRequest("api/users");
+  const res = await fetch(process.env.WEB_DOMAIN + "api/users", {
+    cache: "no-store",
+  });
+  const data = await res.json();
+  const fetchedUsers: DocumentData[] = data.users;
+  console.log("data:", fetchedUsers);
 
   return (
     <div>
       {fetchedUsers.map((user) => (
-        <li key={user.student_id}>
+        <li key={user.student_name}>
           <p>Name: {user.student_name}</p>
           <p>Gender: {user.gender}</p>
           <p>Age: {user.age}</p>
