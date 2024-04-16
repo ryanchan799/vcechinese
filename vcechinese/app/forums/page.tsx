@@ -21,7 +21,7 @@ export default function page() {
           </div>
         </div>
         <div>
-          <div className="sticky top-0">
+          <div className="sticky top-0 z-40">
             <HeaderBar
               heading="Forums"
               caption="欢迎大家交流探讨起来 迅速解决一切难题"

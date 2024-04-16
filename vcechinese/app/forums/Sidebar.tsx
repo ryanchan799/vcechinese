@@ -14,7 +14,7 @@ export default function Sidebar() {
   ]);
 
   return (
-    <div className="fixed top-[125px] left-[115px] flex-none">
+    <div className="fixed top-[125px] left-[115px] z-50 flex-none">
       <div className="flex flex-row items-center">
         <ChevronDownIcon className="w-1.5 h-1.5 ml-[1px] mr-2.5" />
         <p className="text-[10px] font-extrabold py-1.5">TOPICS</p>
