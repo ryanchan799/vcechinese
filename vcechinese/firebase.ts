@@ -14,3 +14,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore(app);
+
+export async function makeApiRequest(api: string, method: string) {
+  return fetch(process.env.WEB_DOMAIN + "api/" + api, {
+    method: "GET",
+    cache: "no-store",
+  }).then((res) => res.json());
+}

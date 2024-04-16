@@ -1,8 +1,16 @@
 import { db } from "@/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 
-export async function GET() {
-  const documents = await getDocs(collection(db, "users"));
-  const users = documents.docs.map((doc) => doc.data());
-  return Response.json({ users });
+export async function getUsers(paths: string[]) {
+  return Promise.all(
+    paths.map(async (path) => {
+      const docRef = doc(db, path);
+      return getDoc(docRef).then((snapshot) => {
+        if (snapshot.exists()) {
+          return snapshot.data();
+        }
+        return null;
+      });
+    })
+  ).then((results) => results.filter((data) => data !== null));
 }
