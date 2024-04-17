@@ -10,23 +10,25 @@ export default function HeaderBar(props: {
 }) {
   const widths = new Map([
     ["Notes", "w-[1050px]"],
-    ["Forums", "w-[100%] pl-20 pr-11"],
+    ["Forums", "w-[1350px]"],
   ]);
 
   const ThreadsList = () => props.forumsThreadsList;
 
   return (
-    <div className="flex flex-col w-full h-[75.5px] items-start overflow-visible">
-      <div className="flex flex-col w-full items-center">
-        <div className={`${widths.get(props.heading)} bg-white`}>
-          <div className="flex flex-row items-center">
-            <TextLogo heading={props.heading} caption={props.caption} />
-            {props.rhs}
+    <div className="flex flex-col w-full items-center overflow-visible">
+      <div className={widths.get(props.heading)}>
+        <div className="w-full h-[75.5px]">
+          <div>
+            <div className="flex flex-row items-center bg-white">
+              <TextLogo heading={props.heading} caption={props.caption} />
+              {props.rhs}
+            </div>
           </div>
+          <ThreadsList />
         </div>
-        <Divider />
       </div>
-      <ThreadsList />
+      <Divider />
     </div>
   );
 }

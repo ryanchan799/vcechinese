@@ -1,5 +1,5 @@
 import React from "react";
-import { InfoIcon, PenIcon } from "../_assets/Icons";
+import { InfoFillIcon, PenIcon } from "../_assets/Icons";
 import { zixiaohunshuxinti } from "../_assets/Fonts";
 
 export class TextDisplay {
@@ -58,7 +58,7 @@ export function NotesBox(props: { text: string; className: string }) {
         <div className="flex flex-row drop-shadow-[10px]">
           <div className="w-2 bg-gray-300 opacity-70"></div>
           <div className="flex flex-row items-center px-6 py-3 space-x-5 bg-gray-100 bg-opacity-50 text-gray-600 text-opacity-80">
-            <InfoIcon />
+            <InfoFillIcon className="" />
             <p className="text-[16px]">{props.text}</p>
           </div>
         </div>

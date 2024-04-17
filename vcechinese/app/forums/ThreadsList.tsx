@@ -19,19 +19,25 @@ export default async function ThreadsList() {
   return (
     <div>
       <div
-        className="ml-[290px] w-[345px] border-l-[1px] border-r-[1px] border-gray-200 border-opacity-50 overflow-y-scroll scrollbar-none"
+        className="ml-[185px] w-[350px] border-l-[1px] border-r-[1px] border-gray-200 border-opacity-50 overflow-y-scroll scrollbar-none"
         style={{ height: `calc(100vh - 74px)` }}
       >
         <div className="grow">
           {threads.map((thread) => {
             return (
-              <Row
-                key={thread.id}
-                title={thread.title}
-                topic={thread.topic}
-                date={thread.date}
-                users={thread.posts.users}
-              />
+              <>
+                {[...Array(20)].map((_, index) => (
+                  <Row
+                    key={index}
+                    title={thread.title}
+                    topic={thread.topic}
+                    date={thread.date}
+                    users={thread.interactions.users}
+                    numLikes={thread.numLikes}
+                    numPosts={thread.interactions.posts.length}
+                  />
+                ))}
+              </>
             );
           })}
         </div>
@@ -45,8 +51,12 @@ async function Row(props: {
   topic: string;
   date: Timestamp;
   users: string[];
+  numLikes: number;
+  numPosts: number;
 }) {
   const [poster, ...interactors] = await getUsers(props.users);
+
+  console.log("interactors", interactors);
 
   return (
     <div>
@@ -58,7 +68,11 @@ async function Row(props: {
           poster={poster}
         />
         <div className="grow"></div>
-        <Rhs />
+        <Rhs
+          numLikes={props.numLikes}
+          numPosts={props.numPosts}
+          interactors={interactors}
+        />
       </div>
       <div className="pl-3">
         <Divider className="opacity-60" />
@@ -74,12 +88,12 @@ function Lhs(props: {
   poster: DocumentData;
 }) {
   return (
-    <div className="space-y-1.5 font-light">
+    <div className="space-y-[6px] py-0.5">
       <div className="flex items-center space-x-2">
         <ThreadsIcon className="fill-gray-400 opacity-80 w-3 h-3" />
-        <p className="text-[11.5px]">{props.title}</p>
+        <p className="text-[11px]">{props.title}</p>
       </div>
-      <p className="text-[8.5px]">
+      <p className="text-[9px] font-light">
         <span className="text-[#EF4146] font-bold">{props.topic}</span>
         <span className="px-2">{props.poster.name}</span>
         <span>5mth</span>
@@ -88,40 +102,51 @@ function Lhs(props: {
   );
 }
 
-function Rhs() {
+function Rhs(props: {
+  numLikes: number;
+  numPosts: number;
+  interactors: DocumentData[];
+}) {
   return (
-    <div className="flex flex-col items-end mr-2 space-y-2.5">
-      <ProfilePicStack />
+    <div className="flex flex-col items-end mr-2 space-y-3">
+      <ProfilePicStack interactors={props.interactors} />
+
       <div className="flex flex-row items-center">
-        <StatsDisplay
-          icon={<MessageFillIcon className="w-1.5 h-1.5" />}
-          value={132}
-        />
-        <StatsDisplay
-          icon={<HeartFillIcon className="w-1.5 h-1.5" />}
-          value={20}
-        />
+        {props.numPosts == 0 ? null : (
+          <StatsDisplay
+            icon={<MessageFillIcon className="w-[7px] h-[7px]" />}
+            value={props.numPosts}
+          />
+        )}
+        {props.numLikes == 0 ? null : (
+          <StatsDisplay
+            icon={<HeartFillIcon className="w-[7px] h-[7px]" />}
+            value={props.numLikes}
+          />
+        )}
       </div>
     </div>
   );
 }
 
-function ProfilePicStack() {
+function ProfilePicStack(props: { interactors: DocumentData[] }) {
   return (
     <div className="flex flex-row space-x-[2px]">
-      <ProfilePictureSmall color="#344ABB" letter="A" />
-      <ProfilePictureSmall color="#AAAA11" letter="R" />
-      <ProfilePictureSmall color="#AC88F4" letter="M" />
-      <ProfilePictureSmall color="#AAAA11" letter="R" />
-      <ProfilePictureSmall color="#AC88F4" letter="M" />
+      {props.interactors.map((user) => (
+        <ProfilePictureSmall
+          key={user.username}
+          color={user.color}
+          letter={user.name.charAt(0)}
+        />
+      ))}
     </div>
   );
 }
 
 function StatsDisplay(props: { icon: React.JSX.Element; value: number }) {
   return (
-    <div className="flex flex-row items-center text-[7.5px] text-gray-400 opacity-80 pl-2 gap-[2.5px]">
-      {props.icon}
+    <div className="flex flex-row items-center text-[7.5px] text-gray-400 pl-2 pr-[1.5px] gap-[3.5px]">
+      <div className="opacity-50">{props.icon}</div>
       <p>
         {props.value > 999 ? numeral(props.value).format("0.0a") : props.value}
       </p>

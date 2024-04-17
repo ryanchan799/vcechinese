@@ -4,7 +4,7 @@ import { HeartIcon } from "../_assets/Icons";
 
 export default function ThreadPage() {
   return (
-    <div className="w-full pl-[635px]">
+    <div className="w-full pl-[630px]">
       <div className="flex justify-center">
         <div className="w-[75%] py-10 -translate-x-2">
           <p className="text-[22px] pb-4 font-light">
