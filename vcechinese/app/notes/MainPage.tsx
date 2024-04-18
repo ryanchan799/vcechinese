@@ -1,7 +1,5 @@
 import React from "react";
 import Contents from "./Contents";
-import Image from "next/image";
-import ResourcesPromotion from "../../public/images/ResourcesPromotion.png";
 import {
   DoubleContainer,
   NotesBox,
@@ -11,11 +9,16 @@ import {
 } from "./TextDisplay";
 import { Lianhaoxiezuoyouduozhongyao } from "../_assets/Notes";
 import AudioVisualiser from "./AudioWaveform";
+import {
+  HEADER_BAR_WIDTHS,
+  NOTES_CONTENTS_WIDTH,
+  PAGE,
+} from "../_assets/Constants";
 
 export default function MainPage() {
   return (
     <div className="flex flex-col items-center">
-      <div className="flex flex-row w-[1050px]">
+      <div className={`flex flex-row ${HEADER_BAR_WIDTHS.get(PAGE.NOTES)}`}>
         <Contents />
         <Document />
       </div>
@@ -26,7 +29,10 @@ export default function MainPage() {
 function Document() {
   return (
     <div className="flex flex-row">
-      <DummyContents />
+      <div
+        className="flex-none mr-5"
+        style={{ width: NOTES_CONTENTS_WIDTH }}
+      ></div>
       <div>
         <Heading />
         <div className="text-[16.5px] font-light tracking-wider leading-[32px] py-12 mb-28">
@@ -86,8 +92,4 @@ function RenderParagraphs() {
         return null;
     }
   });
-}
-
-function DummyContents() {
-  return <div className="flex-none w-[285px] mr-5"></div>;
 }

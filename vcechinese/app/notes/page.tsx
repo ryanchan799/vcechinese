@@ -3,6 +3,7 @@ import NavigationBar from "../_components/NavigationBar";
 import MainPage from "./MainPage";
 import HeaderBar from "../_components/HeaderBar";
 import Dropdown from "./Dropdown";
+import { HEADER_BAR_HEIGHT, PAGE } from "../_assets/Constants";
 
 export default function page() {
   return (
@@ -10,13 +11,13 @@ export default function page() {
       <div>
         <div>
           <div className="sticky top-0 z-50">
-            <NavigationBar tab="Notes" />
+            <NavigationBar tab={PAGE.NOTES} />
           </div>
         </div>
         <div>
           <div className="sticky top-0 z-40">
             <HeaderBar
-              heading="Notes"
+              page={PAGE.NOTES}
               caption="帮你轻松搞定你最不擅长的一科"
               rhs={<Rhs />}
             />
@@ -35,7 +36,7 @@ export default function page() {
 function Rhs() {
   return (
     <div className="flex flex-grow flex-row items-center">
-      <div className="flex h-[75px]">
+      <div className="flex" style={{ height: HEADER_BAR_HEIGHT }}>
         <Tabs />
       </div>
       <div className="grow"></div>

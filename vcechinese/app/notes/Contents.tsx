@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { VerticalLine } from "../_assets/Icons";
+import { NOTES_CONTENTS_WIDTH } from "../_assets/Constants";
 
 export default function Contents() {
   const zuowen = contents.get("作文");
@@ -8,7 +9,7 @@ export default function Contents() {
     <div className="fixed flex-none pl-5 py-10 pt-12 font-light">
       <div className="flex flex-row justify-center">
         <VerticalLine />
-        <div className="flex-none w-[285px]">
+        <div className="flex-none" style={{ width: NOTES_CONTENTS_WIDTH }}>
           <ul>
             {zuowen.map((topic: string, index: number) => (
               <Topic

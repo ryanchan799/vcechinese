@@ -15,22 +15,31 @@ import {
   SoundwaveIcon,
   TrophyFillIcon,
   TrophyIcon,
+  VerticalLine,
 } from "../_assets/Icons";
+import { FORUMS_SIDEBAR_WIDTH } from "../_assets/Constants";
 
 export default function Sidebar() {
   return (
-    <div className="fixed top-[125px] left-[90px] z-50 flex-none">
-      {Object.values(FORUM_TOPIC).map((topic, index) => {
-        const config = getTopicConfig(topic, "w-[12px] h-[12px]");
-        return config == null ? null : (
-          <Topic
-            key={index}
-            topic={topic}
-            color={config.color}
-            icon={config.fillIcon}
-          />
-        );
-      })}
+    <div
+      className="flex flex-row h-screen"
+      style={{ width: FORUMS_SIDEBAR_WIDTH }}
+    >
+      <div>
+        {Object.values(FORUM_TOPIC).map((topic, index) => {
+          const config = getTopicConfig(topic, "w-[12px] h-[12px]");
+          return config == null ? null : (
+            <Topic
+              key={index}
+              topic={topic}
+              color={config.color}
+              icon={config.fillIcon}
+            />
+          );
+        })}
+      </div>
+      <div className="grow"></div>
+      <VerticalLine />
     </div>
   );
 }

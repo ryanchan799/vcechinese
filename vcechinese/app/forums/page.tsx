@@ -6,9 +6,10 @@ import { SearchIcon } from "../_assets/Icons";
 import { ProfilePictureBig } from "./ProfilePicture";
 import Sidebar from "./Sidebar";
 import ThreadPage from "./ThreadPage";
-import ThreadsList from "./ThreadsList";
+import { PAGE } from "../_assets/Constants";
+
 export const metadata: Metadata = {
-  title: "Forums",
+  title: PAGE.FORUMS,
 };
 
 export default function page() {
@@ -17,19 +18,18 @@ export default function page() {
       <div>
         <div>
           <div className="sticky top-0 z-50">
-            <NavigationBar tab="Forums" />
+            <NavigationBar tab={PAGE.FORUMS} />
           </div>
         </div>
         <div>
           <div className="sticky top-0 z-40">
             <HeaderBar
-              heading="Forums"
+              page={PAGE.FORUMS}
               caption="欢迎大家交流探讨起来 迅速解决一切难题"
               rhs={<Rhs />}
-              forumsThreadsList={<ThreadsList />}
+              sidebar={<Sidebar />}
             />
           </div>
-          <Sidebar />
           <ThreadPage />
         </div>
       </div>

@@ -1,21 +1,20 @@
 import React from "react";
 import { MoonFillIcon } from "../_assets/Icons";
+import { PAGE } from "../_assets/Constants";
 
-export default function NavigationBar(props: { tab: string }) {
+export default function NavigationBar(props: { tab: PAGE }) {
   return (
     <div className="flex flex-row text-[11px] py-0.5 translate-y-2">
       <div className="grow"></div>
       <div className="flex flex-row pr-8 items-center">
         <MoonFillIcon className="h-2.5 w-2.5 mr-3.5 fill-black hover:fill-[#9437FF]" />
-        {tabs.map((tab, index) =>
-          tab == props.tab ? null : <Text key={index} text={tab} />
+        {Object.values(PAGE).map((tab, index) =>
+          tab == props.tab.toString() ? null : <Text key={index} text={tab} />
         )}
       </div>
     </div>
   );
 }
-
-export const tabs = ["Notes", "Forums", "AskAI", "Resources", "Tutoring"];
 
 function Text(props: { text: string }) {
   return (
