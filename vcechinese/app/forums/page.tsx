@@ -7,6 +7,7 @@ import { ProfilePictureBig } from "./ProfilePicture";
 import Sidebar from "./Sidebar";
 import ThreadPage from "./ThreadPage";
 import { PAGE } from "../_assets/Constants";
+import ThreadsList from "./ThreadsList";
 
 export const metadata: Metadata = {
   title: PAGE.FORUMS,
@@ -27,10 +28,11 @@ export default function page() {
               page={PAGE.FORUMS}
               caption="欢迎大家交流探讨起来 迅速解决一切难题"
               rhs={<Rhs />}
-              sidebar={<Sidebar />}
+              threads={<ThreadsList />}
             />
           </div>
           <ThreadPage />
+          <Sidebar />
         </div>
       </div>
     </div>

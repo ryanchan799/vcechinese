@@ -1,21 +1,21 @@
 import React from "react";
 import * as Icons from "../_assets/Icons";
-import { COLORS, FORUMS_SIDEBAR_WIDTH } from "../_assets/Constants";
+import {
+  COLORS,
+  FORUMS_SIDEBAR_PADDING,
+  FORUMS_SIDEBAR_WIDTH,
+} from "../_assets/Constants";
 import { hexToRgba } from "../_assets/UtilityFunctions";
 
 export default function Sidebar() {
   return (
     <div
-      className="flex flex-row h-screen"
+      className={`fixed left-[0px] top-[130px] space-y-8 z-50 ${FORUMS_SIDEBAR_PADDING}`}
       style={{ width: FORUMS_SIDEBAR_WIDTH }}
     >
-      <div className="pl-[10px] py-[35px] space-y-8">
-        <NewThreadButton />
-        <QuickLinks />
-        <TopicsList />
-      </div>
-      <div className="grow"></div>
-      <Icons.VerticalLine className="opacity-80" />
+      <NewThreadButton />
+      <QuickLinks />
+      <TopicsList />
     </div>
   );
 }

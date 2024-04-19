@@ -11,7 +11,7 @@ export default function HeaderBar(props: {
   page: PAGE;
   caption: string;
   rhs: React.JSX.Element;
-  sidebar?: React.JSX.Element;
+  threads?: React.JSX.Element;
 }) {
   return (
     <div className="flex flex-col w-full items-center overflow-visible">
@@ -29,7 +29,7 @@ export default function HeaderBar(props: {
               {props.rhs}
             </div>
           </div>
-          <div style={{ height: 0 }}>{props.sidebar}</div>
+          <div style={{ width: 0, height: 0 }}>{props.threads}</div>
         </div>
       </div>
       <Divider />

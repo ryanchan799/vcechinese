@@ -4,7 +4,7 @@ import { PAGE } from "../_assets/Constants";
 
 export default function NavigationBar(props: { tab: PAGE }) {
   return (
-    <div className="flex flex-row text-[11px] py-0.5 translate-y-2">
+    <div className="flex flex-row text-[11px] py-0.5 translate-y-[7.5px]">
       <div className="grow"></div>
       <div className="flex flex-row pr-8 items-center">
         <MoonFillIcon className="h-2.5 w-2.5 mr-3.5 fill-black hover:fill-[#9437FF]" />

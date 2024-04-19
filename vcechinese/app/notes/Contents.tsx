@@ -3,7 +3,7 @@ import { VerticalLine } from "../_assets/Icons";
 import { NOTES_CONTENTS_WIDTH } from "../_assets/Constants";
 
 export default function Contents() {
-  const zuowen = contents.get("作文");
+  const zuowen: string[] = contents.get("作文");
 
   return (
     <div className="fixed flex-none pl-5 py-10 pt-12 font-light">
@@ -11,7 +11,7 @@ export default function Contents() {
         <VerticalLine />
         <div className="flex-none" style={{ width: NOTES_CONTENTS_WIDTH }}>
           <ul>
-            {zuowen.map((topic: string, index: number) => (
+            {zuowen.map((topic, index) => (
               <Topic
                 key={index}
                 topic={topic}

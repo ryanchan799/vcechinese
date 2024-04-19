@@ -22,7 +22,7 @@ export function ProfilePictureTiny(props: { color: string; letter: string }) {
     <ProfilePicture
       color={props.color}
       letter={props.letter}
-      className="w-[12.5px] h-[12.5px] text-[6px] "
+      className="w-[11px] h-[11px] text-[5px] "
     />
   );
 }

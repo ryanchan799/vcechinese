@@ -10,6 +10,7 @@ import numeral from "numeral";
 import { DocumentData, Timestamp } from "firebase/firestore";
 import { makeApiRequest } from "@/firebase";
 import { getUsers } from "../api/users/route";
+import { FORUMS_LIST_WIDTH, FORUMS_SIDEBAR_WIDTH } from "../_assets/Constants";
 
 export default async function ThreadsList() {
   const threads: DocumentData[] = await makeApiRequest("threads", "GET").then(
@@ -19,27 +20,29 @@ export default async function ThreadsList() {
   return (
     <div>
       <div
-        className="ml-[185px] w-[350px] border-l-[1px] border-r-[1px] border-gray-200 border-opacity-50 overflow-y-scroll scrollbar-none"
-        style={{ height: `calc(100vh - 74px)` }}
+        className="border-l-[1px] border-r-[1px] border-gray-200 border-opacity-50 overflow-y-scroll scrollbar-none"
+        style={{
+          height: `calc(100vh - 74px)`,
+          width: FORUMS_LIST_WIDTH,
+          marginLeft: FORUMS_SIDEBAR_WIDTH,
+        }}
       >
         <div className="grow">
-          {threads.map((thread) => {
-            return (
-              <>
-                {[...Array(20)].map((_, index) => (
-                  <Row
-                    key={index}
-                    title={thread.title}
-                    topic={thread.topic}
-                    date={thread.date}
-                    users={thread.interactions.users}
-                    numLikes={thread.numLikes}
-                    numPosts={thread.interactions.posts.length}
-                  />
-                ))}
-              </>
-            );
-          })}
+          {threads.map((thread, index) => (
+            <div key={index}>
+              {[...Array(20)].map((_, index) => (
+                <Row
+                  key={index}
+                  title={thread.title}
+                  topic={thread.topic}
+                  date={thread.date}
+                  users={thread.interactions.users}
+                  numLikes={thread.numLikes}
+                  numPosts={thread.interactions.posts.length}
+                />
+              ))}
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -55,8 +58,6 @@ async function Row(props: {
   numPosts: number;
 }) {
   const [poster, ...interactors] = await getUsers(props.users);
-
-  console.log("interactors", interactors);
 
   return (
     <div>
@@ -132,9 +133,9 @@ function Rhs(props: {
 function ProfilePicStack(props: { interactors: DocumentData[] }) {
   return (
     <div className="flex flex-row space-x-[2px]">
-      {props.interactors.map((user) => (
+      {props.interactors.map((user, index) => (
         <ProfilePictureSmall
-          key={user.username}
+          key={index}
           color={user.color}
           letter={user.name.charAt(0)}
         />

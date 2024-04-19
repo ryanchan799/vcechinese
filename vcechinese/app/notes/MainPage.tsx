@@ -29,10 +29,7 @@ export default function MainPage() {
 function Document() {
   return (
     <div className="flex flex-row">
-      <div
-        className="flex-none mr-5"
-        style={{ width: NOTES_CONTENTS_WIDTH }}
-      ></div>
+      <DummyPadding />
       <div>
         <Heading />
         <div className="text-[16.5px] font-light tracking-wider leading-[32px] py-12 mb-28">
@@ -92,4 +89,13 @@ function RenderParagraphs() {
         return null;
     }
   });
+}
+
+function DummyPadding() {
+  return (
+    <div
+      className="flex-none mr-5"
+      style={{ width: NOTES_CONTENTS_WIDTH }}
+    ></div>
+  );
 }
