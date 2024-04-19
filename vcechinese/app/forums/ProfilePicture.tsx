@@ -17,6 +17,16 @@ export default function ProfilePicture(props: {
   );
 }
 
+export function ProfilePictureTiny(props: { color: string; letter: string }) {
+  return (
+    <ProfilePicture
+      color={props.color}
+      letter={props.letter}
+      className="w-[12.5px] h-[12.5px] text-[6px] "
+    />
+  );
+}
+
 export function ProfilePictureSmall(props: { color: string; letter: string }) {
   return (
     <ProfilePicture
@@ -42,7 +52,7 @@ export function ProfilePictureBigger(props: { color: string; letter: string }) {
     <ProfilePicture
       color={props.color}
       letter={props.letter}
-      className="w-[38px] h-[38px] text-[20px]"
+      className="w-[40px] h-[40px] text-[21px]"
     />
   );
 }
