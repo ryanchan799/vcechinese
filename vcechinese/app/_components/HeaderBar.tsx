@@ -5,7 +5,6 @@ import {
   HEADER_BAR_WIDTHS,
   HEADER_BAR_HEIGHT,
   PAGE,
-  FORUMS_SIDEBAR_WIDTH,
 } from "../_assets/Constants";
 
 export default function HeaderBar(props: {
@@ -30,7 +29,7 @@ export default function HeaderBar(props: {
               {props.rhs}
             </div>
           </div>
-          {props.sidebar}
+          <div style={{ height: 0 }}>{props.sidebar}</div>
         </div>
       </div>
       <Divider />

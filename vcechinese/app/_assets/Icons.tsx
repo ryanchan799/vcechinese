@@ -251,7 +251,7 @@ export function ListIcon(props: { className: string }) {
       className={`${props.className} scale-110`}
     >
       <path
-        fill-rule="evenodd"
+        fillRule="evenodd"
         d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2"
       />
     </svg>
@@ -458,6 +458,8 @@ export function Divider(props: { className?: string }) {
   );
 }
 
-export function VerticalLine() {
-  return <div className="flex-none w-[1px] bg-gray-200"></div>;
+export function VerticalLine(props: { className?: string }) {
+  return (
+    <div className={`flex-none w-[1px] bg-gray-200 ${props.className}`}></div>
+  );
 }

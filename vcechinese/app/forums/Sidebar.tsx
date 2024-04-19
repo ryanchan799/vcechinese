@@ -8,13 +8,13 @@ export default function Sidebar() {
       className="flex flex-row h-screen"
       style={{ width: FORUMS_SIDEBAR_WIDTH }}
     >
-      <div className="pl-[11px] py-[31px] space-y-8">
+      <div className="pl-[10px] py-[35px] space-y-8">
         <NewThreadButton />
         <QuickLinks />
         <TopicsList />
       </div>
       <div className="grow"></div>
-      <Icons.VerticalLine />
+      <Icons.VerticalLine className="opacity-80" />
     </div>
   );
 }
@@ -23,8 +23,9 @@ function NewThreadButton() {
   return (
     <div className="flex items-center gap-3">
       <button
-        className="flex flex-row w-[65px] items-center justify-center rounded-md text-[#0066FF] hover:bg-[#0066FF] hover:text-white"
+        className="flex flex-row w-[65px] items-center justify-center rounded-md"
         style={{
+          color: COLORS.BRIGHT_BLUE,
           borderColor: hexToRgba(COLORS.BRIGHT_BLUE, 0.9),
           borderWidth: "1px",
         }}
@@ -35,8 +36,8 @@ function NewThreadButton() {
         </div>
       </button>
       <div className="flex gap-0.5">
-        <KeyTile character="⌘" size="text-[8px]" />
-        <KeyTile character="Ctrl" size="text-[7px]" />
+        <KeyTile character="⌘" size="text-[9px]" />
+        <KeyTile character="K" size="text-[8.5px]" />
       </div>
     </div>
   );
@@ -84,7 +85,7 @@ function Topic(props: { topic: ForumTopic }) {
   return (
     <div className="flex flex-row items-center text-gray-700 fill-gray-700 opacity-80 gap-2 py-[3.6px]">
       {props.topic.fillIcon}
-      <button className="text-[11.8px] tracking-[-0.15px] hover:underline">
+      <button className="text-[12px] tracking-[-0.15px] hover:underline">
         {props.topic.topic}
       </button>
     </div>
@@ -187,14 +188,14 @@ export function getTopicConfig(topic: FORUM_TOPIC, className: string) {
 function KeyTile(props: { character: string; size: string }) {
   return (
     <div
-      className="flex min-w-[11px] h-[11px] items-center justify-center rounded-sm px-[1px] opacity-40"
+      className="flex min-w-[12px] h-[12px] items-center justify-center rounded-sm px-[1px] opacity-30"
       style={{
         color: COLORS.BRIGHT_BLUE,
         borderColor: hexToRgba(COLORS.BRIGHT_BLUE, 0.9),
         borderWidth: "1px",
       }}
     >
-      <p className={props.size}>{props.character}</p>
+      <p className={`${props.size}`}>{props.character}</p>
     </div>
   );
 }

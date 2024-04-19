@@ -19,4 +19,4 @@ export const HEADER_BAR_WIDTHS = new Map([
 
 export const NOTES_CONTENTS_WIDTH = "285px";
 
-export const FORUMS_SIDEBAR_WIDTH = "158px";
+export const FORUMS_SIDEBAR_WIDTH = "160px";
