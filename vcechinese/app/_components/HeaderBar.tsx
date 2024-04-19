@@ -5,6 +5,7 @@ import {
   HEADER_BAR_WIDTHS,
   HEADER_BAR_HEIGHT,
   PAGE,
+  FORUMS_SIDEBAR_WIDTH,
 } from "../_assets/Constants";
 
 export default function HeaderBar(props: {
@@ -13,8 +14,6 @@ export default function HeaderBar(props: {
   rhs: React.JSX.Element;
   sidebar?: React.JSX.Element;
 }) {
-  const ThreadsList = () => props.sidebar;
-
   return (
     <div className="flex flex-col w-full items-center overflow-visible">
       <div
@@ -31,7 +30,7 @@ export default function HeaderBar(props: {
               {props.rhs}
             </div>
           </div>
-          <ThreadsList />
+          {props.sidebar}
         </div>
       </div>
       <Divider />

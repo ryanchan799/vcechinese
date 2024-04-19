@@ -8,7 +8,7 @@ export default function Sidebar() {
       className="flex flex-row h-screen"
       style={{ width: FORUMS_SIDEBAR_WIDTH }}
     >
-      <div className="pl-[11px] py-[30px] space-y-8">
+      <div className="pl-[11px] py-[31px] space-y-8">
         <NewThreadButton />
         <QuickLinks />
         <TopicsList />
@@ -21,9 +21,23 @@ export default function Sidebar() {
 
 function NewThreadButton() {
   return (
-    <div className="flex flex-row w-[70px] items-center justify-center gap-1.5 rounded-md">
-      <Icons.PlusIcon className={size} />
-      <p className="text-xs">New</p>
+    <div className="flex items-center gap-3">
+      <button
+        className="flex flex-row w-[65px] items-center justify-center rounded-md text-[#0066FF] hover:bg-[#0066FF] hover:text-white"
+        style={{
+          borderColor: hexToRgba(COLORS.BRIGHT_BLUE, 0.9),
+          borderWidth: "1px",
+        }}
+      >
+        <div className="flex flex-row items-center text-[11px] gap-2 py-[3px] -translate-x-[1px]">
+          <Icons.PlusIcon className="w-[8px] h-[8px]" />
+          <p>New</p>
+        </div>
+      </button>
+      <div className="flex gap-0.5">
+        <KeyTile character="⌘" size="text-[8px]" />
+        <KeyTile character="Ctrl" size="text-[7px]" />
+      </div>
     </div>
   );
 }
@@ -170,4 +184,26 @@ export function getTopicConfig(topic: FORUM_TOPIC, className: string) {
   }
 }
 
+function KeyTile(props: { character: string; size: string }) {
+  return (
+    <div
+      className="flex min-w-[11px] h-[11px] items-center justify-center rounded-sm px-[1px] opacity-40"
+      style={{
+        color: COLORS.BRIGHT_BLUE,
+        borderColor: hexToRgba(COLORS.BRIGHT_BLUE, 0.9),
+        borderWidth: "1px",
+      }}
+    >
+      <p className={props.size}>{props.character}</p>
+    </div>
+  );
+}
+
 const size = "w-[13px] h-[13px]";
+
+export function hexToRgba(hex: string, alpha: number) {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
