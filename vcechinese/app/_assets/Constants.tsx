@@ -23,3 +23,14 @@ export const NOTES_CONTENTS_WIDTH = "285px";
 export const FORUMS_SIDEBAR_WIDTH = "180px";
 export const FORUMS_SIDEBAR_PADDING = "ml-[80px] pl-[10px]";
 export const FORUMS_LIST_WIDTH = "390px";
+
+export enum FORUM_TOPIC {
+  ANNOUNCEMENTS = "Announcements",
+  GENERAL = "General",
+  ESSAYS = "Essays",
+  ORAL = "Oral",
+  SACS = "SACs",
+  EXAMS = "Exams",
+  GRADES = "Grades",
+  SOCIAL = "Social",
+}

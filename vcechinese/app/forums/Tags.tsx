@@ -1,6 +1,4 @@
 import React from "react";
-import { COLORS } from "../_assets/Constants";
-import { hexToRgba } from "../_assets/UtilityFunctions";
 
 export default function Tags(props: { tags: string[] }) {
   return (
@@ -14,13 +12,7 @@ export default function Tags(props: { tags: string[] }) {
 
 function Tag(props: { description: string }) {
   return (
-    <div
-      className="text-[9px] font-normal rounded-sm px-[4px] py-[1px]"
-      style={{
-        color: COLORS.DULL_BLUE,
-        backgroundColor: hexToRgba(COLORS.DULL_BLUE, 0.07),
-      }}
-    >
+    <div className="text-[7px] border-black border-[0.1px] border-opacity-25 text-black text-opacity-40 rounded-sm px-[4px] py-[1px]">
       {props.description}
     </div>
   );

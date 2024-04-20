@@ -6,6 +6,7 @@ import {
   FORUMS_SIDEBAR_WIDTH,
 } from "../_assets/Constants";
 import { hexToRgba } from "../_assets/UtilityFunctions";
+import { FORUM_TOPIC } from "../_assets/Constants";
 
 export default function Sidebar() {
   return (
@@ -110,17 +111,6 @@ export class ForumTopic {
     this.fillIcon = fillIcon;
     this.outlineIcon = outlineIcon;
   }
-}
-
-export enum FORUM_TOPIC {
-  ANNOUNCEMENTS = "Announcements",
-  GENERAL = "General",
-  ESSAYS = "Essays",
-  ORAL = "Oral",
-  SACS = "SACs",
-  EXAMS = "Exams",
-  GRADES = "Grades",
-  SOCIAL = "Social",
 }
 
 export function getTopicConfig(topic: FORUM_TOPIC, className: string) {

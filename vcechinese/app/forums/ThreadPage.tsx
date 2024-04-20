@@ -1,6 +1,7 @@
 import React from "react";
 import { ProfilePictureBigger } from "./ProfilePicture";
-import { FORUM_TOPIC, getTopicConfig } from "./Sidebar";
+import { getTopicConfig } from "./Sidebar";
+import { FORUM_TOPIC } from "../_assets/Constants";
 import Tags from "./Tags";
 import {
   FORUMS_LIST_WIDTH,
@@ -16,7 +17,7 @@ export default function ThreadPage() {
     <div className="flex py-[50px] font-light">
       <DummyPadding />
       <div className="flex flex-grow justify-center">
-        <div className="w-[650px]">
+        {/* <div className="w-[650px]">
           <div className="pb-8">
             <div className="flex flex-row items-center gap-3.5 pb-1.5">
               {icon}
@@ -54,7 +55,7 @@ export default function ThreadPage() {
               VCE中文大致可划分为三大板块：SACs、口试、笔试。且不说六次SAC考试中就有两个直接考你作文，在年底最关键的口试和笔试中，写作更是占据了至关重要的位置。口试本质上是什么？它本质上是写作与口语相结合的产物。
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

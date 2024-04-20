@@ -4,6 +4,7 @@ import {
   Divider,
   MessageFillIcon,
   HeartFillIcon,
+  MegaphoneIcon,
 } from "../_assets/Icons";
 import { ProfilePictureSmall } from "./ProfilePicture";
 import numeral from "numeral";
@@ -27,10 +28,10 @@ export default async function ThreadsList() {
           marginLeft: FORUMS_SIDEBAR_WIDTH,
         }}
       >
-        <div className="grow">
+        <div className="grow font-light">
           {threads.map((thread, index) => (
             <div key={index}>
-              {[...Array(20)].map((_, index) => (
+              {[...Array(12)].map((_, index) => (
                 <Row
                   key={index}
                   title={thread.title}
@@ -67,13 +68,11 @@ async function Row(props: {
           topic={props.topic}
           date={props.date}
           poster={poster}
-        />
-        <div className="grow"></div>
-        <Rhs
           numLikes={props.numLikes}
           numPosts={props.numPosts}
-          interactors={interactors}
         />
+        <div className="grow"></div>
+        <Rhs interactors={interactors} />
       </div>
       <div className="pl-3">
         <Divider className="opacity-60" />
@@ -87,45 +86,46 @@ function Lhs(props: {
   topic: string;
   date: Timestamp;
   poster: DocumentData;
+  numLikes: number;
+  numPosts: number;
 }) {
   return (
-    <div className="space-y-[6px] py-0.5">
-      <div className="flex items-center space-x-2">
-        <ThreadsIcon className="fill-gray-400 opacity-80 w-3 h-3" />
-        <p className="text-[11px]">{props.title}</p>
+    <div className="space-y-[6px]">
+      <div className="flex items-center gap-2">
+        <MegaphoneIcon className="fill-gray-400 opacity-90 w-3 h-3" />
+        <p className="text-[12px]">{props.title}</p>
       </div>
-      <p className="text-[9px] font-light">
-        <span className="text-[#EF4146] font-bold">{props.topic}</span>
-        <span className="px-2">{props.poster.name}</span>
-        <span>5mth</span>
-      </p>
+      <div className="flex items-center gap-2 pl-[20px]">
+        <p className="text-[10px] -tracking-[0.1px] font-bold text-[#0769AA]">
+          {props.topic}
+        </p>
+        <div className="flex text-[9px] gap-0.5">
+          <p className="text-gray-500 pl-[1px] pr-1">{props.poster.username}</p>
+          <StatsDisplay
+            icon={
+              <MessageFillIcon className="w-[6px] h-[6px] -translate-y-[0.5px]" />
+            }
+            value={props.numPosts}
+          />
+          {props.numLikes == 0 ? null : (
+            <StatsDisplay
+              icon={<HeartFillIcon className="w-[6px] h-[6px]" />}
+              value={props.numLikes}
+            />
+          )}
+        </div>
+      </div>
     </div>
   );
 }
 
-function Rhs(props: {
-  numLikes: number;
-  numPosts: number;
-  interactors: DocumentData[];
-}) {
+function Rhs(props: { interactors: DocumentData[] }) {
   return (
-    <div className="flex flex-col items-end mr-2 space-y-3">
+    <div className="flex flex-col items-end mr-2 space-y-1.5">
+      <p className="text-[8px] text-gray-500 text-opacity-70 pr-[1px] -translate-y-[8px]">
+        5m
+      </p>
       <ProfilePicStack interactors={props.interactors} />
-
-      <div className="flex flex-row items-center">
-        {props.numPosts == 0 ? null : (
-          <StatsDisplay
-            icon={<MessageFillIcon className="w-[7px] h-[7px]" />}
-            value={props.numPosts}
-          />
-        )}
-        {props.numLikes == 0 ? null : (
-          <StatsDisplay
-            icon={<HeartFillIcon className="w-[7px] h-[7px]" />}
-            value={props.numLikes}
-          />
-        )}
-      </div>
     </div>
   );
 }
@@ -146,8 +146,8 @@ function ProfilePicStack(props: { interactors: DocumentData[] }) {
 
 function StatsDisplay(props: { icon: React.JSX.Element; value: number }) {
   return (
-    <div className="flex flex-row items-center text-[7.5px] text-gray-400 pl-2 pr-[1.5px] gap-[3.5px]">
-      <div className="opacity-50">{props.icon}</div>
+    <div className="flex flex-row items-center text-[8px] text-gray-500 pl-1 pr-[1px] gap-[3.5px]">
+      <div className="opacity-40">{props.icon}</div>
       <p>
         {props.value > 999 ? numeral(props.value).format("0.0a") : props.value}
       </p>
