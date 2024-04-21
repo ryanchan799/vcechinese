@@ -34,7 +34,7 @@ function NewThreadButton() {
       >
         <div className="flex flex-row items-center text-[11px] gap-2 py-[3px] -translate-x-[1px]">
           <Icons.PlusIcon className="w-[8px] h-[8px]" />
-          <p>New</p>
+          <p className="-tracking-[0.1px]">New</p>
         </div>
       </button>
       <div className="flex gap-0.5">

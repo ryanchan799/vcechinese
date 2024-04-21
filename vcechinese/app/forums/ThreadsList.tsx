@@ -62,7 +62,7 @@ async function Row(props: {
 
   return (
     <div>
-      <div className="flex flex-row text-gray-700 pl-4 py-[14px] items-center">
+      <div className="flex flex-row text-gray-700 pl-4 py-[13px] items-center">
         <Lhs
           title={props.title}
           topic={props.topic}
@@ -90,17 +90,20 @@ function Lhs(props: {
   numPosts: number;
 }) {
   return (
-    <div className="space-y-[6px]">
-      <div className="flex items-center gap-2">
+    <div className="space-y-[7px]">
+      <div className="flex items-center gap-2.5">
         <MegaphoneIcon className="fill-gray-400 opacity-90 w-3 h-3" />
-        <p className="text-[12px]">{props.title}</p>
-      </div>
-      <div className="flex items-center gap-2 pl-[20px]">
-        <p className="text-[10px] -tracking-[0.1px] font-bold text-[#0769AA]">
-          {props.topic}
+        <p
+          className="text-[11.8px]"
+          style={{ fontWeight: 385, fontStretch: "98%" }}
+        >
+          {props.title}
         </p>
+      </div>
+      <div className="flex items-center gap-2" style={{ fontStretch: "95%" }}>
+        <p className="text-[9.5px] font-bold text-[#EF4146]">{props.topic}</p>
         <div className="flex text-[9px] gap-0.5">
-          <p className="text-gray-500 pl-[1px] pr-1">{props.poster.username}</p>
+          <p className="text-gray-800 pl-[1px] pr-1">{props.poster.username}</p>
           <StatsDisplay
             icon={
               <MessageFillIcon className="w-[6px] h-[6px] -translate-y-[0.5px]" />
@@ -146,8 +149,8 @@ function ProfilePicStack(props: { interactors: DocumentData[] }) {
 
 function StatsDisplay(props: { icon: React.JSX.Element; value: number }) {
   return (
-    <div className="flex flex-row items-center text-[8px] text-gray-500 pl-1 pr-[1px] gap-[3.5px]">
-      <div className="opacity-40">{props.icon}</div>
+    <div className="flex flex-row items-center text-[8px] text-gray-800 pl-1 pr-[1px] gap-[3.5px]">
+      <div className="opacity-30">{props.icon}</div>
       <p>
         {props.value > 999 ? numeral(props.value).format("0.0a") : props.value}
       </p>

@@ -20,9 +20,9 @@ export const HEADER_BAR_WIDTHS = new Map([
 
 export const NOTES_CONTENTS_WIDTH = "285px";
 
-export const FORUMS_SIDEBAR_WIDTH = "180px";
+export const FORUMS_SIDEBAR_WIDTH = "175px";
 export const FORUMS_SIDEBAR_PADDING = "ml-[80px] pl-[10px]";
-export const FORUMS_LIST_WIDTH = "390px";
+export const FORUMS_LIST_WIDTH = "385px";
 
 export enum FORUM_TOPIC {
   ANNOUNCEMENTS = "Announcements",
