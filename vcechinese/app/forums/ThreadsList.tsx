@@ -95,7 +95,7 @@ function Lhs(props: {
         <MegaphoneIcon className="fill-gray-400 opacity-90 w-3 h-3" />
         <p
           className="text-[11.8px]"
-          style={{ fontWeight: 385, fontStretch: "98%" }}
+          style={{ fontWeight: 360, fontStretch: "98%" }}
         >
           {props.title}
         </p>
