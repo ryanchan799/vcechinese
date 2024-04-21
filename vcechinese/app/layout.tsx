@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { inter } from "./_assets/Fonts";
 
 export const metadata: Metadata = {
   title:
@@ -13,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={inter.className}>{children}</body>
       <link rel="icon" type="image/x-icon" href="/images/logo.ico"></link>
     </html>
   );
