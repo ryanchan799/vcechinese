@@ -8,12 +8,21 @@ import Sidebar from "./Sidebar";
 import ThreadPage from "./ThreadPage";
 import { PAGE } from "../_assets/Constants";
 import ThreadsList from "./ThreadsList";
+import { UserAuthContextProvider } from "./authentication/UserAuthContext.js";
 
 export const metadata: Metadata = {
   title: PAGE.FORUMS,
 };
 
 export default function page() {
+  return (
+    <UserAuthContextProvider>
+      <Forums />
+    </UserAuthContextProvider>
+  );
+}
+
+function Forums() {
   return (
     <div className="scrollbar-none overflow-y-auto h-screen">
       <div>

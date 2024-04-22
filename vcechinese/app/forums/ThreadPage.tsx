@@ -6,7 +6,8 @@ import {
   FORUMS_SIDEBAR_PADDING,
   FORUMS_SIDEBAR_WIDTH,
 } from "../_assets/Constants";
-import { RichTextEditor } from "./RichTextEditor";
+import RichTextEditor from "./RichTextEditor";
+import Login from "./authentication/Login";
 
 export default function ThreadPage() {
   const config = getTopicConfig(FORUM_TOPIC.ANNOUNCEMENTS, "w-[18px] h-[18px]");
@@ -16,7 +17,10 @@ export default function ThreadPage() {
     <div className="flex py-[50px] font-light">
       <DummyPadding />
       <div className="flex flex-grow justify-center">
-        <RichTextEditor />
+        <div>
+          <RichTextEditor />
+          <Login />
+        </div>
         {/* <div className="w-[650px]">
           <div className="pb-8">
             <div className="flex flex-row items-center gap-3.5 pb-1.5">

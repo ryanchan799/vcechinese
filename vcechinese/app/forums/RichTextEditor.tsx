@@ -6,7 +6,7 @@ import ReactQuill from "react-quill";
 import { renderToString } from "react-dom/server";
 import * as Icons from "../_assets/Icons";
 
-export function RichTextEditor() {
+export default function RichTextEditor() {
   return (
     <div className="text-editor border-none">
       <TextEditor modules={modules} formats={formats} placeholder="Aa" />
