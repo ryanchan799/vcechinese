@@ -1,69 +1,148 @@
 "use client";
-import LexicalTheme from "./lexical/LexicalTheme";
-import { LexicalComposer } from "@lexical/react/LexicalComposer";
-import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
-import { ContentEditable } from "@lexical/react/LexicalContentEditable";
-import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
-import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
-import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
-import ToolbarPlugin from "./lexical/ToolbarPlugin";
-import { HeadingNode, QuoteNode } from "@lexical/rich-text";
-import { TableCellNode, TableNode, TableRowNode } from "@lexical/table";
-import { ListItemNode, ListNode } from "@lexical/list";
-import { CodeHighlightNode, CodeNode } from "@lexical/code";
-import { AutoLinkNode, LinkNode } from "@lexical/link";
-import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
-import { ListPlugin } from "@lexical/react/LexicalListPlugin";
-import { MarkdownShortcutPlugin } from "@lexical/react/LexicalMarkdownShortcutPlugin";
-import { TRANSFORMERS } from "@lexical/markdown";
-import CodeHighlightPlugin from "./lexical/CodeHighlightPlugin";
-import AutoLinkPlugin from "./lexical/AutoLinkPlugin";
+import React, { LegacyRef } from "react";
+import "react-quill/dist/quill.snow.css";
+import dynamic from "next/dynamic";
+import ReactQuill, { Quill } from "react-quill";
+import { renderToString } from "react-dom/server";
+import * as Icons from "../_assets/Icons";
 
-function Placeholder() {
-  return <div className="editor-placeholder">Write an answer...</div>;
+export function RichTextEditor(props: { className: string }) {
+  return (
+    <div className="text-editor border-none">
+      <EditorToolbar />
+      <TextEditor
+        modules={modules}
+        formats={formats}
+        placeholder="Aa"
+        className={props.className}
+      />
+    </div>
+  );
 }
 
-const editorConfig = {
-  namespace: "",
-  theme: LexicalTheme,
-  onError(error: any) {
-    throw error;
+function TextEditor(params: any) {
+  return <ReactQuillConfig {...params} />;
+}
+
+const ReactQuillConfig = dynamic(
+  async () => {
+    const { default: RQ } = await import("react-quill");
+
+    function QuillJS({ ...props }: React.ComponentProps<typeof ReactQuill>) {
+      const icons = RQ.Quill.import("ui/icons");
+      icons["undo"] = renderToString(
+        <Icons.UndoIcon className="scale-[90%]" />
+      );
+      icons["redo"] = renderToString(
+        <Icons.RedoIcon className="scale-[90%]" />
+      );
+      icons["header"]["1"] = renderToString(<Icons.H1Icon />);
+      icons["header"]["1"] = renderToString(<Icons.H1Icon />);
+      icons["header"]["2"] = renderToString(<Icons.H2Icon />);
+      icons["bold"] = renderToString(<Icons.BoldIcon />);
+      icons["italic"] = renderToString(<Icons.ItalicsIcon />);
+      icons["underline"] = renderToString(<Icons.UnderlineIcon />);
+      icons["strike"] = renderToString(<Icons.StrikethroughIcon />);
+      icons["list"]["bullet"] = renderToString(<Icons.BulletListIcon />);
+      icons["list"]["ordered"] = renderToString(<Icons.NumberedListIcon />);
+      icons["script"]["super"] = renderToString(<Icons.SuperscriptIcon />);
+      icons["script"]["sub"] = renderToString(<Icons.SubscriptIcon />);
+      icons["code-block"] = renderToString(<Icons.CodeblockIcon />);
+      icons["blockquote"] = renderToString(<Icons.QuoteIcon />);
+      icons["link"] = renderToString(<Icons.LinkIcon />);
+      icons["align"][""] = renderToString(<Icons.LeftAlignIcon />);
+      icons["align"]["center"] = renderToString(<Icons.CenterAlignIcon />);
+      icons["align"]["right"] = renderToString(<Icons.RightAlignIcon />);
+      icons["align"]["justify"] = renderToString(<Icons.JustifyAlignIcon />);
+
+      return <RQ {...props} />;
+    }
+
+    return QuillJS;
   },
-  nodes: [
-    HeadingNode,
-    ListNode,
-    ListItemNode,
-    QuoteNode,
-    CodeNode,
-    CodeHighlightNode,
-    TableNode,
-    TableCellNode,
-    TableRowNode,
-    AutoLinkNode,
-    LinkNode,
-  ],
+  {
+    ssr: false,
+  }
+);
+
+function EditorToolbar() {
+  return (
+    <div className="text-gray-700 text-opacity-80" id="toolbar">
+      <span className="ql-formats">
+        <button className="ql-undo" />
+        <button className="ql-redo" />
+      </span>
+      <span className="ql-formats">
+        <button className="ql-header" value={1} />
+        <button className="ql-header" value={2} />
+      </span>
+      <span className="ql-formats">
+        <button className="ql-bold" />
+        <button className="ql-italic" />
+        <button className="ql-underline" />
+        <button className="ql-strike" />
+        <button className="ql-list" value="ordered" />
+        <button className="ql-list" value="bullet" />
+      </span>
+      <span className="ql-formats">
+        <button className="ql-script" value="super" />
+        <button className="ql-script" value="sub" />
+        <button className="ql-blockquote" />
+      </span>
+      <span className="ql-formats">
+        <button className="ql-align" value="" />
+        <button className="ql-align" value="center" />
+        <button className="ql-align" value="right" />
+        <button className="ql-align" value="justify" />
+      </span>
+      <span className="ql-formats">
+        <button className="ql-link" />
+        <button className="ql-code-block" />
+      </span>
+    </div>
+  );
+}
+
+const modules = {
+  toolbar: {
+    container: "#toolbar",
+    handlers: {
+      undo: undoChange,
+      redo: redoChange,
+    },
+  },
+  history: {
+    delay: 500,
+    maxStack: 100,
+    userOnly: true,
+  },
 };
 
-export default function Editor() {
-  return (
-    <LexicalComposer initialConfig={editorConfig}>
-      <div className="editor-container text-[13px] w-[700px] bg-[#eee] border">
-        <ToolbarPlugin />
-        <div className="editor-inner">
-          <RichTextPlugin
-            contentEditable={<ContentEditable className="editor-input" />}
-            placeholder={<Placeholder />}
-            ErrorBoundary={LexicalErrorBoundary}
-          />
-          <HistoryPlugin />
-          <AutoFocusPlugin />
-          <CodeHighlightPlugin />
-          <ListPlugin />
-          <LinkPlugin />
-          <AutoLinkPlugin />
-          <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
-        </div>
-      </div>
-    </LexicalComposer>
-  );
+const formats = [
+  "header",
+  "font",
+  "size",
+  "bold",
+  "italic",
+  "underline",
+  "align",
+  "strike",
+  "script",
+  "blockquote",
+  "background",
+  "list",
+  "bullet",
+  "indent",
+  "link",
+  "image",
+  "color",
+  "code-block",
+];
+
+function undoChange(this: { quill: any; undo: () => void; redo: () => void }) {
+  this.quill.history.undo();
+}
+
+function redoChange(this: { quill: any; undo: () => void; redo: () => void }) {
+  this.quill.history.redo();
 }
