@@ -1,21 +1,16 @@
 "use client";
-import React, { LegacyRef } from "react";
+import React from "react";
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
-import ReactQuill, { Quill } from "react-quill";
+import ReactQuill from "react-quill";
 import { renderToString } from "react-dom/server";
 import * as Icons from "../_assets/Icons";
 
-export function RichTextEditor(props: { className: string }) {
+export function RichTextEditor() {
   return (
     <div className="text-editor border-none">
+      <TextEditor modules={modules} formats={formats} placeholder="Aa" />
       <EditorToolbar />
-      <TextEditor
-        modules={modules}
-        formats={formats}
-        placeholder="Aa"
-        className={props.className}
-      />
     </div>
   );
 }

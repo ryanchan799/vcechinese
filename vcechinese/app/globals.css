@@ -6,15 +6,19 @@
   font-weight: bold;
 }
 
-.ql-toolbar.ql-snow {
+.ql-toolbar {
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  border-top: none !important;
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+}
+
+.ql-container {
   border: 1px solid rgba(0, 0, 0, 0.1) !important;
   border-top-left-radius: 0.5em;
   border-top-right-radius: 0.5em;
 }
 
-.ql-container.ql-snow {
-  border: 1px solid rgba(0, 0, 0, 0.1) !important;
-  border-top: none !important;
-  border-bottom-left-radius: 0.5em;
-  border-bottom-right-radius: 0.5em;
+.ql-editor {
+  min-height: 200px;
 }
