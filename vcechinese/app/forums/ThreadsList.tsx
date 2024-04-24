@@ -128,7 +128,7 @@ function Rhs(props: { interactors: DocumentData[] }) {
       <p className="text-[8px] text-gray-500 text-opacity-70 pr-[1px] -translate-y-[8px]">
         5m
       </p>
-      <ProfilePicStack interactors={props.interactors} />
+      {/* <ProfilePicStack interactors={props.interactors} /> */}
     </div>
   );
 }
@@ -136,13 +136,9 @@ function Rhs(props: { interactors: DocumentData[] }) {
 function ProfilePicStack(props: { interactors: DocumentData[] }) {
   return (
     <div className="flex flex-row space-x-[2px]">
-      {props.interactors.map((user, index) => (
-        <ProfilePictureSmall
-          key={index}
-          color={user.color}
-          letter={user.name.charAt(0)}
-        />
-      ))}
+      {/* {props.interactors.map((user, index) => (
+        <ProfilePictureSmall/>
+      ))} */}
     </div>
   );
 }

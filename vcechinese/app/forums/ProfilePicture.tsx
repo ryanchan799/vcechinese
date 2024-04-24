@@ -1,58 +1,30 @@
+import Image from "next/image";
 import React from "react";
 
-export default function ProfilePicture(props: {
-  color: string;
-  letter: string;
-  className: string;
-}) {
+export default function ProfilePicture(props: { url: string; size: number }) {
   return (
-    <div
-      className={`flex-none text-white flex items-center justify-center rounded-full font-extralight ${props.className}`}
-      style={{
-        backgroundColor: props.color,
-      }}
-    >
-      {props.letter}
-    </div>
-  );
-}
-
-export function ProfilePictureTiny(props: { color: string; letter: string }) {
-  return (
-    <ProfilePicture
-      color={props.color}
-      letter={props.letter}
-      className="w-[10px] h-[10px] text-[4.5px] "
+    <Image
+      src={props.url}
+      alt="Profile Picture"
+      width={props.size}
+      height={props.size}
+      className="rounded-full overflow-hidden"
     />
   );
 }
 
-export function ProfilePictureSmall(props: { color: string; letter: string }) {
-  return (
-    <ProfilePicture
-      color={props.color}
-      letter={props.letter}
-      className="w-[16px] h-[16px] text-[7.5px] "
-    />
-  );
+export function ProfilePictureTiny(props: { url: string }) {
+  return <ProfilePicture url={props.url} size={10} />;
 }
 
-export function ProfilePictureBig(props: { color: string; letter: string }) {
-  return (
-    <ProfilePicture
-      color={props.color}
-      letter={props.letter}
-      className="w-8 h-8"
-    />
-  );
+export function ProfilePictureSmall(props: { url: string }) {
+  return <ProfilePicture url={props.url} size={16} />;
 }
 
-export function ProfilePictureBigger(props: { color: string; letter: string }) {
-  return (
-    <ProfilePicture
-      color={props.color}
-      letter={props.letter}
-      className="w-[40px] h-[40px] text-[21px]"
-    />
-  );
+export function ProfilePictureBig(props: { url: string }) {
+  return <ProfilePicture url={props.url} size={32} />;
+}
+
+export function ProfilePictureBigger(props: { url: string }) {
+  return <ProfilePicture url={props.url} size={40} />;
 }

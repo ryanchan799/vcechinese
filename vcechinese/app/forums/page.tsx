@@ -2,13 +2,12 @@ import React from "react";
 import NavigationBar from "../_components/NavigationBar";
 import HeaderBar from "../_components/HeaderBar";
 import { Metadata } from "next";
-import { SearchIcon } from "../_assets/Icons";
-import { ProfilePictureBig } from "./ProfilePicture";
 import Sidebar from "./Sidebar";
 import ThreadPage from "./ThreadPage";
 import { PAGE } from "../_assets/Constants";
 import ThreadsList from "./ThreadsList";
 import { UserAuthContextProvider } from "./authentication/UserAuthContext.js";
+import { Rhs } from "./HeaderRhs";
 
 export const metadata: Metadata = {
   title: PAGE.FORUMS,
@@ -43,25 +42,6 @@ function Forums() {
           <ThreadPage />
           <Sidebar />
         </div>
-      </div>
-    </div>
-  );
-}
-
-function Rhs() {
-  return (
-    <div className="flex flex-grow">
-      <div className="grow"></div>
-      <div className="flex gap-4">
-        <div className="flex w-[300px] h-8 border-[1px] border-gray-200 rounded-full px-4 items-center translate-y-[0.5px]">
-          <SearchIcon className="w-3 h-3 fill-gray-400 mr-2" />
-          <input
-            className="w-full text-[12px] font-light outline-none"
-            type="search"
-            placeholder="Search"
-          />
-        </div>
-        <ProfilePictureBig color="#065f46" letter="R" />
       </div>
     </div>
   );

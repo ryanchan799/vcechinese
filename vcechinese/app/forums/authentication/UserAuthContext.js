@@ -6,9 +6,10 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
-import { auth } from "../../../firebase";
+import { auth, db } from "../../../firebase";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
-const userAuthContext = createContext();
+export const userAuthContext = createContext();
 
 export function useUserAuth() {
   return useContext(userAuthContext);
@@ -27,12 +28,25 @@ export function UserAuthContextProvider({ children }) {
   }
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
-      setUser(currentuser);
-    });
-
     return () => {
-      unsubscribe();
+      onAuthStateChanged(auth, async (currentUser) => {
+        if (currentUser) {
+          const ref = doc(db, "users", currentUser.uid);
+          const snap = await getDoc(ref);
+
+          if (!snap.exists()) {
+            const data = {
+              name: currentUser.displayName,
+              email: currentUser.email,
+              picture: currentUser.photoURL,
+            };
+            setDoc(doc(db, "users", currentUser.uid), data);
+            console.log("Added new user to db", currentUser);
+          }
+        }
+
+        setUser(currentUser);
+      });
     };
   }, []);
 
