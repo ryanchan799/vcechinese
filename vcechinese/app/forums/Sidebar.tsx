@@ -5,7 +5,7 @@ import {
   FORUMS_SIDEBAR_PADDING,
   FORUMS_SIDEBAR_WIDTH,
 } from "../_assets/Constants";
-import { hexToRgba } from "../_assets/UtilityFunctions";
+import { hexToRgba } from "../_assets/Utility";
 import { FORUM_TOPIC } from "../_assets/Constants";
 
 export default function Sidebar() {

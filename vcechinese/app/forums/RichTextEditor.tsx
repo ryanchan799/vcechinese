@@ -1,25 +1,47 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
-import ReactQuill from "react-quill";
+import ReactQuill, { Quill } from "react-quill";
 import { renderToString } from "react-dom/server";
 import * as Icons from "../_assets/Icons";
 
 export default function RichTextEditor() {
+  const [value, setValue] = useState("");
+
+  function handleChange(
+    content: any,
+    delta: any,
+    source: any,
+    editor: { getContents: () => React.SetStateAction<string> }
+  ) {
+    setValue(editor.getContents());
+  }
+
   return (
-    <div className="text-editor border-none">
-      <TextEditor modules={modules} formats={formats} placeholder="Aa" />
-      <EditorToolbar />
+    <div className="text-editor border-none w-[650px] text-[13px]">
       <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
         rel="stylesheet"
       />
+      <TextEditor
+        modules={modules}
+        formats={formats}
+        placeholder="Aa"
+        value={value}
+        onChange={handleChange}
+        className="border-[1px] border-black border-opacity-10 min-h-[200px]"
+      />
+      <EditorToolbar />
+      <div className="space-y-8 py-8">
+        <p>delta: {JSON.stringify(value)}</p>
+        <Icons.Divider />
+      </div>
     </div>
   );
 }
 
-function TextEditor(params: any) {
+export function TextEditor(params: any) {
   return <ReactQuillConfig {...params} />;
 }
 
@@ -106,7 +128,7 @@ function EditorToolbar() {
   );
 }
 
-const modules = {
+export const modules = {
   toolbar: {
     container: "#toolbar",
     handlers: {
@@ -121,7 +143,7 @@ const modules = {
   },
 };
 
-const formats = [
+export const formats = [
   "header",
   "font",
   "size",
