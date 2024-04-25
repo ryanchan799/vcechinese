@@ -1,12 +1,12 @@
 import React from "react";
 import {
-  ThreadsIcon,
   Divider,
   MessageFillIcon,
   HeartFillIcon,
   MegaphoneIcon,
+  EllipsisIcon,
+  SortUpDownIcon,
 } from "../_assets/Icons";
-import { ProfilePictureSmall } from "./ProfilePicture";
 import numeral from "numeral";
 import { DocumentData, Timestamp } from "firebase/firestore";
 import { makeApiRequest } from "@/firebase";
@@ -29,21 +29,50 @@ export default async function ThreadsList() {
         }}
       >
         <div className="grow font-light">
-          {threads.map((thread, index) => (
-            <div key={index}>
-              {[...Array(12)].map((_, index) => (
-                <Row
-                  key={index}
-                  title={thread.title}
-                  topic={thread.topic}
-                  date={thread.date}
-                  users={thread.interactions.users}
-                  numLikes={thread.numLikes}
-                  numPosts={thread.interactions.posts.length}
-                />
-              ))}
+          <div>
+            <div>
+              <div className="sticky top-0 z-40">
+                <StickyBar />
+              </div>
+              <div>
+                <div>
+                  {threads.map((thread, index) => (
+                    <div key={index}>
+                      {[...Array(12)].map((_, index) => (
+                        <Row
+                          key={index}
+                          title={thread.title}
+                          topic={thread.topic}
+                          date={thread.date}
+                          users={thread.interactions.users}
+                          numLikes={thread.numLikes}
+                          numPosts={thread.interactions.posts.length}
+                        />
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-          ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function StickyBar() {
+  return (
+    <div className="flex flex-row w-full items-center px-4 py-[9px] border-b-[1px] bg-white">
+      <div className="flex flex-grow items-center">
+        <span className="text-[12px]">Threads</span>
+        <span className="text-[8px] px-1.5 text-black text-opacity-70">
+          April 2024
+        </span>
+        <div className="grow"></div>
+        <div className="flex gap-3 opacity-70">
+          <SortUpDownIcon className="w-3 h-3" />
+          <EllipsisIcon className="w-3 h-3" />
         </div>
       </div>
     </div>
@@ -62,7 +91,7 @@ async function Row(props: {
 
   return (
     <div>
-      <div className="flex flex-row text-gray-700 pl-4 py-[13px] items-center">
+      <div className="flex flex-row text-gray-700 pl-4 py-[14px] items-center">
         <Lhs
           title={props.title}
           topic={props.topic}
@@ -93,17 +122,18 @@ function Lhs(props: {
     <div className="space-y-[7px]">
       <div className="flex items-center gap-2.5">
         <MegaphoneIcon className="fill-gray-400 opacity-90 w-3 h-3" />
-        <p
-          className="text-[11.8px]"
-          style={{ fontWeight: 380, fontStretch: "98%" }}
-        >
+        <span className="text-[11.8px]" style={{ fontWeight: 380 }}>
           {props.title}
-        </p>
+        </span>
       </div>
-      <div className="flex items-center gap-2" style={{ fontStretch: "95%" }}>
-        <p className="text-[9.5px] font-bold text-[#EF4146]">{props.topic}</p>
+      <div className="flex items-center gap-2">
+        <span className="text-[9.5px] font-bold text-[#EF4146]">
+          {props.topic}
+        </span>
         <div className="flex text-[9px] gap-0.5">
-          <p className="text-gray-800 pl-[1px] pr-1">{props.poster.username}</p>
+          <span className="text-gray-800 pl-[1px] pr-1">
+            {props.poster.username}
+          </span>
           <StatsDisplay
             icon={
               <MessageFillIcon className="w-[6px] h-[6px] -translate-y-[0.5px]" />
@@ -125,9 +155,9 @@ function Lhs(props: {
 function Rhs(props: { interactors: DocumentData[] }) {
   return (
     <div className="flex flex-col items-end mr-2 space-y-1.5">
-      <p className="text-[8px] text-gray-500 text-opacity-70 pr-[1px] -translate-y-[8px]">
+      <span className="text-[8px] text-gray-500 text-opacity-70 pr-[1px] -translate-y-[8px]">
         5m
-      </p>
+      </span>
       {/* <ProfilePicStack interactors={props.interactors} /> */}
     </div>
   );
@@ -147,9 +177,9 @@ function StatsDisplay(props: { icon: React.JSX.Element; value: number }) {
   return (
     <div className="flex flex-row items-center text-[8px] text-gray-800 pl-1 pr-[1px] gap-[3.5px]">
       <div className="opacity-30">{props.icon}</div>
-      <p>
+      <span>
         {props.value > 999 ? numeral(props.value).format("0.0a") : props.value}
-      </p>
+      </span>
     </div>
   );
 }

@@ -19,9 +19,9 @@ export default function RichTextEditor() {
   }
 
   return (
-    <div className="text-editor border-none w-[650px] text-[13px]">
+    <div className="text-editor border-none">
       <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@350;700&display=swap"
         rel="stylesheet"
       />
       <TextEditor
@@ -30,16 +30,23 @@ export default function RichTextEditor() {
         placeholder="Aa"
         value={value}
         onChange={handleChange}
-        className="border-[1px] border-black border-opacity-10 min-h-[200px]"
+        className="min-h-[200px] w-[650px] border-[1px] border-black border-opacity-10 rounded-t-lg"
       />
       <EditorToolbar />
       <div className="space-y-8 py-8">
         <p>delta: {JSON.stringify(value)}</p>
         <Icons.Divider />
+        {/* <p>{convertDeltaToHTML(value)}</p> */}
       </div>
     </div>
   );
 }
+
+// const convertDeltaToHTML = (delta) => {
+//   const quill = new Quill(document.createElement("div"));
+//   quill.setContents(delta);
+//   return quill.root.innerHTML;
+// };
 
 export function TextEditor(params: any) {
   return <ReactQuillConfig {...params} />;
@@ -92,7 +99,7 @@ const ReactQuillConfig = dynamic(
 
 function EditorToolbar() {
   return (
-    <div className="text-gray-700 text-opacity-80" id="toolbar">
+    <div className="text-gray-700 text-opacity-80 w-[650px]" id="toolbar">
       <span className="ql-formats">
         <button className="ql-undo" />
         <button className="ql-redo" />

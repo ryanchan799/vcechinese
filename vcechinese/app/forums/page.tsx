@@ -8,6 +8,7 @@ import { PAGE } from "../_assets/Constants";
 import ThreadsList from "./ThreadsList";
 import { UserAuthContextProvider } from "./authentication/UserAuthContext.js";
 import { Rhs } from "./HeaderRhs";
+import "./forums.css";
 
 export const metadata: Metadata = {
   title: PAGE.FORUMS,

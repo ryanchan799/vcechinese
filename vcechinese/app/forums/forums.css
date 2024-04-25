@@ -1,0 +1,42 @@
+.ql-toolbar {
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  border-top: none !important;
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  width: 650px;
+}
+
+.ql-container {
+  border: 0px !important;
+}
+
+.ql-editor {
+  font-size: 11.8px;
+  font-family: "Inter";
+  color: black;
+  opacity: 0.9;
+  min-height: 200px;
+  line-height: 1.52 !important;
+}
+
+strong {
+  font-weight: 700;
+}
+
+ol li::before {
+  transform: translateX(-5px) !important;
+}
+
+ul li::before {
+  transform: translate(-5px, -0.5px) !important;
+  scale: 1.2;
+}
+
+li {
+  margin-bottom: 3px !important;
+  line-height: 1.45 !important;
+}
+
+p {
+  margin-bottom: 13px !important;
+}

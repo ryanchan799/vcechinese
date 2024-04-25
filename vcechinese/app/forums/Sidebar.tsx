@@ -34,7 +34,7 @@ function NewThreadButton() {
       >
         <div className="flex flex-row items-center text-[11px] gap-2 py-[3px] -translate-x-[1px]">
           <Icons.PlusIcon className="w-[8px] h-[8px]" />
-          <p className="-tracking-[0.1px]">New</p>
+          <span className="-tracking-[0.1px]">New</span>
         </div>
       </button>
       <div className="flex gap-0.5">
@@ -186,7 +186,7 @@ function KeyTile(props: { character: string; size: string }) {
         borderWidth: "1px",
       }}
     >
-      <p className={`${props.size}`}>{props.character}</p>
+      <span className={`${props.size}`}>{props.character}</span>
     </div>
   );
 }

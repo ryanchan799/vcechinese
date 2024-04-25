@@ -30,5 +30,5 @@ export function ProfilePictureBig(props: { url: string | null }) {
 }
 
 export function ProfilePictureBigger(props: { url: string | null }) {
-  return <ProfilePicture url={props.url} size={40} />;
+  return <ProfilePicture url={props.url} size={38} />;
 }

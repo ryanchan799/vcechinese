@@ -32,7 +32,7 @@ export default function HeaderBar(props: {
           <div style={{ width: 0, height: 0 }}>{props.threads}</div>
         </div>
       </div>
-      <Divider />
+      <Divider className="z-50" />
     </div>
   );
 }

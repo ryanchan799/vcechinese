@@ -9,10 +9,10 @@ export default function TextLogo(props: { heading: string; caption: string }) {
         style={{ width: HEADER_LOGO_WIDTH, height: HEADER_BAR_HEIGHT }}
       >
         <div className="inline-flex flex-col -space-y-[3px]">
-          <p className="text-[22px] font-bold">{props.heading}</p>
-          <p className="text-[9px] font-light tracking-[3.5px]">
+          <span className="text-[22px] font-bold">{props.heading}</span>
+          <span className="text-[9px] font-light tracking-[3.5px]">
             {props.caption}
-          </p>
+          </span>
         </div>
       </div>
     </div>
