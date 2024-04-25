@@ -11,6 +11,10 @@ export default function RichTextEditor() {
     <div className="text-editor border-none">
       <TextEditor modules={modules} formats={formats} placeholder="Aa" />
       <EditorToolbar />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+        rel="stylesheet"
+      />
     </div>
   );
 }
@@ -49,6 +53,10 @@ const ReactQuillConfig = dynamic(
       icons["align"]["center"] = renderToString(<Icons.CenterAlignIcon />);
       icons["align"]["right"] = renderToString(<Icons.RightAlignIcon />);
       icons["align"]["justify"] = renderToString(<Icons.JustifyAlignIcon />);
+
+      const FontAttributor = RQ.Quill.import("attributors/class/font");
+      FontAttributor.whitelist = ["inter"];
+      RQ.Quill.register(FontAttributor, true);
 
       return <RQ {...props} />;
     }

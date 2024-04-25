@@ -1,10 +1,14 @@
 import Image from "next/image";
 import React from "react";
 
-export default function ProfilePicture(props: { url: string; size: number }) {
+export default function ProfilePicture(props: {
+  url: string | null;
+  size: number;
+}) {
+  const url = props.url == null ? "" : props.url;
   return (
     <Image
-      src={props.url}
+      src={url}
       alt="Profile Picture"
       width={props.size}
       height={props.size}
@@ -13,18 +17,18 @@ export default function ProfilePicture(props: { url: string; size: number }) {
   );
 }
 
-export function ProfilePictureTiny(props: { url: string }) {
+export function ProfilePictureTiny(props: { url: string | null }) {
   return <ProfilePicture url={props.url} size={10} />;
 }
 
-export function ProfilePictureSmall(props: { url: string }) {
+export function ProfilePictureSmall(props: { url: string | null }) {
   return <ProfilePicture url={props.url} size={16} />;
 }
 
-export function ProfilePictureBig(props: { url: string }) {
+export function ProfilePictureBig(props: { url: string | null }) {
   return <ProfilePicture url={props.url} size={32} />;
 }
 
-export function ProfilePictureBigger(props: { url: string }) {
+export function ProfilePictureBigger(props: { url: string | null }) {
   return <ProfilePicture url={props.url} size={40} />;
 }

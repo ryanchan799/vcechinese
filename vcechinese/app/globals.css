@@ -2,23 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-.ql-editor strong {
-  font-weight: bold;
-}
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
 
 .ql-toolbar {
   border: 1px solid rgba(0, 0, 0, 0.1) !important;
   border-top: none !important;
   border-bottom-left-radius: 0.5em;
   border-bottom-right-radius: 0.5em;
+  width: 650px;
 }
 
 .ql-container {
   border: 1px solid rgba(0, 0, 0, 0.1) !important;
   border-top-left-radius: 0.5em;
   border-top-right-radius: 0.5em;
+  width: 650px;
 }
 
 .ql-editor {
   min-height: 200px;
+  font-size: 12.5px;
+  font-family: "Inter";
+  color: black;
+  opacity: 0.9;
+}
+
+.ql-editor strong {
+  font-weight: 700;
 }
