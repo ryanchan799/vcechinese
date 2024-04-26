@@ -6,8 +6,13 @@ import ReactQuill from "react-quill";
 import AutoLinks from "quill-auto-links";
 import { renderToString } from "react-dom/server";
 import * as Icons from "../_assets/Icons";
+import { db } from "@/firebase";
+import { addDoc, collection, Timestamp } from "firebase/firestore";
+import { loggedInCurrentUser } from "./HeaderRhs";
 
 export default function RichTextEditor() {
+  const [title, setTitle] = useState("");
+  const [topic, setTopic] = useState("");
   const [value, setValue] = useState("");
 
   function handleChange(
@@ -25,6 +30,18 @@ export default function RichTextEditor() {
         href="https://fonts.googleapis.com/css2?family=Inter:wght@350;700&display=swap"
         rel="stylesheet"
       />
+      <input
+        type="text"
+        placeholder="Title"
+        value={title}
+        onChange={(event) => setTitle(event.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Topic"
+        value={topic}
+        onChange={(event) => setTopic(event.target.value)}
+      />
       <TextEditor
         modules={modules}
         formats={formats}
@@ -34,23 +51,33 @@ export default function RichTextEditor() {
         className="min-h-[200px] w-[650px] border-[1px] border-black border-opacity-10 rounded-t-lg"
       />
       <EditorToolbar />
-      <button className="px-3 py-1 my-2 bg-green-500 text-white font-semibold text-sm rounded-md">
+      <button
+        className="px-3 py-1 my-2 bg-green-500 text-white font-semibold text-sm rounded-md"
+        onClick={() => postNewThread(title, topic, JSON.stringify(value))}
+      >
         Post
       </button>
-      {/* <div className="space-y-8 py-8">
-        <p>delta: {JSON.stringify(value)}</p>
-        <Icons.Divider />
-        <p>{convertDeltaToHTML(value)}</p>
-      </div> */}
     </div>
   );
 }
 
-// const convertDeltaToHTML = (delta) => {
-//   const quill = new Quill(document.createElement("div"));
-//   quill.setContents(delta);
-//   return quill.root.innerHTML;
-// };
+async function postNewThread(title: string, topic: string, value: string) {
+  try {
+    const data = {
+      title: title,
+      topic: topic,
+      value: value,
+      poster: loggedInCurrentUser?.displayName,
+      date: Timestamp.now(),
+      replies: [],
+      interactors: [loggedInCurrentUser?.photoURL],
+    };
+    await addDoc(collection(db, "threads"), data);
+    console.log("Thread posted successfully");
+  } catch (error) {
+    console.error("Failed to post thread:", error);
+  }
+}
 
 export function TextEditor(params: any) {
   return <ReactQuillConfig {...params} />;

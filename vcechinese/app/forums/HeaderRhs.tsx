@@ -12,6 +12,7 @@ export function Rhs() {
     return () => {
       onAuthStateChanged(auth, (currentUser) => {
         setUser(currentUser);
+        loggedInCurrentUser = currentUser;
       });
     };
   }, []);
@@ -33,3 +34,5 @@ export function Rhs() {
     </div>
   );
 }
+
+export var loggedInCurrentUser: User | null = null;

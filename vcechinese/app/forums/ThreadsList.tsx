@@ -1,16 +1,12 @@
 import React from "react";
 import {
   Divider,
-  MessageFillIcon,
-  HeartFillIcon,
   MegaphoneIcon,
   EllipsisIcon,
   SortUpDownIcon,
 } from "../_assets/Icons";
-import numeral from "numeral";
 import { DocumentData, Timestamp } from "firebase/firestore";
 import { makeApiRequest } from "@/firebase";
-import { getUsers } from "../api/users/route";
 import {
   FORUMS_LIST_HEADER_HEIGHT,
   FORUMS_LIST_WIDTH,
@@ -42,15 +38,13 @@ export default async function ThreadsList() {
                 <div>
                   {threads.map((thread, index) => (
                     <div key={index}>
-                      {[...Array(12)].map((_, index) => (
+                      {[...Array(4)].map((_, index) => (
                         <Row
                           key={index}
                           title={thread.title}
                           topic={thread.topic}
                           date={thread.date}
-                          users={thread.interactions.users}
-                          numLikes={thread.numLikes}
-                          numPosts={thread.interactions.posts.length}
+                          poster={thread.poster}
                         />
                       ))}
                     </div>
@@ -90,12 +84,8 @@ async function Row(props: {
   title: string;
   topic: string;
   date: Timestamp;
-  users: string[];
-  numLikes: number;
-  numPosts: number;
+  poster: string;
 }) {
-  const [poster, ...interactors] = await getUsers(props.users);
-
   return (
     <div>
       <div className="flex flex-row text-gray-700 pl-4 py-[14px] items-center">
@@ -103,12 +93,10 @@ async function Row(props: {
           title={props.title}
           topic={props.topic}
           date={props.date}
-          poster={poster}
-          numLikes={props.numLikes}
-          numPosts={props.numPosts}
+          poster={props.poster}
         />
         <div className="grow"></div>
-        <Rhs interactors={interactors} />
+        <Rhs />
       </div>
       <div className="pl-3">
         <Divider className="opacity-60" />
@@ -121,9 +109,7 @@ function Lhs(props: {
   title: string;
   topic: string;
   date: Timestamp;
-  poster: DocumentData;
-  numLikes: number;
-  numPosts: number;
+  poster: string;
 }) {
   return (
     <div className="space-y-[7px]">
@@ -141,16 +127,14 @@ function Lhs(props: {
           {props.topic}
         </span>
         <div className="flex text-[9px] gap-0.5">
-          <span className="text-gray-800 pl-[1px] pr-1">
-            {props.poster.username}
-          </span>
+          <span className="text-gray-800 pl-[1px] pr-1">{props.poster}</span>
         </div>
       </div>
     </div>
   );
 }
 
-function Rhs(props: { interactors: DocumentData[] }) {
+function Rhs() {
   return (
     <div className="flex flex-col items-end mr-2 space-y-1.5">
       <span className="text-[8px] text-gray-500 text-opacity-70 pr-[1px] -translate-y-[8px]">
@@ -167,17 +151,6 @@ function ProfilePicStack(props: { interactors: DocumentData[] }) {
       {/* {props.interactors.map((user, index) => (
         <ProfilePictureSmall/>
       ))} */}
-    </div>
-  );
-}
-
-function StatsDisplay(props: { icon: React.JSX.Element; value: number }) {
-  return (
-    <div className="flex flex-row items-center text-[8px] text-gray-800 pl-1 pr-[1px] gap-[3.5px]">
-      <div className="opacity-30">{props.icon}</div>
-      <span>
-        {props.value > 999 ? numeral(props.value).format("0.0a") : props.value}
-      </span>
     </div>
   );
 }
