@@ -122,7 +122,10 @@ function Lhs(props: {
     <div className="space-y-[7px]">
       <div className="flex items-center gap-2.5">
         <MegaphoneIcon className="fill-gray-400 opacity-90 w-3 h-3" />
-        <span className="text-[11.8px]" style={{ fontWeight: 380 }}>
+        <span
+          className="text-[11.8px]"
+          style={{ fontWeight: 380, letterSpacing: "0.05px" }}
+        >
           {props.title}
         </span>
       </div>

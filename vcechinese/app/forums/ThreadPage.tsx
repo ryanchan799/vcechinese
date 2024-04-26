@@ -21,7 +21,12 @@ export default function ThreadPage() {
       <div className="flex flex-grow -translate-x-1">
         <div className="flex flex-col w-full items-center">
           <div className="w-[630px]">
-            <h1 className="text-[22px] pb-7">Welcome to VCE Chinese Forums!</h1>
+            <h1
+              className="text-[22px] pb-7"
+              style={{ letterSpacing: "0.05px" }}
+            >
+              Welcome to VCE Chinese Forums!
+            </h1>
             <div className="flex flex-row items-center">
               <ProfilePictureBigger
                 url={
@@ -39,8 +44,8 @@ export default function ThreadPage() {
                   <div className="flex flex-row items-center gap-[3px] px-1 fill-[#EF4146] text-[#EF4146]">
                     <MegaphoneFillIcon className="w-[8px] h-[8px]" />
                     <span
-                      className="tracking-[0.1px] text-[10px]"
-                      style={{ fontWeight: 600 }}
+                      className="tracking-[0.1px] text-[9.5px]"
+                      style={{ fontWeight: 500 }}
                     >
                       Announcements
                     </span>
@@ -55,7 +60,27 @@ export default function ThreadPage() {
               className="ml-[30px] py-1 w-[600px]"
               value={{
                 ops: [
-                  { attributes: { bold: true }, insert: "Web-vitals: " },
+                  {
+                    insert:
+                      "Hi all, apologies for the delay. After much back and forth with the Grok team, the marks for the Haskell portion of Assignment 2 are now available on Grok. Please let us know if there are any problems.\n",
+                  },
+                  { attributes: { bold: true }, insert: "EDIT: " },
+                  {
+                    insert:
+                      'For some reason (Grok bug?), you will need to click "Load" in the list of submissions at the bottom of the page to see your scoreboard.\nThe results processing process means that you\'ll get your first glimpse of your results within the next day or two but please note the following:\nExam results are not official until formally published on 1 Decemeber, and we are not permitted to discuss your marks with you until that date.',
+                  },
+                  { attributes: { list: "bullet" }, insert: "\n" },
+                  {
+                    insert:
+                      "All students failing with marks below 50 have already had their exam papers reviewed.",
+                  },
+                  { attributes: { list: "bullet" }, insert: "\n" },
+                  {
+                    insert:
+                      "Applications for special consideration are handled by the faculty, not by subject coordinators.",
+                  },
+                  { attributes: { list: "bullet" }, insert: "\n" },
+                  { attributes: { bold: true }, insert: "\nWeb-vitals: " },
                   {
                     insert:
                       "web-vitals is a package that helps measure and track essential web performance metrics, such as page load time, interactivity, and content rendering. Monitoring web vitals allows you to optimize your application’s performance and ensure a smooth user experience.By installing and utilizing these packages, you’ll have the necessary tools to implement a robust login and user signup system with enhanced design and performance. To create a Firebase project and configure Firebase Authentication for your ReactJS application.\n",

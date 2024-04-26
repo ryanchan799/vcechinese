@@ -2,7 +2,8 @@
 import React, { useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
-import ReactQuill, { Quill } from "react-quill";
+import ReactQuill from "react-quill";
+import AutoLinks from "quill-auto-links";
 import { renderToString } from "react-dom/server";
 import * as Icons from "../_assets/Icons";
 
@@ -87,6 +88,8 @@ const ReactQuillConfig = dynamic(
       FontAttributor.whitelist = ["inter"];
       RQ.Quill.register(FontAttributor, true);
 
+      RQ.Quill.register("modules/autoLinks", AutoLinks);
+
       return <RQ {...props} />;
     }
 
@@ -148,6 +151,7 @@ export const modules = {
     maxStack: 100,
     userOnly: true,
   },
+  autoLinks: true,
 };
 
 export const formats = [
