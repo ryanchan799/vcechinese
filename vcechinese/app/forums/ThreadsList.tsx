@@ -11,7 +11,11 @@ import numeral from "numeral";
 import { DocumentData, Timestamp } from "firebase/firestore";
 import { makeApiRequest } from "@/firebase";
 import { getUsers } from "../api/users/route";
-import { FORUMS_LIST_WIDTH, FORUMS_SIDEBAR_WIDTH } from "../_assets/Constants";
+import {
+  FORUMS_LIST_HEADER_HEIGHT,
+  FORUMS_LIST_WIDTH,
+  FORUMS_SIDEBAR_WIDTH,
+} from "../_assets/Constants";
 
 export default async function ThreadsList() {
   const threads: DocumentData[] = await makeApiRequest("threads", "GET").then(
@@ -63,7 +67,10 @@ export default async function ThreadsList() {
 
 function StickyBar() {
   return (
-    <div className="flex flex-row w-full items-center px-4 py-[9px] border-b-[1px] bg-white">
+    <div
+      className="flex flex-row w-full items-center px-4 py-[9px] border-b-[1px] bg-white"
+      style={{ height: FORUMS_LIST_HEADER_HEIGHT }}
+    >
       <div className="flex flex-grow items-center">
         <span className="text-[12px]">Threads</span>
         <span className="text-[8px] px-1.5 text-black text-opacity-70">
@@ -123,7 +130,7 @@ function Lhs(props: {
       <div className="flex items-center gap-2.5">
         <MegaphoneIcon className="fill-gray-400 opacity-90 w-3 h-3" />
         <span
-          className="text-[11.8px]"
+          className="text-[11.5px]"
           style={{ fontWeight: 380, letterSpacing: "0.05px" }}
         >
           {props.title}
@@ -137,18 +144,6 @@ function Lhs(props: {
           <span className="text-gray-800 pl-[1px] pr-1">
             {props.poster.username}
           </span>
-          <StatsDisplay
-            icon={
-              <MessageFillIcon className="w-[6px] h-[6px] -translate-y-[0.5px]" />
-            }
-            value={props.numPosts}
-          />
-          {props.numLikes == 0 ? null : (
-            <StatsDisplay
-              icon={<HeartFillIcon className="w-[6px] h-[6px]" />}
-              value={props.numLikes}
-            />
-          )}
         </div>
       </div>
     </div>
