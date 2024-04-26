@@ -8,9 +8,7 @@ import {
 } from "../_assets/Constants";
 import RichTextEditor, { formats, modules, TextEditor } from "./RichTextEditor";
 import Login from "./authentication/Login";
-import { ProfilePictureBigger } from "./ProfilePicture";
 import {
-  HeartIcon,
   LeftBarIcon,
   MegaphoneFillIcon,
   MegaphoneIcon,
@@ -26,7 +24,7 @@ export default function ThreadPage() {
       <div className="flex flex-col flex-grow">
         <div>
           <div>
-            <div className="sticky top-[75px] z-30">
+            <div className="sticky top-[75.5px] z-30">
               <StickyBar />
             </div>
             <div>
@@ -137,12 +135,19 @@ function StickyBar() {
   return (
     <div
       className="flex flex-row w-full items-center px-3 py-[9px] border-b-[1px] bg-white gap-2.5"
-      style={{ height: FORUMS_LIST_HEADER_HEIGHT }}
+      style={{
+        height: `${FORUMS_LIST_HEADER_HEIGHT - 0.5}px`,
+      }}
     >
       <div className="flex border-[1px] rounded-[4px] w-[25px] h-[25px] justify-center items-center">
         <LeftBarIcon className="w-[13.5px] h-[13.5px] translate-x-[0.8px]" />
       </div>
-      <span className="text-[10px]">Announcements</span>
+      <div className="text-[10px] space-x-2">
+        <span>Announcements</span>
+        <span className="text-[9px] text-black text-opacity-70">
+          Welcome to VCE Chinese Forums!
+        </span>
+      </div>
     </div>
   );
 }

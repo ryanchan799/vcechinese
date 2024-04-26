@@ -69,7 +69,7 @@ function StickyBar() {
   return (
     <div
       className="flex flex-row w-full items-center px-4 py-[9px] border-b-[1px] bg-white"
-      style={{ height: FORUMS_LIST_HEADER_HEIGHT }}
+      style={{ height: `${FORUMS_LIST_HEADER_HEIGHT}px` }}
     >
       <div className="flex flex-grow items-center">
         <span className="text-[12px]">Threads</span>
