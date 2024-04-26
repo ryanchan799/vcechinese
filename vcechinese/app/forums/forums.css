@@ -15,9 +15,12 @@
   font-family: "Inter";
   color: black;
   opacity: 0.9;
-  min-height: 200px;
   line-height: 1.5 !important;
   letter-spacing: 0.05px;
+}
+
+.ql-editor.ql-blank {
+  min-height: 198px;
 }
 
 strong {

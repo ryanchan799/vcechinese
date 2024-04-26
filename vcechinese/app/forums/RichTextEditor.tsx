@@ -28,17 +28,20 @@ export default function RichTextEditor() {
       <TextEditor
         modules={modules}
         formats={formats}
-        placeholder="Aa"
+        placeholder={"Aa"}
         value={value}
         onChange={handleChange}
         className="min-h-[200px] w-[650px] border-[1px] border-black border-opacity-10 rounded-t-lg"
       />
       <EditorToolbar />
-      <div className="space-y-8 py-8">
+      <button className="px-3 py-1 my-2 bg-green-500 text-white font-semibold text-sm rounded-md">
+        Post
+      </button>
+      {/* <div className="space-y-8 py-8">
         <p>delta: {JSON.stringify(value)}</p>
         <Icons.Divider />
-        {/* <p>{convertDeltaToHTML(value)}</p> */}
-      </div>
+        <p>{convertDeltaToHTML(value)}</p>
+      </div> */}
     </div>
   );
 }

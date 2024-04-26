@@ -48,10 +48,16 @@ function NewThreadButton() {
 function QuickLinks() {
   const links = [
     new ForumTopic(
-      "My activity",
+      "Notes",
       "#111111",
-      <Icons.CalendarIcon className={size} />,
-      <Icons.CalendarIcon className={size} />
+      <Icons.NotesIcon className={size} />,
+      <Icons.NotesIcon className={size} />
+    ),
+    new ForumTopic(
+      "AskAI",
+      "#111111",
+      <Icons.RobotIcon className={size} />,
+      <Icons.RobotIcon className={size} />
     ),
   ];
 
