@@ -15,25 +15,20 @@ export function formatTimeDifference(timestamp: Timestamp) {
   if (timeDifference < 60 * 1000) {
     return "Now";
   } else if (timeDifference < 60 * 60 * 1000) {
-    return `${Math.floor(timeDifference / (60 * 1000))} minutes ago`;
+    const minutes = Math.floor(timeDifference / (60 * 1000));
+    return minutes === 1 ? "1 minute ago" : `${minutes} minutes ago`;
   } else if (timeDifference < 24 * 60 * 60 * 1000) {
-    return timeDifference < 2 * 60 * 60 * 1000
-      ? "1 hour ago"
-      : `${Math.floor(timeDifference / (60 * 60 * 1000))} hours ago`;
+    const hours = Math.floor(timeDifference / (60 * 60 * 1000));
+    return hours === 1 ? "1 hour ago" : `${hours} hours ago`;
   } else if (timeDifference < 7 * 24 * 60 * 60 * 1000) {
-    return timeDifference < 2 * 24 * 60 * 60 * 1000
-      ? "1 day ago"
-      : `${Math.floor(timeDifference / (24 * 60 * 60 * 1000))} days ago`;
+    const days = Math.floor(timeDifference / (24 * 60 * 60 * 1000));
+    return days === 1 ? "1 day ago" : `${days} days ago`;
   } else if (timeDifference < 4 * 7 * 24 * 60 * 60 * 1000) {
-    return timeDifference < 2 * 7 * 24 * 60 * 60 * 1000
-      ? "1 week ago"
-      : `${Math.floor(timeDifference / (7 * 24 * 60 * 60 * 1000))} weeks ago`;
+    const weeks = Math.floor(timeDifference / (7 * 24 * 60 * 60 * 1000));
+    return weeks === 1 ? "1 week ago" : `${weeks} weeks ago`;
   } else if (timeDifference < 52 * 7 * 24 * 60 * 60 * 1000) {
-    return timeDifference < 2 * 4 * 7 * 24 * 60 * 60 * 1000
-      ? "1 month ago"
-      : `${Math.floor(
-          timeDifference / (4 * 7 * 24 * 60 * 60 * 1000)
-        )} months ago`;
+    const months = Math.floor(timeDifference / (4 * 7 * 24 * 60 * 60 * 1000));
+    return months === 1 ? "1 month ago" : `${months} months ago`;
   } else {
     const date = new Date(timestampMilliseconds);
     const options = {

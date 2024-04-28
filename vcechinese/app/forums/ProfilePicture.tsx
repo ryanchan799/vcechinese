@@ -7,13 +7,15 @@ export default function ProfilePicture(props: {
 }) {
   const url = props.url == null ? "" : props.url;
   return (
-    <Image
-      src={url}
-      alt="Profile Picture"
-      width={props.size}
-      height={props.size}
-      className="rounded-full overflow-hidden"
-    />
+    <div className="flex-none">
+      <Image
+        src={url}
+        alt="Profile Picture"
+        width={props.size}
+        height={props.size}
+        className="rounded-full overflow-hidden"
+      />
+    </div>
   );
 }
 

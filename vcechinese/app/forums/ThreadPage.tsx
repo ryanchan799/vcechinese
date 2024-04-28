@@ -1,6 +1,9 @@
 import React from "react";
 import { getTopicConfig } from "./Sidebar";
-import { FORUMS_LIST_HEADER_HEIGHT } from "../_assets/Constants";
+import {
+  FORUMS_CONVERSATION_WIDTH,
+  FORUMS_LIST_HEADER_HEIGHT,
+} from "../_assets/Constants";
 import {
   FORUMS_LIST_WIDTH,
   FORUMS_SIDEBAR_PADDING,
@@ -14,7 +17,7 @@ import { getDoc, doc, DocumentData } from "firebase/firestore";
 import { formatTimeDifference } from "../_assets/Utility";
 
 export default async function ThreadPage() {
-  const thread: DocumentData | null = await getThread("BWhRezUfI6hVyrzaqYji");
+  const thread: DocumentData | null = await getThread("vOcjx45yle0qGSHJXBkY");
 
   const topicIcon = getTopicConfig(
     thread == null ? "" : thread.topic,
@@ -34,11 +37,8 @@ export default async function ThreadPage() {
               <div>
                 <div>
                   <div className="flex flex-col w-full items-center">
-                    <div className="w-[630px]">
-                      <h1
-                        className="text-[22px] pt-9 pb-7"
-                        style={{ letterSpacing: "0.05px" }}
-                      >
+                    <div className={FORUMS_CONVERSATION_WIDTH}>
+                      <h1 className="text-[22px] pt-9 pb-7 truncate">
                         {thread.title}
                       </h1>
                       {/* ThreadPostDetails */}
@@ -80,12 +80,12 @@ export default async function ThreadPage() {
                           </div>
                         </div>
                       </div>
-                      {/* ThreadPostDetails */}
+                      {/* ThreadConversations */}
                       <TextEditor
                         modules={modules}
                         formats={formats}
                         readOnly={true}
-                        className="ml-[30px] py-1 w-[600px]"
+                        className={`pl-[30px] py-1 ${FORUMS_CONVERSATION_WIDTH}`}
                         value={JSON.parse(thread.value)}
                       />
                     </div>

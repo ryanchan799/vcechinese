@@ -97,7 +97,7 @@ function Lhs(props: { thread: DocumentData }) {
       <div className="flex items-center gap-2.5">
         {config.outlineIcon}
         <span
-          className="text-[11.5px]"
+          className="text-[11.5px] w-[300px] truncate"
           style={{ fontWeight: 380, letterSpacing: "0.05px" }}
         >
           {props.thread.title}
@@ -110,23 +110,20 @@ function Lhs(props: { thread: DocumentData }) {
         >
           {props.thread.topic}
         </span>
-        <div className="flex text-[9px] gap-0.5">
-          <span className="text-gray-800 pl-[1px] pr-1">
-            {props.thread.poster}
-          </span>
-        </div>
+        <span className="text-[9px] text-gray-800 pl-[1px]">
+          {props.thread.poster}
+        </span>
+        <span className="text-[9px] text-gray-500 text-opacity-70">
+          {formatTimeDifference(props.thread.date)}
+        </span>
       </div>
     </div>
   );
 }
 
 function Rhs(props: { thread: DocumentData }) {
-  const date = props.thread.date;
   return (
-    <div className="flex flex-col items-end mr-2 space-y-1.5">
-      <span className="text-[8px] text-gray-500 text-opacity-70 pr-[1px] -translate-y-[8px]">
-        {formatTimeDifference(props.thread.date)}
-      </span>
+    <div className="mr-2 pt-[22px]">
       <ProfilePicStack interactors={props.thread.interactors} />
     </div>
   );

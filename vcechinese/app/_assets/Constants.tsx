@@ -24,6 +24,7 @@ export const FORUMS_SIDEBAR_WIDTH = "175px";
 export const FORUMS_SIDEBAR_PADDING = "ml-[80px] pl-[10px]";
 export const FORUMS_LIST_WIDTH = "375px";
 export const FORUMS_LIST_HEADER_HEIGHT = 37;
+export const FORUMS_CONVERSATION_WIDTH = "w-[680px]";
 
 export enum FORUM_TOPIC {
   ANNOUNCEMENTS = "Announcements",
