@@ -52,15 +52,22 @@ export default async function ThreadsList() {
 }
 
 function StickyBar() {
+  const now = new Date();
+  const options = {
+    year: "numeric",
+    month: "long",
+  } as Intl.DateTimeFormatOptions;
+  const date = now.toLocaleDateString("en-US", options);
+
   return (
     <div
       className="flex flex-row w-full items-center px-4 py-[9px] border-b-[1px] bg-white"
       style={{ height: `${FORUMS_LIST_HEADER_HEIGHT}px` }}
     >
       <div className="flex flex-grow items-center">
-        <span className="text-[12px]">Threads</span>
-        <span className="text-[8px] px-1.5 text-black text-opacity-70">
-          April 2024
+        <span className="text-[10px]">Threads</span>
+        <span className="text-[9px] px-1.5 text-black text-opacity-70">
+          {date}
         </span>
         <div className="grow"></div>
         <div className="flex gap-3 opacity-70">
@@ -97,7 +104,7 @@ function Lhs(props: { thread: DocumentData }) {
       <div className="flex items-center gap-2.5">
         {config.outlineIcon}
         <span
-          className="text-[11.5px] w-[300px] truncate"
+          className="text-[11.2px] w-[300px] truncate"
           style={{ fontWeight: 380, letterSpacing: "0.05px" }}
         >
           {props.thread.title}

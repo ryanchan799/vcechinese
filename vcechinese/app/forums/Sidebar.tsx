@@ -87,7 +87,7 @@ function Topic(props: { topic: ForumTopic }) {
   return (
     <div className="flex flex-row items-center text-gray-700 fill-gray-700 opacity-80 gap-2 py-[3.6px]">
       {props.topic.fillIcon}
-      <button className="text-[12px] tracking-[-0.15px] hover:underline">
+      <button className="text-[11.5px] tracking-[-0.15px] hover:underline">
         {props.topic.topic}
       </button>
     </div>
@@ -198,4 +198,4 @@ function KeyTile(props: { character: string; size: string }) {
   );
 }
 
-const size = "w-[13px] h-[13px]";
+const size = "w-[12px] h-[12px]";
