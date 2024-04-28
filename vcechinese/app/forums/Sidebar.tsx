@@ -113,12 +113,14 @@ export class ForumTopic {
   }
 }
 
-export function getTopicConfig(topic: FORUM_TOPIC, className: string) {
+export function getTopicConfig(topic: string, c?: string) {
+  const className = c == null ? "" : c;
+
   switch (topic) {
     case FORUM_TOPIC.ANNOUNCEMENTS:
       return new ForumTopic(
         topic.toString(),
-        "#EF4146",
+        "#ED4146",
         <Icons.MegaphoneFillIcon className={className} />,
         <Icons.MegaphoneIcon className={className} />
       );
@@ -132,21 +134,21 @@ export function getTopicConfig(topic: FORUM_TOPIC, className: string) {
     case FORUM_TOPIC.ESSAYS:
       return new ForumTopic(
         topic.toString(),
-        "#18C27D",
+        "#00A62A",
         <Icons.PenFillIcon className={className} />,
         <Icons.PenIcon className={className} />
       );
     case FORUM_TOPIC.ORAL:
       return new ForumTopic(
         topic.toString(),
-        "#5436DA",
+        "#5536DA",
         <Icons.SoundwaveIcon className={className} />,
         <Icons.SoundwaveIcon className={className} />
       );
     case FORUM_TOPIC.SACS:
       return new ForumTopic(
         topic.toString(),
-        "#19C2FF",
+        "#0080FF",
         <Icons.FileFillIcon className={className} />,
         <Icons.FileIcon className={className} />
       );
@@ -160,19 +162,24 @@ export function getTopicConfig(topic: FORUM_TOPIC, className: string) {
     case FORUM_TOPIC.GRADES:
       return new ForumTopic(
         topic.toString(),
-        "#EF4146",
+        "#ED4146",
         <Icons.GraduateFillIcon className={className} />,
         <Icons.GraduateIcon className={className} />
       );
     case FORUM_TOPIC.SOCIAL:
       return new ForumTopic(
         topic.toString(),
-        "#18C27D",
+        "#00A62A",
         <Icons.DotsConnectionFillIcon className={className} />,
         <Icons.DotsConnectionIcon className={className} />
       );
     default:
-      return null;
+      return new ForumTopic(
+        topic.toString(),
+        "#EF4146",
+        <Icons.MegaphoneFillIcon className={className} />,
+        <Icons.MegaphoneIcon className={className} />
+      );
   }
 }
 

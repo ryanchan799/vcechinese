@@ -8,18 +8,17 @@ import {
 } from "../_assets/Constants";
 import RichTextEditor, { formats, modules, TextEditor } from "./RichTextEditor";
 import Login from "./authentication/Login";
-import {
-  LeftBarIcon,
-  MegaphoneFillIcon,
-  MegaphoneIcon,
-} from "../_assets/Icons";
+import { LeftBarIcon } from "../_assets/Icons";
 import { db } from "@/firebase";
 import { getDoc, doc, DocumentData } from "firebase/firestore";
 
 export default async function ThreadPage() {
   const thread: DocumentData | null = await getThread("BWhRezUfI6hVyrzaqYji");
-  const config = getTopicConfig(FORUM_TOPIC.ANNOUNCEMENTS, "w-[18px] h-[18px]");
-  const icon = config == null ? null : config.outlineIcon;
+
+  const topicIcon = getTopicConfig(
+    thread == null ? "" : thread.topic,
+    "w-[8px] h-[8px] -translate-y-[0.5px]"
+  );
 
   return (
     <div className="flex" style={{ fontWeight: 320 }}>
@@ -29,7 +28,7 @@ export default async function ThreadPage() {
           {thread == null ? null : (
             <div>
               <div className="sticky top-[75.5px] z-30">
-                <StickyBar />
+                <StickyBar topic={thread.topic} title={thread.title} />
               </div>
               <div>
                 <div>
@@ -44,7 +43,12 @@ export default async function ThreadPage() {
                       {/* ThreadPostDetails */}
                       <div className="flex flex-row items-center">
                         <div className="flex w-9 h-9 bg-[#E6E8EB] rounded-full justify-center items-center">
-                          <MegaphoneIcon className="w-3.5 h-3.5 opacity-70" />
+                          {
+                            getTopicConfig(
+                              thread.topic,
+                              "w-3.5 h-3.5 opacity-70"
+                            ).outlineIcon
+                          }
                         </div>
                         <div className="-space-y-[1.8px] pl-[8px]">
                           <span
@@ -57,8 +61,14 @@ export default async function ThreadPage() {
                             <span className="text-black text-opacity-50 text-[9.5px]">
                               5 months ago in
                             </span>
-                            <div className="flex flex-row items-center gap-[3px] px-1 fill-[#EF4146] text-[#EF4146]">
-                              <MegaphoneFillIcon className="w-[8px] h-[8px]" />
+                            <div
+                              className="flex flex-row items-center gap-[2px] px-1"
+                              style={{
+                                color: topicIcon.color,
+                                fill: topicIcon.color,
+                              }}
+                            >
+                              {topicIcon.fillIcon}
                               <span
                                 className="tracking-[0.1px] text-[9.5px]"
                                 style={{ fontWeight: 500 }}
@@ -102,7 +112,7 @@ async function getThread(id: string) {
   return null;
 }
 
-function StickyBar() {
+function StickyBar(props: { title: string; topic: string }) {
   return (
     <div
       className="flex flex-row w-full items-center px-3 py-[9px] border-b-[1px] bg-white gap-2.5"
@@ -114,9 +124,9 @@ function StickyBar() {
         <LeftBarIcon className="w-[13.5px] h-[13.5px] translate-x-[0.8px]" />
       </div>
       <div className="text-[10px] space-x-2">
-        <span>Announcements</span>
+        <span>{props.topic}</span>
         <span className="text-[9px] text-black text-opacity-70">
-          Welcome to VCE Chinese Forums!
+          {props.title}
         </span>
       </div>
     </div>

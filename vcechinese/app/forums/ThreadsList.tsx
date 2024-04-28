@@ -12,6 +12,8 @@ import {
   FORUMS_LIST_WIDTH,
   FORUMS_SIDEBAR_WIDTH,
 } from "../_assets/Constants";
+import { ProfilePictureSmall } from "./ProfilePicture";
+import { getTopicConfig } from "./Sidebar";
 
 export default async function ThreadsList() {
   const threads: DocumentData[] = await makeApiRequest("threads", "GET").then(
@@ -38,13 +40,14 @@ export default async function ThreadsList() {
                 <div>
                   {threads.map((thread, index) => (
                     <div key={index}>
-                      {[...Array(4)].map((_, index) => (
+                      {[...Array(1)].map((_, index) => (
                         <Row
                           key={index}
                           title={thread.title}
                           topic={thread.topic}
                           date={thread.date}
                           poster={thread.poster}
+                          interactors={thread.interactors}
                         />
                       ))}
                     </div>
@@ -85,6 +88,7 @@ async function Row(props: {
   topic: string;
   date: Timestamp;
   poster: string;
+  interactors: string[];
 }) {
   return (
     <div>
@@ -96,7 +100,7 @@ async function Row(props: {
           poster={props.poster}
         />
         <div className="grow"></div>
-        <Rhs />
+        <Rhs interactors={props.interactors} />
       </div>
       <div className="pl-3">
         <Divider className="opacity-60" />
@@ -111,10 +115,14 @@ function Lhs(props: {
   date: Timestamp;
   poster: string;
 }) {
+  const config = getTopicConfig(
+    props.topic,
+    "fill-gray-400 opacity-90 w-3 h-3"
+  );
   return (
     <div className="space-y-[7px]">
       <div className="flex items-center gap-2.5">
-        <MegaphoneIcon className="fill-gray-400 opacity-90 w-3 h-3" />
+        {config.outlineIcon}
         <span
           className="text-[11.5px]"
           style={{ fontWeight: 380, letterSpacing: "0.05px" }}
@@ -123,7 +131,10 @@ function Lhs(props: {
         </span>
       </div>
       <div className="flex items-center gap-2">
-        <span className="text-[9.5px] font-bold text-[#EF4146]">
+        <span
+          className="text-[9.5px] font-bold"
+          style={{ color: config.color }}
+        >
           {props.topic}
         </span>
         <div className="flex text-[9px] gap-0.5">
@@ -134,23 +145,23 @@ function Lhs(props: {
   );
 }
 
-function Rhs() {
+function Rhs(props: { interactors: string[] }) {
   return (
     <div className="flex flex-col items-end mr-2 space-y-1.5">
       <span className="text-[8px] text-gray-500 text-opacity-70 pr-[1px] -translate-y-[8px]">
         5m
       </span>
-      {/* <ProfilePicStack interactors={props.interactors} /> */}
+      <ProfilePicStack interactors={props.interactors} />
     </div>
   );
 }
 
-function ProfilePicStack(props: { interactors: DocumentData[] }) {
+function ProfilePicStack(props: { interactors: string[] }) {
   return (
     <div className="flex flex-row space-x-[2px]">
-      {/* {props.interactors.map((user, index) => (
-        <ProfilePictureSmall/>
-      ))} */}
+      {props.interactors.map((user, index) => (
+        <ProfilePictureSmall key={index} url={user} />
+      ))}
     </div>
   );
 }

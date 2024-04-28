@@ -6,7 +6,7 @@ import ReactQuill from "react-quill";
 import AutoLinks from "quill-auto-links";
 import { renderToString } from "react-dom/server";
 import * as Icons from "../_assets/Icons";
-import { db, storage, storageRef } from "@/firebase";
+import { db, storage } from "@/firebase";
 import { addDoc, collection, Timestamp } from "firebase/firestore";
 import { loggedInCurrentUser } from "./HeaderRhs";
 import { getDownloadURL, ref, uploadString } from "@firebase/storage";
