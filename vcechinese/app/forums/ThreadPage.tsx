@@ -1,6 +1,6 @@
 import React from "react";
 import { getTopicConfig } from "./Sidebar";
-import { FORUM_TOPIC, FORUMS_LIST_HEADER_HEIGHT } from "../_assets/Constants";
+import { FORUMS_LIST_HEADER_HEIGHT } from "../_assets/Constants";
 import {
   FORUMS_LIST_WIDTH,
   FORUMS_SIDEBAR_PADDING,
@@ -11,6 +11,7 @@ import Login from "./authentication/Login";
 import { LeftBarIcon } from "../_assets/Icons";
 import { db } from "@/firebase";
 import { getDoc, doc, DocumentData } from "firebase/firestore";
+import { formatTimeDifference } from "../_assets/Utility";
 
 export default async function ThreadPage() {
   const thread: DocumentData | null = await getThread("BWhRezUfI6hVyrzaqYji");
@@ -59,7 +60,7 @@ export default async function ThreadPage() {
                           </span>
                           <div className="flex flex-row items-center">
                             <span className="text-black text-opacity-50 text-[9.5px]">
-                              5 months ago in
+                              {formatTimeDifference(thread.date)} in
                             </span>
                             <div
                               className="flex flex-row items-center gap-[2px] px-1"

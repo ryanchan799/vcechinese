@@ -1,12 +1,6 @@
 import React from "react";
-import {
-  Divider,
-  MegaphoneIcon,
-  EllipsisIcon,
-  SortUpDownIcon,
-} from "../_assets/Icons";
-import { DocumentData, Timestamp } from "firebase/firestore";
-import { makeApiRequest } from "@/firebase";
+import { Divider, EllipsisIcon, SortUpDownIcon } from "../_assets/Icons";
+import { collection, DocumentData, getDocs } from "firebase/firestore";
 import {
   FORUMS_LIST_HEADER_HEIGHT,
   FORUMS_LIST_WIDTH,
@@ -14,10 +8,12 @@ import {
 } from "../_assets/Constants";
 import { ProfilePictureSmall } from "./ProfilePicture";
 import { getTopicConfig } from "./Sidebar";
+import { formatTimeDifference } from "../_assets/Utility";
+import { db } from "@/firebase";
 
 export default async function ThreadsList() {
-  const threads: DocumentData[] = await makeApiRequest("threads", "GET").then(
-    (res) => res.threads
+  const threads: DocumentData[] = await getDocs(collection(db, "threads")).then(
+    (snapshot) => snapshot.docs.map((doc) => doc.data())
   );
 
   return (
@@ -41,14 +37,7 @@ export default async function ThreadsList() {
                   {threads.map((thread, index) => (
                     <div key={index}>
                       {[...Array(1)].map((_, index) => (
-                        <Row
-                          key={index}
-                          title={thread.title}
-                          topic={thread.topic}
-                          date={thread.date}
-                          poster={thread.poster}
-                          interactors={thread.interactors}
-                        />
+                        <Row key={index} thread={thread} />
                       ))}
                     </div>
                   ))}
@@ -83,24 +72,13 @@ function StickyBar() {
   );
 }
 
-async function Row(props: {
-  title: string;
-  topic: string;
-  date: Timestamp;
-  poster: string;
-  interactors: string[];
-}) {
+async function Row(props: { thread: DocumentData }) {
   return (
     <div>
       <div className="flex flex-row text-gray-700 pl-4 py-[14px] items-center">
-        <Lhs
-          title={props.title}
-          topic={props.topic}
-          date={props.date}
-          poster={props.poster}
-        />
+        <Lhs thread={props.thread} />
         <div className="grow"></div>
-        <Rhs interactors={props.interactors} />
+        <Rhs thread={props.thread} />
       </div>
       <div className="pl-3">
         <Divider className="opacity-60" />
@@ -109,14 +87,9 @@ async function Row(props: {
   );
 }
 
-function Lhs(props: {
-  title: string;
-  topic: string;
-  date: Timestamp;
-  poster: string;
-}) {
+function Lhs(props: { thread: DocumentData }) {
   const config = getTopicConfig(
-    props.topic,
+    props.thread.topic,
     "fill-gray-400 opacity-90 w-3 h-3"
   );
   return (
@@ -127,7 +100,7 @@ function Lhs(props: {
           className="text-[11.5px]"
           style={{ fontWeight: 380, letterSpacing: "0.05px" }}
         >
-          {props.title}
+          {props.thread.title}
         </span>
       </div>
       <div className="flex items-center gap-2">
@@ -135,23 +108,26 @@ function Lhs(props: {
           className="text-[9.5px] font-bold"
           style={{ color: config.color }}
         >
-          {props.topic}
+          {props.thread.topic}
         </span>
         <div className="flex text-[9px] gap-0.5">
-          <span className="text-gray-800 pl-[1px] pr-1">{props.poster}</span>
+          <span className="text-gray-800 pl-[1px] pr-1">
+            {props.thread.poster}
+          </span>
         </div>
       </div>
     </div>
   );
 }
 
-function Rhs(props: { interactors: string[] }) {
+function Rhs(props: { thread: DocumentData }) {
+  const date = props.thread.date;
   return (
     <div className="flex flex-col items-end mr-2 space-y-1.5">
       <span className="text-[8px] text-gray-500 text-opacity-70 pr-[1px] -translate-y-[8px]">
-        5m
+        {formatTimeDifference(props.thread.date)}
       </span>
-      <ProfilePicStack interactors={props.interactors} />
+      <ProfilePicStack interactors={props.thread.interactors} />
     </div>
   );
 }
