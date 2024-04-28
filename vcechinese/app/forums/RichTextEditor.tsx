@@ -6,9 +6,10 @@ import ReactQuill from "react-quill";
 import AutoLinks from "quill-auto-links";
 import { renderToString } from "react-dom/server";
 import * as Icons from "../_assets/Icons";
-import { db } from "@/firebase";
+import { db, storage, storageRef } from "@/firebase";
 import { addDoc, collection, Timestamp } from "firebase/firestore";
 import { loggedInCurrentUser } from "./HeaderRhs";
+import { getDownloadURL, ref, uploadString } from "@firebase/storage";
 
 export default function RichTextEditor() {
   const [title, setTitle] = useState("");
@@ -53,7 +54,7 @@ export default function RichTextEditor() {
       <EditorToolbar />
       <button
         className="px-3 py-1 my-2 bg-green-500 text-white font-semibold text-sm rounded-md"
-        onClick={() => postNewThread(title, topic, JSON.stringify(value))}
+        onClick={() => postNewThread(title, topic, value)}
       >
         Post
       </button>
@@ -63,20 +64,53 @@ export default function RichTextEditor() {
 
 async function postNewThread(title: string, topic: string, value: string) {
   try {
-    const data = {
-      title: title,
-      topic: topic,
-      value: value,
-      poster: loggedInCurrentUser?.displayName,
-      date: Timestamp.now(),
-      replies: [],
-      interactors: [loggedInCurrentUser?.photoURL],
-    };
-    await addDoc(collection(db, "threads"), data);
-    console.log("Thread posted successfully");
+    addImagesToStorage(title, value).then(async (val) => {
+      const data = {
+        title: title,
+        topic: topic,
+        value: JSON.stringify(val),
+        poster: loggedInCurrentUser?.displayName,
+        date: Timestamp.now(),
+        replies: [],
+        interactors: [loggedInCurrentUser?.photoURL],
+      };
+
+      await addDoc(collection(db, "threads"), data);
+
+      console.log(val);
+      console.log("Thread posted successfully");
+    });
   } catch (error) {
     console.error("Failed to post thread:", error);
   }
+}
+
+async function addImagesToStorage(title: string, val: string) {
+  var value = val;
+  if (value.length != 0) {
+    value.ops.map(async (block, index: number) => {
+      if (block.insert.image != null) {
+        const storageRef = ref(
+          storage,
+          loggedInCurrentUser!.displayName +
+            title +
+            index.toString() +
+            Timestamp.now().toString()
+        );
+
+        uploadString(storageRef, block.insert.image, "data_url").then(
+          (snapshot) => {
+            getDownloadURL(snapshot.ref).then((downloadURL) => {
+              block.insert.image = downloadURL;
+              console.log("File available at", downloadURL);
+              return block;
+            });
+          }
+        );
+      }
+    });
+  }
+  return value;
 }
 
 export function TextEditor(params: any) {

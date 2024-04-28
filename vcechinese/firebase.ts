@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { getStorage, ref, uploadString } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAVLGHTvj7XuAvoMAjjAW5U9B-2WC46c-M",
@@ -17,6 +18,8 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
 export const db = getFirestore(app);
+
+export const storage = getStorage();
 
 export async function makeApiRequest(api: string, method: string) {
   return fetch(process.env.WEB_DOMAIN + "api/" + api, {

@@ -17,7 +17,7 @@ import { db } from "@/firebase";
 import { getDoc, doc, DocumentData } from "firebase/firestore";
 
 export default async function ThreadPage() {
-  const thread: DocumentData | null = await getThread("wUeluJPidw8GLseHAn6e");
+  const thread: DocumentData | null = await getThread("BWhRezUfI6hVyrzaqYji");
   const config = getTopicConfig(FORUM_TOPIC.ANNOUNCEMENTS, "w-[18px] h-[18px]");
   const icon = config == null ? null : config.outlineIcon;
 
