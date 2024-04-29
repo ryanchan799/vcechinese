@@ -7,8 +7,7 @@ import {
   FORUMS_SIDEBAR_WIDTH,
 } from "../_assets/Constants";
 import { ProfilePictureSmall } from "./ProfilePicture";
-import { getTopicConfig } from "./Sidebar";
-import { formatTimeDifference } from "../_assets/Utility";
+import { formatTimeDifference, getTopicConfig } from "../_assets/Utility";
 import { db } from "@/firebase";
 
 export default async function ThreadsList() {

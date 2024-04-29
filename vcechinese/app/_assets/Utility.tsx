@@ -1,4 +1,6 @@
 import { Timestamp } from "firebase/firestore";
+import { FORUM_TOPIC } from "./Constants";
+import * as Icons from "../_assets/Icons";
 
 export function hexToRgba(hex: string, alpha: number) {
   const r = parseInt(hex.slice(1, 3), 16);
@@ -37,5 +39,94 @@ export function formatTimeDifference(timestamp: Timestamp) {
       day: "numeric",
     } as Intl.DateTimeFormatOptions;
     return date.toLocaleDateString("en-US", options);
+  }
+}
+
+export class ForumTopic {
+  topic: string;
+  color: string;
+  fillIcon: JSX.Element;
+  outlineIcon: JSX.Element;
+
+  constructor(
+    topic: string,
+    color: string,
+    fillIcon: JSX.Element,
+    outlineIcon: JSX.Element
+  ) {
+    this.topic = topic;
+    this.color = color;
+    this.fillIcon = fillIcon;
+    this.outlineIcon = outlineIcon;
+  }
+}
+
+export function getTopicConfig(topic: string, c?: string) {
+  const className = c == null ? "" : c;
+
+  switch (topic) {
+    case FORUM_TOPIC.ANNOUNCEMENTS:
+      return new ForumTopic(
+        topic.toString(),
+        "#ED4146",
+        <Icons.MegaphoneFillIcon className={className} />,
+        <Icons.MegaphoneIcon className={className} />
+      );
+    case FORUM_TOPIC.GENERAL:
+      return new ForumTopic(
+        topic.toString(),
+        "#F4AB36",
+        <Icons.InfoFillIcon className={className} />,
+        <Icons.InfoIcon className={className} />
+      );
+    case FORUM_TOPIC.ESSAYS:
+      return new ForumTopic(
+        topic.toString(),
+        "#00A62A",
+        <Icons.PenFillIcon className={className} />,
+        <Icons.PenIcon className={className} />
+      );
+    case FORUM_TOPIC.ORAL:
+      return new ForumTopic(
+        topic.toString(),
+        "#5536DA",
+        <Icons.SoundwaveIcon className={className} />,
+        <Icons.SoundwaveIcon className={className} />
+      );
+    case FORUM_TOPIC.SACS:
+      return new ForumTopic(
+        topic.toString(),
+        "#0080FF",
+        <Icons.FileFillIcon className={className} />,
+        <Icons.FileIcon className={className} />
+      );
+    case FORUM_TOPIC.EXAMS:
+      return new ForumTopic(
+        topic.toString(),
+        "#F4AB36",
+        <Icons.LayersStackFillIcon className={className} />,
+        <Icons.LayersStackIcon className={className} />
+      );
+    case FORUM_TOPIC.GRADES:
+      return new ForumTopic(
+        topic.toString(),
+        "#ED4146",
+        <Icons.GraduateFillIcon className={className} />,
+        <Icons.GraduateIcon className={className} />
+      );
+    case FORUM_TOPIC.SOCIAL:
+      return new ForumTopic(
+        topic.toString(),
+        "#00A62A",
+        <Icons.DotsConnectionFillIcon className={className} />,
+        <Icons.DotsConnectionIcon className={className} />
+      );
+    default:
+      return new ForumTopic(
+        topic.toString(),
+        "#EF4146",
+        <Icons.MegaphoneFillIcon className={className} />,
+        <Icons.MegaphoneIcon className={className} />
+      );
   }
 }

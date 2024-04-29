@@ -1,27 +1,32 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import * as Icons from "../_assets/Icons";
 import {
   COLORS,
   FORUMS_SIDEBAR_PADDING,
   FORUMS_SIDEBAR_WIDTH,
 } from "../_assets/Constants";
-import { hexToRgba } from "../_assets/Utility";
+import { ForumTopic, getTopicConfig, hexToRgba } from "../_assets/Utility";
 import { FORUM_TOPIC } from "../_assets/Constants";
+import NewThreadOverlay from "./NewThreadOverlay";
 
 export default function Sidebar() {
+  const [open, setOpen] = useState(false);
+
   return (
     <div
-      className={`fixed left-[0px] top-[130px] space-y-8 z-50 ${FORUMS_SIDEBAR_PADDING}`}
+      className={`fixed left-[0px] top-[0px] pt-[130px] space-y-8 z-50 ${FORUMS_SIDEBAR_PADDING}`}
       style={{ width: FORUMS_SIDEBAR_WIDTH }}
     >
-      <NewThreadButton />
+      <NewThreadButton setOpen={setOpen} />
       <QuickLinks />
       <TopicsList />
+      {open ? <NewThreadOverlay setOpen={setOpen} /> : null}
     </div>
   );
 }
 
-function NewThreadButton() {
+function NewThreadButton(props: { setOpen: (arg0: boolean) => void }) {
   return (
     <div className="flex items-center gap-3">
       <button
@@ -31,6 +36,7 @@ function NewThreadButton() {
           borderColor: hexToRgba(COLORS.BRIGHT_BLUE, 0.9),
           borderWidth: "1px",
         }}
+        onClick={() => props.setOpen(true)}
       >
         <div className="flex flex-row items-center text-[11px] gap-2 py-[3px] -translate-x-[1px]">
           <Icons.PlusIcon className="w-[8px] h-[8px]" />
@@ -92,95 +98,6 @@ function Topic(props: { topic: ForumTopic }) {
       </button>
     </div>
   );
-}
-
-export class ForumTopic {
-  topic: string;
-  color: string;
-  fillIcon: JSX.Element;
-  outlineIcon: JSX.Element;
-
-  constructor(
-    topic: string,
-    color: string,
-    fillIcon: JSX.Element,
-    outlineIcon: JSX.Element
-  ) {
-    this.topic = topic;
-    this.color = color;
-    this.fillIcon = fillIcon;
-    this.outlineIcon = outlineIcon;
-  }
-}
-
-export function getTopicConfig(topic: string, c?: string) {
-  const className = c == null ? "" : c;
-
-  switch (topic) {
-    case FORUM_TOPIC.ANNOUNCEMENTS:
-      return new ForumTopic(
-        topic.toString(),
-        "#ED4146",
-        <Icons.MegaphoneFillIcon className={className} />,
-        <Icons.MegaphoneIcon className={className} />
-      );
-    case FORUM_TOPIC.GENERAL:
-      return new ForumTopic(
-        topic.toString(),
-        "#F4AB36",
-        <Icons.InfoFillIcon className={className} />,
-        <Icons.InfoIcon className={className} />
-      );
-    case FORUM_TOPIC.ESSAYS:
-      return new ForumTopic(
-        topic.toString(),
-        "#00A62A",
-        <Icons.PenFillIcon className={className} />,
-        <Icons.PenIcon className={className} />
-      );
-    case FORUM_TOPIC.ORAL:
-      return new ForumTopic(
-        topic.toString(),
-        "#5536DA",
-        <Icons.SoundwaveIcon className={className} />,
-        <Icons.SoundwaveIcon className={className} />
-      );
-    case FORUM_TOPIC.SACS:
-      return new ForumTopic(
-        topic.toString(),
-        "#0080FF",
-        <Icons.FileFillIcon className={className} />,
-        <Icons.FileIcon className={className} />
-      );
-    case FORUM_TOPIC.EXAMS:
-      return new ForumTopic(
-        topic.toString(),
-        "#F4AB36",
-        <Icons.LayersStackFillIcon className={className} />,
-        <Icons.LayersStackIcon className={className} />
-      );
-    case FORUM_TOPIC.GRADES:
-      return new ForumTopic(
-        topic.toString(),
-        "#ED4146",
-        <Icons.GraduateFillIcon className={className} />,
-        <Icons.GraduateIcon className={className} />
-      );
-    case FORUM_TOPIC.SOCIAL:
-      return new ForumTopic(
-        topic.toString(),
-        "#00A62A",
-        <Icons.DotsConnectionFillIcon className={className} />,
-        <Icons.DotsConnectionIcon className={className} />
-      );
-    default:
-      return new ForumTopic(
-        topic.toString(),
-        "#EF4146",
-        <Icons.MegaphoneFillIcon className={className} />,
-        <Icons.MegaphoneIcon className={className} />
-      );
-  }
 }
 
 function KeyTile(props: { character: string; size: string }) {

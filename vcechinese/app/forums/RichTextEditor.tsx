@@ -11,7 +11,7 @@ import { addDoc, collection, Timestamp } from "firebase/firestore";
 import { loggedInCurrentUser } from "./HeaderRhs";
 import { getDownloadURL, ref, uploadString } from "@firebase/storage";
 
-export default function RichTextEditor() {
+export default function RichTextEditor(props: { toolbarId: string }) {
   const [title, setTitle] = useState("");
   const [topic, setTopic] = useState("");
   const [value, setValue] = useState("");
@@ -26,7 +26,7 @@ export default function RichTextEditor() {
   }
 
   return (
-    <div className="text-editor border-none">
+    <div className="border-none">
       <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@350;700&display=swap"
         rel="stylesheet"
@@ -44,14 +44,14 @@ export default function RichTextEditor() {
         onChange={(event) => setTopic(event.target.value)}
       />
       <TextEditor
-        modules={modules}
-        formats={formats}
+        modules={getModules(props.toolbarId)}
+        formats={toolbarFormats}
         placeholder={"Aa"}
         value={value}
         onChange={handleChange}
         className="min-h-[200px] w-[650px] border-[1px] border-black border-opacity-10 rounded-t-lg"
       />
-      <EditorToolbar />
+      <EditorToolbar toolbarId={props.toolbarId} />
       <button
         className="px-3 py-1 my-2 bg-green-500 text-white font-semibold text-sm rounded-md"
         onClick={() => postNewThread(title, topic, value)}
@@ -60,57 +60,6 @@ export default function RichTextEditor() {
       </button>
     </div>
   );
-}
-
-async function postNewThread(title: string, topic: string, value: string) {
-  try {
-    addImagesToStorage(title, value).then(async (val) => {
-      const data = {
-        title: title,
-        topic: topic,
-        value: JSON.stringify(val),
-        poster: loggedInCurrentUser?.displayName,
-        date: Timestamp.now(),
-        replies: [],
-        interactors: [loggedInCurrentUser?.photoURL],
-      };
-
-      await addDoc(collection(db, "threads"), data);
-
-      console.log(val);
-      console.log("Thread posted successfully");
-    });
-  } catch (error) {
-    console.error("Failed to post thread:", error);
-  }
-}
-
-async function addImagesToStorage(title: string, val: string) {
-  var value = val;
-  if (value.length != 0) {
-    value.ops.map(async (block, index: number) => {
-      if (block.insert.image != null) {
-        const storageRef = ref(
-          storage,
-          loggedInCurrentUser!.displayName +
-            title +
-            index.toString() +
-            Timestamp.now().toString()
-        );
-
-        uploadString(storageRef, block.insert.image, "data_url").then(
-          (snapshot) => {
-            getDownloadURL(snapshot.ref).then((downloadURL) => {
-              block.insert.image = downloadURL;
-              console.log("File available at", downloadURL);
-              return block;
-            });
-          }
-        );
-      }
-    });
-  }
-  return value;
 }
 
 export function TextEditor(params: any) {
@@ -164,9 +113,12 @@ const ReactQuillConfig = dynamic(
   }
 );
 
-function EditorToolbar() {
+export function EditorToolbar(props: { toolbarId: string }) {
   return (
-    <div className="text-gray-700 text-opacity-80 w-[650px]" id="toolbar">
+    <div
+      className="text-gray-700 text-opacity-80 w-[650px]"
+      id={props.toolbarId}
+    >
       <span className="ql-formats">
         <button className="ql-undo" />
         <button className="ql-redo" />
@@ -202,23 +154,7 @@ function EditorToolbar() {
   );
 }
 
-export const modules = {
-  toolbar: {
-    container: "#toolbar",
-    handlers: {
-      undo: undoChange,
-      redo: redoChange,
-    },
-  },
-  history: {
-    delay: 500,
-    maxStack: 100,
-    userOnly: true,
-  },
-  autoLinks: true,
-};
-
-export const formats = [
+export const toolbarFormats = [
   "header",
   "font",
   "size",
@@ -239,10 +175,79 @@ export const formats = [
   "code-block",
 ];
 
+export function getModules(toolbarId: string) {
+  return {
+    toolbar: {
+      container: `#${toolbarId}`,
+      handlers: {
+        undo: undoChange,
+        redo: redoChange,
+      },
+    },
+    history: {
+      delay: 500,
+      maxStack: 100,
+      userOnly: true,
+    },
+    autoLinks: true,
+  };
+}
+
 function undoChange(this: { quill: any; undo: () => void; redo: () => void }) {
   this.quill.history.undo();
 }
 
 function redoChange(this: { quill: any; undo: () => void; redo: () => void }) {
   this.quill.history.redo();
+}
+
+async function postNewThread(title: string, topic: string, value: string) {
+  try {
+    addImagesToStorage(title, value).then(async (val) => {
+      const data = {
+        title: title,
+        topic: topic,
+        value: JSON.stringify(val),
+        poster: loggedInCurrentUser?.displayName,
+        date: Timestamp.now(),
+        replies: [],
+        interactors: [loggedInCurrentUser?.photoURL],
+      };
+
+      await addDoc(collection(db, "threads"), data);
+
+      console.log(val);
+      console.log("Thread posted successfully");
+    });
+  } catch (error) {
+    console.error("Failed to post thread:", error);
+  }
+}
+
+async function addImagesToStorage(title: string, val: string) {
+  var value = val;
+  if (value.length != 0) {
+    value.ops.map(async (block, index: number) => {
+      if (block.insert.image != null) {
+        const storageRef = ref(
+          storage,
+          loggedInCurrentUser!.displayName +
+            title +
+            index.toString() +
+            Timestamp.now().toString()
+        );
+
+        uploadString(storageRef, block.insert.image, "data_url").then(
+          (snapshot) => {
+            getDownloadURL(snapshot.ref).then((downloadURL) => {
+              block.insert.image = downloadURL;
+              console.log("File available at", downloadURL);
+              return block;
+            });
+          }
+        );
+      }
+    });
+  }
+  return value;
 }

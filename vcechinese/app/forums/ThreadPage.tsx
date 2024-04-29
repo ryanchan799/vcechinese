@@ -1,23 +1,23 @@
 import React from "react";
-import { getTopicConfig } from "./Sidebar";
 import {
   FORUMS_CONVERSATION_WIDTH,
   FORUMS_LIST_HEADER_HEIGHT,
+  FORUMS_TOOLBAR_NEW_REPLY,
 } from "../_assets/Constants";
 import {
   FORUMS_LIST_WIDTH,
   FORUMS_SIDEBAR_PADDING,
   FORUMS_SIDEBAR_WIDTH,
 } from "../_assets/Constants";
-import RichTextEditor, { formats, modules, TextEditor } from "./RichTextEditor";
 import Login from "./authentication/Login";
 import { LeftBarIcon } from "../_assets/Icons";
 import { db } from "@/firebase";
-import { getDoc, doc, DocumentData } from "firebase/firestore";
-import { formatTimeDifference } from "../_assets/Utility";
+import { getDoc, doc } from "firebase/firestore";
+import { formatTimeDifference, getTopicConfig } from "../_assets/Utility";
+import RichTextEditor, { TextEditor, toolbarFormats } from "./RichTextEditor";
 
 export default async function ThreadPage() {
-  const thread: DocumentData | null = await getThread("vOcjx45yle0qGSHJXBkY");
+  const thread = await getThread("X75txfG2pQa9a4NFHuDk");
 
   const topicIcon = getTopicConfig(
     thread == null ? "" : thread.topic,
@@ -82,14 +82,14 @@ export default async function ThreadPage() {
                       </div>
                       {/* ThreadConversations */}
                       <TextEditor
-                        modules={modules}
-                        formats={formats}
+                        modules={noToolbarModules}
+                        formats={toolbarFormats}
                         readOnly={true}
                         className={`pl-[30px] py-1 ${FORUMS_CONVERSATION_WIDTH}`}
                         value={JSON.parse(thread.value)}
                       />
                     </div>
-                    <RichTextEditor />
+                    <RichTextEditor toolbarId={FORUMS_TOOLBAR_NEW_REPLY} />
                     <Login />
                   </div>
                 </div>
@@ -145,3 +145,9 @@ function DummyPadding() {
     </>
   );
 }
+
+const noToolbarModules = {
+  toolbar: {
+    container: "#" + FORUMS_TOOLBAR_NEW_REPLY,
+  },
+};
