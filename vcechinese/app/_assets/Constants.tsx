@@ -8,7 +8,6 @@ export enum PAGE {
 
 export enum COLORS {
   BRIGHT_BLUE = "#0066FF",
-  DULL_BLUE = "#1B76CF",
 }
 
 export const HEADER_LOGO_WIDTH = "285px";

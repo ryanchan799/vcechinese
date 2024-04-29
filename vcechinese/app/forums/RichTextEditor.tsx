@@ -60,8 +60,8 @@ export default function RichTextEditor(props: {
         }
       >
         <div className="flex flex-row items-center text-[11px] gap-2 py-[3px] -translate-x-[1px]">
-          <Icons.SendIcon className="w-[10px] h-[10px]" />
-          <span className="-tracking-[0.1px]">Post</span>
+          <Icons.SendIcon className="w-[9.5px] h-[9.5px]" />
+          <span>{props.isNewThreadPost ? "Post" : "Reply"}</span>
         </div>
       </button>
     </div>

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as Icons from "../_assets/Icons";
 import {
   COLORS,
@@ -12,6 +12,24 @@ import NewThreadOverlay from "./NewThreadOverlay";
 
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyPress = (event: {
+      metaKey: any;
+      ctrlKey: any;
+      key: string;
+    }) => {
+      if ((event.metaKey || event.ctrlKey) && event.key === "k") {
+        setOpen(true);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []);
 
   return (
     <div
