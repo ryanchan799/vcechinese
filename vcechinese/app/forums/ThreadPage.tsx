@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   FORUMS_CONVERSATION_WIDTH,
   FORUMS_LIST_HEADER_HEIGHT,
@@ -89,7 +89,10 @@ export default async function ThreadPage() {
                         value={JSON.parse(thread.value)}
                       />
                     </div>
-                    <RichTextEditor toolbarId={FORUMS_TOOLBAR_NEW_REPLY} />
+                    <RichTextEditor
+                      toolbarId={FORUMS_TOOLBAR_NEW_REPLY}
+                      isNewThreadPost={false}
+                    />
                     <Login />
                   </div>
                 </div>

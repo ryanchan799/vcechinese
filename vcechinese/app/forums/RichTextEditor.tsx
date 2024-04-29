@@ -10,11 +10,19 @@ import { db, storage } from "@/firebase";
 import { addDoc, collection, Timestamp } from "firebase/firestore";
 import { loggedInCurrentUser } from "./HeaderRhs";
 import { getDownloadURL, ref, uploadString } from "@firebase/storage";
+import { COLORS } from "../_assets/Constants";
+import { hexToRgba } from "../_assets/Utility";
 
-export default function RichTextEditor(props: { toolbarId: string }) {
-  const [title, setTitle] = useState("");
-  const [topic, setTopic] = useState("");
+export default function RichTextEditor(props: {
+  toolbarId: string;
+  isNewThreadPost: boolean;
+  title?: string;
+  topic?: string;
+}) {
   const [value, setValue] = useState("");
+
+  const title = props.title == null ? "" : props.title;
+  const topic = props.topic == null ? "" : props.topic;
 
   function handleChange(
     content: any,
@@ -31,18 +39,6 @@ export default function RichTextEditor(props: { toolbarId: string }) {
         href="https://fonts.googleapis.com/css2?family=Inter:wght@350;700&display=swap"
         rel="stylesheet"
       />
-      <input
-        type="text"
-        placeholder="Title"
-        value={title}
-        onChange={(event) => setTitle(event.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Topic"
-        value={topic}
-        onChange={(event) => setTopic(event.target.value)}
-      />
       <TextEditor
         modules={getModules(props.toolbarId)}
         formats={toolbarFormats}
@@ -53,10 +49,20 @@ export default function RichTextEditor(props: { toolbarId: string }) {
       />
       <EditorToolbar toolbarId={props.toolbarId} />
       <button
-        className="px-3 py-1 my-2 bg-green-500 text-white font-semibold text-sm rounded-md"
-        onClick={() => postNewThread(title, topic, value)}
+        className="flex flex-row w-[65px] my-6 items-center justify-center rounded-md"
+        style={{
+          color: COLORS.BRIGHT_BLUE,
+          borderColor: hexToRgba(COLORS.BRIGHT_BLUE, 0.9),
+          borderWidth: "1px",
+        }}
+        onClick={() =>
+          props.isNewThreadPost ? postNewThread(title, topic, value) : {}
+        }
       >
-        Post
+        <div className="flex flex-row items-center text-[11px] gap-2 py-[3px] -translate-x-[1px]">
+          <Icons.SendIcon className="w-[10px] h-[10px]" />
+          <span className="-tracking-[0.1px]">Post</span>
+        </div>
       </button>
     </div>
   );

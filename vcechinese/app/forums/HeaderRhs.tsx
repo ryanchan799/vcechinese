@@ -25,7 +25,7 @@ export function Rhs() {
           <SearchIcon className="w-3 h-3 fill-gray-400 mr-2" />
           <input
             className="w-full text-[12px] font-light outline-none"
-            type="search"
+            type="text"
             placeholder="Search"
           />
         </div>

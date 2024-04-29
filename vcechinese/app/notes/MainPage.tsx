@@ -8,12 +8,12 @@ import {
   Subheading,
 } from "./TextDisplay";
 import { Lianhaoxiezuoyouduozhongyao } from "../_assets/Notes";
-import AudioVisualiser from "./AudioWaveform";
 import {
   HEADER_BAR_WIDTHS,
   NOTES_CONTENTS_WIDTH,
   PAGE,
 } from "../_assets/Constants";
+import AudioWaveform from "./AudioWaveform";
 
 export default function MainPage() {
   return (
@@ -49,7 +49,7 @@ function Heading() {
           <h1>写作有多重要</h1>
         </div>
       </div>
-      <AudioVisualiser />
+      <AudioWaveform />
     </div>
   );
 }

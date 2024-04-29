@@ -15,11 +15,13 @@ export default function Sidebar() {
 
   return (
     <div
-      className={`fixed left-[0px] top-[0px] pt-[130px] space-y-8 z-50 ${FORUMS_SIDEBAR_PADDING}`}
+      className={`fixed left-[0px] top-[0px] pt-[130px] z-50 ${FORUMS_SIDEBAR_PADDING}`}
       style={{ width: FORUMS_SIDEBAR_WIDTH }}
     >
       <NewThreadButton setOpen={setOpen} />
+      <div className="h-6"></div>
       <QuickLinks />
+      <div className="h-6"></div>
       <TopicsList />
       {open ? <NewThreadOverlay setOpen={setOpen} /> : null}
     </div>
@@ -70,7 +72,7 @@ function QuickLinks() {
   return (
     <div>
       {links.map((link, index) => (
-        <Topic key={index} topic={link} />
+        <Topic key={index} topic={link} className="text-[11.5px] pl-2" />
       ))}
     </div>
   );
@@ -82,18 +84,24 @@ function TopicsList() {
       {Object.values(FORUM_TOPIC).map((topic, index) => {
         const forumTopic = getTopicConfig(topic, size);
         return forumTopic == null ? null : (
-          <Topic key={index} topic={forumTopic} />
+          <Topic
+            key={index}
+            topic={forumTopic}
+            className="text-[11.5px] pl-2"
+          />
         );
       })}
     </div>
   );
 }
 
-function Topic(props: { topic: ForumTopic }) {
+function Topic(props: { topic: ForumTopic; className: string }) {
   return (
-    <div className="flex flex-row items-center text-gray-700 fill-gray-700 opacity-80 gap-2 py-[3.6px]">
+    <div className="flex flex-row items-center text-gray-700 fill-gray-700 opacity-80 py-[3.6px]">
       {props.topic.fillIcon}
-      <button className="text-[11.5px] tracking-[-0.15px] hover:underline">
+      <button
+        className={`tracking-[-0.15px] hover:underline ${props.className}`}
+      >
         {props.topic.topic}
       </button>
     </div>
