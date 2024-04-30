@@ -1,10 +1,11 @@
 "use client";
 import { DocumentData } from "firebase/firestore";
 import React from "react";
-import { Divider } from "../_assets/Icons";
+import { Divider, PinIcon } from "../_assets/Icons";
 import { getTopicConfig, formatTimeDifference } from "../_assets/Utility";
 import { ProfilePictureSmall } from "./ProfilePicture";
 import Link from "next/link";
+import { COLORS } from "../_assets/Constants";
 
 export default function ThreadsRow(props: { thread: DocumentData }) {
   return (
@@ -41,6 +42,9 @@ function Lhs(props: { thread: DocumentData }) {
         </span>
       </div>
       <div className="flex items-center gap-2">
+        {props.thread.isPinned ? (
+          <PinIcon className="w-[9px] h-[9px] transform rotate-45" />
+        ) : null}
         <span
           className="text-[9.3px] font-bold pt-[0.2px]"
           style={{ color: config.color }}
@@ -50,6 +54,7 @@ function Lhs(props: { thread: DocumentData }) {
         <span className="text-[9px] text-gray-800 pl-[1px]">
           {props.thread.poster}
         </span>
+        {props.thread.admin ? <AdminTag /> : null}
         <span className="text-[9px] text-gray-500 text-opacity-70">
           {formatTimeDifference(props.thread.date)}
         </span>
@@ -73,5 +78,16 @@ function ProfilePicStack(props: { interactors: string[] }) {
         <ProfilePictureSmall key={index} url={user} />
       ))}
     </div>
+  );
+}
+
+export function AdminTag() {
+  return (
+    <span
+      className="flex items-center h-[11px] text-[6.5px] font-semibold px-[2.5px] py-[1px] rounded-sm tracking-wide"
+      style={{ backgroundColor: COLORS.BRIGHT_YELLOW }}
+    >
+      ADMIN
+    </span>
   );
 }

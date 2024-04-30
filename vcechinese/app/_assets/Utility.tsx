@@ -25,13 +25,13 @@ export function formatTimeDifference(timestamp: Timestamp) {
     return hours === 1 ? "1 hour ago" : `${hours} hours ago`;
   } else if (timeDifference < 7 * 24 * 60 * 60 * 1000) {
     const days = Math.floor(timeDifference / (24 * 60 * 60 * 1000));
-    return days === 1 ? "1 day ago" : `${days} days ago`;
+    return days === 1 ? "Yesterday" : `${days} days ago`;
   } else if (timeDifference < 4 * 7 * 24 * 60 * 60 * 1000) {
     const weeks = Math.floor(timeDifference / (7 * 24 * 60 * 60 * 1000));
-    return weeks === 1 ? "1 week ago" : `${weeks} weeks ago`;
+    return weeks === 1 ? "Last week" : `${weeks} weeks ago`;
   } else if (timeDifference < 52 * 7 * 24 * 60 * 60 * 1000) {
     const months = Math.floor(timeDifference / (4 * 7 * 24 * 60 * 60 * 1000));
-    return months === 1 ? "1 month ago" : `${months} months ago`;
+    return months === 1 ? "Last month" : `${months} months ago`;
   } else {
     const date = new Date(timestampMilliseconds);
     const options = {

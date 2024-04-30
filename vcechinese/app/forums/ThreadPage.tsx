@@ -14,6 +14,7 @@ import { db } from "@/firebase";
 import { getDoc, doc } from "firebase/firestore";
 import { formatTimeDifference, getTopicConfig } from "../_assets/Utility";
 import RichTextEditor, { TextEditor, toolbarFormats } from "./RichTextEditor";
+import { AdminTag } from "./ThreadsRow";
 
 export default async function ThreadPage(props: { threadId: string }) {
   const thread = await getThread(props.threadId);
@@ -51,13 +52,16 @@ export default async function ThreadPage(props: { threadId: string }) {
                             ).outlineIcon
                           }
                         </div>
-                        <div className="-space-y-[1.8px] pl-[8px]">
-                          <span
-                            className="text-[12px]"
-                            style={{ fontWeight: "550" }}
-                          >
-                            {thread.poster}
-                          </span>
+                        <div className="pl-[8px]">
+                          <div className="flex flex-row items-center gap-1.5">
+                            <span
+                              className="text-[12px]"
+                              style={{ fontWeight: "550" }}
+                            >
+                              {thread.poster}
+                            </span>
+                            {thread.admin ? <AdminTag /> : null}
+                          </div>
                           <div className="flex flex-row items-center">
                             <span className="text-black text-opacity-50 text-[9.5px]">
                               {formatTimeDifference(thread.date)} in
