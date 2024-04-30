@@ -4,6 +4,7 @@ import { SearchIcon } from "../_assets/Icons";
 import { ProfilePictureBig } from "./ProfilePicture";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "@/firebase";
+import { ADMIN_USER } from "../_assets/Constants";
 
 export function Rhs() {
   const [user, setUser] = useState<User | null>();
@@ -13,7 +14,7 @@ export function Rhs() {
       onAuthStateChanged(auth, (currentUser) => {
         setUser(currentUser);
         loggedInCurrentUser = currentUser;
-        currentUserIsAdmin = currentUser?.uid == "gMprYNbTtZaLOstrIpUheDAmjUi2";
+        currentUserIsAdmin = currentUser?.uid == ADMIN_USER;
       });
     };
   }, []);
@@ -37,4 +38,4 @@ export function Rhs() {
 }
 
 export var loggedInCurrentUser: User | null = null;
-export var currentUserIsAdmin: boolean | null = null;
+export var currentUserIsAdmin = false;

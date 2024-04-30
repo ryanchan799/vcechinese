@@ -218,7 +218,7 @@ async function postNewThread(title: string, topic: string, value: string) {
         date: Timestamp.now(),
         replies: [],
         interactors: [loggedInCurrentUser?.photoURL],
-        admin: currentUserIsAdmin ?? false,
+        admin: currentUserIsAdmin,
         isPinned: false,
       };
 
