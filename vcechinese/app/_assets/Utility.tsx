@@ -11,7 +11,8 @@ export function hexToRgba(hex: string, alpha: number) {
 
 export function formatTimeDifference(timestamp: Timestamp) {
   const currentTimestamp = Date.now();
-  const timestampMilliseconds = timestamp.toMillis();
+  const timestampMilliseconds =
+    timestamp.seconds * 1000 + timestamp.nanoseconds / 1e6;
   const timeDifference = currentTimestamp - timestampMilliseconds;
 
   if (timeDifference < 60 * 1000) {

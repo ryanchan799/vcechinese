@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   FORUMS_CONVERSATION_WIDTH,
   FORUMS_LIST_HEADER_HEIGHT,
@@ -10,14 +10,13 @@ import {
   FORUMS_SIDEBAR_WIDTH,
 } from "../_assets/Constants";
 import Login from "./authentication/Login";
-import { LeftBarIcon } from "../_assets/Icons";
 import { db } from "@/firebase";
 import { getDoc, doc } from "firebase/firestore";
 import { formatTimeDifference, getTopicConfig } from "../_assets/Utility";
 import RichTextEditor, { TextEditor, toolbarFormats } from "./RichTextEditor";
 
-export default async function ThreadPage() {
-  const thread = await getThread("X75txfG2pQa9a4NFHuDk");
+export default async function ThreadPage(props: { threadId: string }) {
+  const thread = await getThread(props.threadId);
 
   const topicIcon = getTopicConfig(
     thread == null ? "" : thread.topic,
@@ -31,6 +30,7 @@ export default async function ThreadPage() {
         <div>
           {thread == null ? null : (
             <div>
+              <title>{"Forums - " + thread.title}</title>
               <div className="sticky top-[75.5px] z-30">
                 <StickyBar topic={thread.topic} title={thread.title} />
               </div>

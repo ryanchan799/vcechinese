@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { inter } from "./_assets/Fonts";
 
-export const metadata: Metadata = {
-  title:
-    "vcechinese.com - The Ultimate Place to Supercharge Your VCE Chinese Studies",
-};
+// export const metadata: Metadata = {
+//   title:
+//     "vcechinese.com - The Ultimate Place to Supercharge Your VCE Chinese Studies",
+// };
 
 export default function RootLayout({
   children,

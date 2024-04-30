@@ -22,6 +22,9 @@ export default function Sidebar() {
       if ((event.metaKey || event.ctrlKey) && event.key === "k") {
         setOpen(true);
       }
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
     };
 
     window.addEventListener("keydown", handleKeyPress);
