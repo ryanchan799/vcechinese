@@ -39,7 +39,6 @@ export function UserAuthContextProvider({ children }) {
               name: currentUser.displayName,
               email: currentUser.email,
               picture: currentUser.photoURL,
-              admin: false,
             };
             setDoc(doc(db, "users", currentUser.uid), data);
             console.log("Added new user to db", currentUser);

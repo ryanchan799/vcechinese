@@ -8,7 +8,7 @@ import { renderToString } from "react-dom/server";
 import * as Icons from "../_assets/Icons";
 import { db, storage } from "@/firebase";
 import { addDoc, collection, Timestamp } from "firebase/firestore";
-import { loggedInCurrentUser } from "./HeaderRhs";
+import { currentUserIsAdmin, loggedInCurrentUser } from "./HeaderRhs";
 import { getDownloadURL, ref, uploadString } from "@firebase/storage";
 import { COLORS } from "../_assets/Constants";
 import { hexToRgba } from "../_assets/Utility";
@@ -218,6 +218,8 @@ async function postNewThread(title: string, topic: string, value: string) {
         date: Timestamp.now(),
         replies: [],
         interactors: [loggedInCurrentUser?.photoURL],
+        admin: currentUserIsAdmin ?? false,
+        isPinned: false,
       };
 
       await addDoc(collection(db, "threads"), data);

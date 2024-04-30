@@ -13,6 +13,7 @@ export function Rhs() {
       onAuthStateChanged(auth, (currentUser) => {
         setUser(currentUser);
         loggedInCurrentUser = currentUser;
+        currentUserIsAdmin = currentUser?.uid == "gMprYNbTtZaLOstrIpUheDAmjUi2";
       });
     };
   }, []);
@@ -36,3 +37,4 @@ export function Rhs() {
 }
 
 export var loggedInCurrentUser: User | null = null;
+export var currentUserIsAdmin: boolean | null = null;

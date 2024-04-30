@@ -54,7 +54,7 @@ function StickyBar(props: { reversed: boolean; setReversed: any }) {
             <SortUpDownIcon className="w-3 h-3" />
           </button>
           <button title="Sort by popular">
-            <FireIcon className="w-[12px] h-[12.5px] translate-y-[1px]" />
+            <FireIcon className="w-3 h-3 translate-y-[1px]" />
           </button>
           <button title="Sort by popular">
             <EllipsisIcon className="w-3 h-3" />

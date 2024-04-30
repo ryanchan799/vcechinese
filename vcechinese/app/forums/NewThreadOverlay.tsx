@@ -13,14 +13,16 @@ export default function NewThreadOverlay(props: {
 
   return (
     <div className="fixed top-0 left-0 flex items-center justify-center h-screen w-screen bg-black bg-opacity-45">
-      <div className="flex flex-col bg-white max-h-[80%] justify-center rounded-lg overflow-auto">
-        <Header setOpen={props.setOpen} />
-        <NewThreadInfo
-          title={title}
-          topic={topic}
-          setTitle={setTitle}
-          setTopic={setTopic}
-        />
+      <div className="overflow-scroll max-h-[80%] scrollbar-none">
+        <div className="flex flex-col bg-white justify-center rounded-lg">
+          <Header setOpen={props.setOpen} />
+          <NewThreadInfo
+            title={title}
+            topic={topic}
+            setTitle={setTitle}
+            setTopic={setTopic}
+          />
+        </div>
       </div>
     </div>
   );
