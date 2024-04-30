@@ -19,7 +19,7 @@ export default function NavigationBar(props: { tab: PAGE }) {
 function Text(props: { text: string }) {
   return (
     <div className="px-2.5 py-[2px]">
-      <a href={props.text.toLowerCase()}>
+      <a href={"/" + props.text.toLowerCase()}>
         <div className="hover:underline">{props.text}</div>
       </a>
     </div>

@@ -1,3 +1,6 @@
+export const TITLE =
+  "vcechinese.com - The Ultimate Place to Supercharge Your VCE Chinese Studies";
+
 export enum PAGE {
   NOTES = "Notes",
   FORUMS = "Forums",
