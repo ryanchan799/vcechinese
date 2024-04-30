@@ -5,7 +5,7 @@ import { UserAuthContextProvider } from "../authentication/UserAuthContext";
 import { Rhs } from "../HeaderRhs";
 import Sidebar from "../Sidebar";
 import ThreadPage from "../ThreadPage";
-import ThreadsList from "../ThreadsList";
+import ThreadsList from "../ThreadsListQuery";
 import "../forums.css";
 
 export default function page({ params }: { params: { threadId: string } }) {
