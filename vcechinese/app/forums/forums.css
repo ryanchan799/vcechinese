@@ -8,6 +8,7 @@
 
 .ql-container {
   border: 0px !important;
+  filter: contrast(120%);
 }
 
 .ql-editor {
