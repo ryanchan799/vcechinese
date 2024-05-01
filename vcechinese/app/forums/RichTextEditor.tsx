@@ -18,6 +18,8 @@ export default function RichTextEditor(props: {
   isNewThreadPost: boolean;
   title?: string;
   topic?: string;
+  setOpen: (arg0: boolean) => void;
+  setLoading: (arg0: boolean) => void;
 }) {
   const [value, setValue] = useState("");
 
@@ -56,7 +58,15 @@ export default function RichTextEditor(props: {
           borderWidth: "1px",
         }}
         onClick={() =>
-          props.isNewThreadPost ? postNewThread(title, topic, value) : {}
+          props.isNewThreadPost
+            ? postNewThread(
+                title,
+                topic,
+                value,
+                props.setOpen,
+                props.setLoading
+              )
+            : {}
         }
       >
         <div className="flex flex-row items-center text-[11px] gap-2 py-[3px] -translate-x-[1px]">
@@ -207,8 +217,15 @@ function redoChange(this: { quill: any; undo: () => void; redo: () => void }) {
   this.quill.history.redo();
 }
 
-async function postNewThread(title: string, topic: string, value: string) {
+async function postNewThread(
+  title: string,
+  topic: string,
+  value: string,
+  setOpen: (arg0: boolean) => void,
+  setLoading: (arg0: boolean) => void
+) {
   try {
+    setLoading(true);
     addImagesToStorage(title, value).then(async (val) => {
       const data = {
         title: title,
@@ -226,8 +243,12 @@ async function postNewThread(title: string, topic: string, value: string) {
 
       console.log(val);
       console.log("Thread posted successfully");
+
+      setLoading(false);
+      setOpen(false);
     });
   } catch (error) {
+    setLoading(false);
     console.error("Failed to post thread:", error);
   }
 }
