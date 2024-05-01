@@ -1,6 +1,9 @@
 "use client";
-import React, { useState } from "react";
-import { FORUMS_LIST_HEADER_HEIGHT } from "../_assets/Constants";
+import React, { useEffect, useState } from "react";
+import {
+  FORUMS_LIST_HEADER_HEIGHT,
+  SELECTED_TOPICS,
+} from "../_assets/Constants";
 import { SortUpDownIcon, EllipsisIcon, FireIcon } from "../_assets/Icons";
 import { DocumentData } from "firebase/firestore";
 import ThreadsRow from "./ThreadsRow";
@@ -8,6 +11,24 @@ import ThreadsRow from "./ThreadsRow";
 export default function ThreadsListClient(props: { threads: DocumentData[] }) {
   const [reversed, setReversed] = useState(false);
   const [list, setList] = useState(props.threads);
+
+  useEffect(() => {
+    function handleTopicTagSelection() {
+      const selectedTopics = JSON.parse(
+        localStorage.getItem(SELECTED_TOPICS) ?? "[]"
+      );
+      const filteredThreads = list.filter((thread) =>
+        selectedTopics.includes(thread.topic)
+      );
+      setList(selectedTopics.length === 0 ? props.threads : filteredThreads);
+    }
+
+    window.addEventListener("storage", handleTopicTagSelection);
+
+    return () => {
+      window.removeEventListener("storage", handleTopicTagSelection);
+    };
+  }, []);
 
   return (
     <div>

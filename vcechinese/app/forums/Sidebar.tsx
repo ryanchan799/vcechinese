@@ -5,13 +5,16 @@ import {
   COLORS,
   FORUMS_SIDEBAR_PADDING,
   FORUMS_SIDEBAR_WIDTH,
+  SELECTED_TOPICS,
 } from "../_assets/Constants";
 import { ForumTopic, getTopicConfig, hexToRgba } from "../_assets/Utility";
 import { FORUM_TOPIC } from "../_assets/Constants";
 import NewThreadOverlay from "./NewThreadOverlay";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
+  const [selectedTopics, setSelectedTopics] = useState([]);
 
   useEffect(() => {
     const handleKeyPress = (event: {
@@ -27,22 +30,32 @@ export default function Sidebar() {
       }
     };
 
+    function handleTopicTagSelection() {
+      setSelectedTopics(
+        JSON.parse(localStorage.getItem(SELECTED_TOPICS) ?? "[]")
+      );
+    }
+
     window.addEventListener("keydown", handleKeyPress);
+    window.addEventListener("storage", handleTopicTagSelection);
+    window.addEventListener("beforeunload", () => {
+      localStorage.removeItem("selectedTopics");
+    });
 
     return () => {
       window.removeEventListener("keydown", handleKeyPress);
+      window.removeEventListener("storage", handleTopicTagSelection);
     };
   }, []);
 
   return (
     <div
-      className={`fixed left-[0px] top-[0px] pt-[130px] z-50 ${FORUMS_SIDEBAR_PADDING}`}
+      className={`fixed left-[0px] top-[0px] flex flex-col gap-6 pt-[130px] z-50 ${FORUMS_SIDEBAR_PADDING}`}
       style={{ width: FORUMS_SIDEBAR_WIDTH }}
     >
       <NewThreadButton setOpen={setOpen} />
-      <div className="h-6"></div>
       <QuickLinks />
-      <div className="h-6"></div>
+      <SelectedTopicsList selectedTopics={selectedTopics} />
       <TopicsList />
       {open ? <NewThreadOverlay setOpen={setOpen} /> : null}
     </div>
@@ -99,6 +112,23 @@ function QuickLinks() {
   );
 }
 
+function SelectedTopicsList(props: { selectedTopics: string[] }) {
+  return (
+    <>
+      {props.selectedTopics.length == 0 ? null : (
+        <div>
+          {props.selectedTopics.map((topic, index) => {
+            const forumTopic = getTopicConfig(topic, size);
+            return forumTopic == null ? null : (
+              <SelectedTopic key={index} topic={forumTopic} />
+            );
+          })}
+        </div>
+      )}
+    </>
+  );
+}
+
 function TopicsList() {
   return (
     <div>
@@ -121,12 +151,49 @@ function Topic(props: { topic: ForumTopic; className: string }) {
     <div className="flex flex-row items-center text-gray-700 fill-gray-700 opacity-80 py-[3.6px]">
       {props.topic.fillIcon}
       <button
+        onClick={() => handleTopicTagSelections(props.topic.topic)}
         className={`tracking-[-0.15px] hover:underline ${props.className}`}
       >
         {props.topic.topic}
       </button>
     </div>
   );
+}
+
+function SelectedTopic(props: { topic: ForumTopic }) {
+  return (
+    <div className="py-[3px]">
+      <button onClick={() => handleTopicTagSelections(props.topic.topic)}>
+        <div
+          className="flex flex-row items-center gap-1.5 tracking-[-0.15px] text-[11.3px] rounded-[13px] px-3 py-1 -translate-x-[1px] hover:underline"
+          style={{
+            backgroundColor: hexToRgba(props.topic.color, 0.13),
+            borderColor: props.topic.color,
+            borderWidth: "1px",
+          }}
+        >
+          <XMarkIcon className="h-3 w-3" aria-hidden="true" />
+          {props.topic.topic}
+        </div>
+      </button>
+    </div>
+  );
+}
+
+function handleTopicTagSelections(newTopicTag: string) {
+  const existingTopics = JSON.parse(
+    localStorage.getItem(SELECTED_TOPICS) ?? "[]"
+  );
+  var newTopics: string[] = existingTopics;
+
+  if (existingTopics.includes(newTopicTag)) {
+    newTopics = newTopics.filter((topic) => newTopicTag !== topic);
+  } else {
+    newTopics.push(newTopicTag);
+  }
+
+  localStorage.setItem(SELECTED_TOPICS, JSON.stringify(newTopics));
+  window.dispatchEvent(new Event("storage"));
 }
 
 function KeyTile(props: { character: string; size: string }) {

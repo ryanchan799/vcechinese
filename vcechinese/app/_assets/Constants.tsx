@@ -44,3 +44,5 @@ export enum FORUM_TOPIC {
   GRADES = "Grades",
   SOCIAL = "Social",
 }
+
+export const SELECTED_TOPICS = "selectedTopics";
