@@ -114,8 +114,8 @@ export default async function ThreadPage(props: { threadId: string }) {
 
 function Replies(props: { thread: DocumentData }) {
   return (
-    <div className={`${FORUMS_CONVERSATION_WIDTH} pl-5`}>
-      {props.thread.replies.map((reply, index) => {
+    <div className={`${FORUMS_CONVERSATION_WIDTH} pl-12`}>
+      {props.thread.replies.map((reply: DocumentData, index: number) => {
         return (
           <div key={index} className="flex flex-row items-start">
             <div className="flex flex-none w-8 h-8 bg-[#E6E8EB] rounded-full justify-center items-center">
