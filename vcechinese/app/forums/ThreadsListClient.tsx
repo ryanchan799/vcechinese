@@ -36,7 +36,12 @@ export default function ThreadsListClient(props: {
   return (
     <div>
       <div className="sticky top-0 z-40">
-        <StickyBar reversed={reversed} setReversed={setReversed} />
+        <StickyBar
+          reversed={reversed}
+          setReversed={setReversed}
+          list={list}
+          setList={setList}
+        />
       </div>
       <div>
         <div>
@@ -54,7 +59,12 @@ export default function ThreadsListClient(props: {
   );
 }
 
-function StickyBar(props: { reversed: boolean; setReversed: any }) {
+function StickyBar(props: {
+  reversed: boolean;
+  setReversed: any;
+  list: DocumentData[];
+  setList: any;
+}) {
   const now = new Date();
   const options = {
     year: "numeric",
@@ -80,12 +90,21 @@ function StickyBar(props: { reversed: boolean; setReversed: any }) {
           >
             <SortUpDownIcon className="w-3 h-3" />
           </button>
-          <button title="Sort by popular">
+          <button
+            title="Sort by popular"
+            onClick={() =>
+              props.setList(
+                [...props.list].sort(
+                  (a, b) => b.replies.length - a.replies.length
+                )
+              )
+            }
+          >
             <FireIcon className="w-3 h-3 translate-y-[1px]" />
           </button>
-          <button title="Sort by popular">
+          {/* <button title="Sort by popular">
             <EllipsisIcon className="w-3 h-3" />
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

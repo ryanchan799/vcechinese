@@ -15,6 +15,7 @@ import { getDoc, doc, DocumentData } from "firebase/firestore";
 import { formatTimeDifference, getTopicConfig } from "../_assets/Utility";
 import RichTextEditor, { TextEditor, toolbarFormats } from "./RichTextEditor";
 import { AdminTag } from "./ThreadsRow";
+import { ThreadsIcon } from "../_assets/Icons";
 
 export default async function ThreadPage(props: { threadId: string }) {
   const thread = await getThread(props.threadId);
@@ -113,18 +114,34 @@ export default async function ThreadPage(props: { threadId: string }) {
 
 function Replies(props: { thread: DocumentData }) {
   return (
-    <div>
+    <div className={`${FORUMS_CONVERSATION_WIDTH} pl-5`}>
       {props.thread.replies.map((reply, index) => {
         return (
-          <div key={index} className="py-3 w-[700px] overflow-hidden">
-            {reply.poster} replied {formatTimeDifference(reply.date)}
-            <TextEditor
-              modules={noToolbarModules}
-              formats={toolbarFormats}
-              readOnly={true}
-              className={`pl-[30px] py-1 ${FORUMS_CONVERSATION_WIDTH}`}
-              value={JSON.parse(reply.value)}
-            />
+          <div key={index} className="flex flex-row items-start">
+            <div className="flex flex-none w-8 h-8 bg-[#E6E8EB] rounded-full justify-center items-center">
+              <ThreadsIcon className="w-3 h-3 opacity-70" />
+            </div>
+            <div className="flex flex-col pl-[8px] pt-[2px] items-start">
+              <div className="flex flex-row items-center gap-1.5">
+                <span className="text-[10px]" style={{ fontWeight: "550" }}>
+                  {reply.poster}
+                </span>
+                <span className="text-black text-opacity-50 text-[9.5px]">
+                  {formatTimeDifference(reply.date)}
+                </span>
+                {reply.admin ? <AdminTag /> : null}
+              </div>
+              <TextEditor
+                modules={noToolbarModules}
+                formats={toolbarFormats}
+                readOnly={true}
+                className={`-translate-x-[15px] -translate-y-[10px]`}
+                value={JSON.parse(reply.value)}
+              />
+              <button className="text-[10px] -translate-y-[30px] text-gray-400">
+                Reply
+              </button>
+            </div>
           </div>
         );
       })}

@@ -273,8 +273,9 @@ async function postNewReply(
           value: JSON.stringify(val),
           poster: loggedInCurrentUser?.displayName,
           date: Timestamp.now(),
-          replies: [],
+          admin: currentUserIsAdmin,
         }),
+        interactors: arrayUnion(loggedInCurrentUser?.photoURL),
         date: Timestamp.now(),
       };
 
