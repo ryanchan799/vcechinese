@@ -108,7 +108,10 @@ function QuickLinks() {
   return (
     <div>
       {links.map((link, index) => (
-        <div className="flex flex-row items-center text-gray-700 fill-gray-700 opacity-80 py-[3.6px]">
+        <div
+          key={index}
+          className="flex flex-row items-center text-gray-700 fill-gray-700 opacity-80 py-[3.6px]"
+        >
           {link.fillIcon}
           <a
             href={"/" + link.topic.toLowerCase()}

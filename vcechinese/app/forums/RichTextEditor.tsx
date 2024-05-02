@@ -7,7 +7,14 @@ import AutoLinks from "quill-auto-links";
 import { renderToString } from "react-dom/server";
 import * as Icons from "../_assets/Icons";
 import { db, storage } from "@/firebase";
-import { addDoc, collection, Timestamp } from "firebase/firestore";
+import {
+  addDoc,
+  arrayUnion,
+  collection,
+  doc,
+  Timestamp,
+  updateDoc,
+} from "firebase/firestore";
 import { currentUserIsAdmin, loggedInCurrentUser } from "./HeaderRhs";
 import { getDownloadURL, ref, uploadString } from "@firebase/storage";
 import { COLORS } from "../_assets/Constants";
@@ -18,6 +25,7 @@ export default function RichTextEditor(props: {
   isNewThreadPost: boolean;
   title?: string;
   topic?: string;
+  threadId?: string;
   setOpen: (arg0: boolean) => void;
   setLoading: (arg0: boolean) => void;
 }) {
@@ -66,7 +74,7 @@ export default function RichTextEditor(props: {
                 props.setOpen,
                 props.setLoading
               )
-            : {}
+            : postNewReply(props.threadId ?? "", value, props.setLoading)
         }
       >
         <div className="flex flex-row items-center text-[11px] gap-2 py-[3px] -translate-x-[1px]">
@@ -250,6 +258,33 @@ async function postNewThread(
   } catch (error) {
     setLoading(false);
     console.error("Failed to post thread:", error);
+  }
+}
+
+async function postNewReply(
+  threadId: string,
+  value: string,
+  setLoading: (arg0: boolean) => void
+) {
+  try {
+    addImagesToStorage("Reply", value).then(async (val) => {
+      const data = {
+        replies: arrayUnion({
+          value: JSON.stringify(val),
+          poster: loggedInCurrentUser?.displayName,
+          date: Timestamp.now(),
+          replies: [],
+        }),
+        date: Timestamp.now(),
+      };
+
+      await updateDoc(doc(db, "threads", threadId), data);
+
+      console.log(val);
+      console.log("Reply posted successfully");
+    });
+  } catch (error) {
+    console.error("Failed to post reply:", error);
   }
 }
 

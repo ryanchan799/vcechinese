@@ -11,7 +11,7 @@ import {
 } from "../_assets/Constants";
 import Login from "./authentication/Login";
 import { db } from "@/firebase";
-import { getDoc, doc } from "firebase/firestore";
+import { getDoc, doc, DocumentData } from "firebase/firestore";
 import { formatTimeDifference, getTopicConfig } from "../_assets/Utility";
 import RichTextEditor, { TextEditor, toolbarFormats } from "./RichTextEditor";
 import { AdminTag } from "./ThreadsRow";
@@ -93,9 +93,11 @@ export default async function ThreadPage(props: { threadId: string }) {
                         value={JSON.parse(thread.value)}
                       />
                     </div>
+                    <Replies thread={thread} />
                     <RichTextEditor
                       toolbarId={FORUMS_TOOLBAR_NEW_REPLY}
                       isNewThreadPost={false}
+                      threadId={props.threadId}
                     />
                     <Login />
                   </div>
@@ -105,6 +107,27 @@ export default async function ThreadPage(props: { threadId: string }) {
           )}
         </div>
       </div>
+    </div>
+  );
+}
+
+function Replies(props: { thread: DocumentData }) {
+  return (
+    <div>
+      {props.thread.replies.map((reply, index) => {
+        return (
+          <div key={index} className="py-3 w-[700px] overflow-hidden">
+            {reply.poster} replied {formatTimeDifference(reply.date)}
+            <TextEditor
+              modules={noToolbarModules}
+              formats={toolbarFormats}
+              readOnly={true}
+              className={`pl-[30px] py-1 ${FORUMS_CONVERSATION_WIDTH}`}
+              value={JSON.parse(reply.value)}
+            />
+          </div>
+        );
+      })}
     </div>
   );
 }
