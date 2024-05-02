@@ -2,7 +2,11 @@
 import { DocumentData } from "firebase/firestore";
 import React from "react";
 import { Divider, PinIcon } from "../_assets/Icons";
-import { getTopicConfig, formatTimeDifference } from "../_assets/Utility";
+import {
+  getTopicConfig,
+  formatTimeDifference,
+  hexToRgba,
+} from "../_assets/Utility";
 import { ProfilePictureSmall } from "./ProfilePicture";
 import Link from "next/link";
 import { COLORS } from "../_assets/Constants";
@@ -18,7 +22,9 @@ export default function ThreadsRow(props: {
           className="flex flex-row text-gray-700 pl-4 py-[14px] items-center"
           style={{
             backgroundColor:
-              props.currThread == props.thread.id ? "#f1f5f9" : "white",
+              props.currThread == props.thread.id
+                ? hexToRgba("#f1f5f9", 0.7)
+                : "white",
           }}
         >
           <Lhs thread={props.thread} />

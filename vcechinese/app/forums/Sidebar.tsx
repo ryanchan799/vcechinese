@@ -11,6 +11,8 @@ import { ForumTopic, getTopicConfig, hexToRgba } from "../_assets/Utility";
 import { FORUM_TOPIC } from "../_assets/Constants";
 import NewThreadOverlay from "./NewThreadOverlay";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { redirect } from "next/navigation";
+import Link from "next/link";
 
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
@@ -106,7 +108,15 @@ function QuickLinks() {
   return (
     <div>
       {links.map((link, index) => (
-        <Topic key={index} topic={link} className="text-[11.5px] pl-2" />
+        <div className="flex flex-row items-center text-gray-700 fill-gray-700 opacity-80 py-[3.6px]">
+          {link.fillIcon}
+          <a
+            href={"/" + link.topic.toLowerCase()}
+            className="tracking-[-0.15px] hover:underline text-[11.5px] pl-2"
+          >
+            {link.topic}
+          </a>
+        </div>
       ))}
     </div>
   );
