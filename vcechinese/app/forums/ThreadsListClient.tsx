@@ -8,7 +8,10 @@ import { SortUpDownIcon, EllipsisIcon, FireIcon } from "../_assets/Icons";
 import { DocumentData } from "firebase/firestore";
 import ThreadsRow from "./ThreadsRow";
 
-export default function ThreadsListClient(props: { threads: DocumentData[] }) {
+export default function ThreadsListClient(props: {
+  threads: DocumentData[];
+  currThread: string;
+}) {
   const [reversed, setReversed] = useState(false);
   const [list, setList] = useState(props.threads);
 
@@ -38,9 +41,12 @@ export default function ThreadsListClient(props: { threads: DocumentData[] }) {
       <div>
         <div>
           {reversed ? (
-            <ThreadsLists threads={list.slice().reverse()} />
+            <ThreadsLists
+              threads={list.slice().reverse()}
+              currThread={props.currThread}
+            />
           ) : (
-            <ThreadsLists threads={list} />
+            <ThreadsLists threads={list} currThread={props.currThread} />
           )}
         </div>
       </div>
@@ -86,13 +92,17 @@ function StickyBar(props: { reversed: boolean; setReversed: any }) {
   );
 }
 
-function ThreadsLists(props: { threads: DocumentData[] }) {
+function ThreadsLists(props: { threads: DocumentData[]; currThread: string }) {
   return (
     <>
       {props.threads.map((thread, index) => (
         <div key={index}>
           {[...Array(1)].map((_, index) => (
-            <ThreadsRow key={index} thread={thread} />
+            <ThreadsRow
+              key={index}
+              thread={thread}
+              currThread={props.currThread}
+            />
           ))}
         </div>
       ))}

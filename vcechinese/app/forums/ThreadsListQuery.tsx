@@ -10,7 +10,7 @@ import { FORUMS_LIST_WIDTH, FORUMS_SIDEBAR_WIDTH } from "../_assets/Constants";
 import { db } from "@/firebase";
 import ThreadsListClient from "./ThreadsListClient";
 
-export default async function ThreadsList() {
+export default async function ThreadsList(props: { threadId: string }) {
   const threads: DocumentData[] = await getDocs(
     query(
       collection(db, "threads"),
@@ -36,7 +36,7 @@ export default async function ThreadsList() {
       >
         <div className="grow font-light">
           <div>
-            <ThreadsListClient threads={threads} />
+            <ThreadsListClient threads={threads} currThread={props.threadId} />
           </div>
         </div>
       </div>

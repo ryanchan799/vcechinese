@@ -31,7 +31,7 @@ function Forums(props: { threadId: string }) {
               page={PAGE.FORUMS}
               caption="欢迎大家交流探讨起来 迅速解决一切难题"
               rhs={<Rhs />}
-              threads={<ThreadsList />}
+              threads={<ThreadsList threadId={props.threadId} />}
             />
           </div>
           <ThreadPage threadId={props.threadId} />
