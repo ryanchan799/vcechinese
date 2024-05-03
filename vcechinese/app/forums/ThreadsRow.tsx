@@ -79,16 +79,32 @@ function Lhs(props: { thread: DocumentData }) {
 }
 
 function Rhs(props: { thread: DocumentData }) {
+  const hasLessThanOrEqualToFourInteractors =
+    props.thread.interactors.length <= 4;
+  const interactors = hasLessThanOrEqualToFourInteractors
+    ? props.thread.interactors
+    : props.thread.interactors.slice(-4);
+
   return (
-    <div className="mr-2 pt-[22px]">
-      <ProfilePicStack interactors={props.thread.interactors} />
+    <div
+      className="flex flex-col items-end mr-2"
+      style={{
+        paddingTop: hasLessThanOrEqualToFourInteractors ? "22px" : "7px",
+      }}
+    >
+      {hasLessThanOrEqualToFourInteractors ? null : (
+        <span className="text-[8px] pb-[2px] mr-[2px] text-gray-400">{`+${
+          props.thread.interactors.length - 4
+        }`}</span>
+      )}
+      <ProfilePicStack interactors={interactors} />
     </div>
   );
 }
 
 function ProfilePicStack(props: { interactors: string[] }) {
   return (
-    <div className="flex flex-row space-x-[2px]">
+    <div className="flex flex-row space-x-[2px] justify-end">
       {props.interactors.map((user, index) => (
         <ProfilePictureSmall key={index} url={user} />
       ))}
