@@ -20,7 +20,7 @@ export default function Replies(props: { thread: DocumentData }) {
               <div className="flex flex-none w-8 h-8 bg-[#E6E8EB] rounded-full justify-center items-center">
                 <ThreadsIcon className="w-3 h-3 opacity-70" />
               </div>
-              <div className="flex flex-col pl-[8px] pt-[2px] items-start">
+              <div className="flex flex-col pl-[11px] pt-[2px] items-start">
                 <div className="flex flex-row items-center gap-1.5">
                   <span className="text-[10px]" style={{ fontWeight: "550" }}>
                     {reply.poster}

@@ -54,7 +54,7 @@ export default async function ThreadPage(props: { threadId: string }) {
                             ).outlineIcon
                           }
                         </div>
-                        <div className="pl-[8px]">
+                        <div className="pl-[11px]">
                           <div className="flex flex-row items-center gap-1.5">
                             <span
                               className="text-[12px]"
@@ -98,7 +98,7 @@ export default async function ThreadPage(props: { threadId: string }) {
                           modules={noToolbarModules}
                           formats={toolbarFormats}
                           readOnly={true}
-                          className={`pl-[30px] pt-1 pb-6 ${FORUMS_CONVERSATION_WIDTH}`}
+                          className={`pl-[33px] pt-1 pb-6 ${FORUMS_CONVERSATION_WIDTH}`}
                           value={JSON.parse(thread.value)}
                         />
                       </div>
