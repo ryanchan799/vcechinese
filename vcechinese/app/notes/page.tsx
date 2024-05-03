@@ -2,8 +2,11 @@ import React from "react";
 import NavigationBar from "../_components/NavigationBar";
 import MainPage from "./MainPage";
 import HeaderBar from "../_components/HeaderBar";
-import Dropdown from "./Dropdown";
 import { HEADER_BAR_HEIGHT, PAGE } from "../_assets/Constants";
+
+export const metadata = {
+  title: "Notes",
+};
 
 export default function page() {
   return (
