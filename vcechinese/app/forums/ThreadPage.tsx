@@ -12,11 +12,10 @@ import {
 import { db } from "@/firebase";
 import { getDoc, doc } from "firebase/firestore";
 import { formatTimeDifference, getTopicConfig } from "../_assets/Utility";
-import RichTextEditor, { TextEditor, toolbarFormats } from "./RichTextEditor";
+import { TextEditor, toolbarFormats } from "./RichTextEditor";
 import { AdminTag } from "./ThreadsRow";
-import { Divider, ThreadsIcon } from "../_assets/Icons";
+import { Divider } from "../_assets/Icons";
 import Replies from "./Replies";
-import { loggedInCurrentUser } from "./HeaderRhs";
 import ReplyBox from "./ReplyBox";
 
 export default async function ThreadPage(props: { threadId: string }) {

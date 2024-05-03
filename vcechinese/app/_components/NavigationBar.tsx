@@ -1,6 +1,8 @@
+"use client";
 import React from "react";
 import { MoonFillIcon } from "../_assets/Icons";
 import { PAGE } from "../_assets/Constants";
+import { openInNewTab } from "../_assets/Utility";
 
 export default function NavigationBar(props: { tab: PAGE }) {
   return (
@@ -19,9 +21,25 @@ export default function NavigationBar(props: { tab: PAGE }) {
 function Text(props: { text: string }) {
   return (
     <div className="px-2.5 py-[2px]">
-      <a href={"/" + props.text.toLowerCase()}>
-        <div className="hover:underline">{props.text}</div>
-      </a>
+      {props.text === PAGE.TUTORING.toString() ? (
+        <button
+          onClick={() =>
+            openInNewTab(
+              "https://drive.google.com/drive/folders/1gUQ2-i1bnY1qDwV_RaCRDekDeguVN6it?usp=sharing"
+            )
+          }
+        >
+          <div className="hover:underline">{props.text}</div>
+        </button>
+      ) : (
+        <a
+          href={"/" + props.text.toLowerCase()}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div className="hover:underline">{props.text}</div>
+        </a>
+      )}
     </div>
   );
 }

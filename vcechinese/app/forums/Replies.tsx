@@ -9,10 +9,10 @@ import { noToolbarModules } from "./ThreadPage";
 
 export default function Replies(props: { thread: DocumentData }) {
   return (
-    <div className={`${FORUMS_CONVERSATION_WIDTH} pl-12`}>
+    <div className={`${FORUMS_CONVERSATION_WIDTH} pl-[45px] flex flex-col`}>
       {props.thread.replies.map((reply: DocumentData, index: number) => {
         return (
-          <div key={index} className="flex flex-row items-start">
+          <div key={index} className="flex flex-row items-start -my-1.5">
             <div className="flex flex-none w-8 h-8 bg-[#E6E8EB] rounded-full justify-center items-center">
               <ThreadsIcon className="w-3 h-3 opacity-70" />
             </div>
@@ -34,7 +34,7 @@ export default function Replies(props: { thread: DocumentData }) {
                 value={JSON.parse(reply.value)}
               />
               <button
-                className="text-[10px] -translate-y-[30px] text-gray-400"
+                className="text-[10px] -translate-y-[32px] text-gray-400"
                 onClick={() => {
                   let divElement = document.getElementById("reply-box");
                   if (divElement) {

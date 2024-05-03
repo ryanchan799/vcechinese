@@ -115,6 +115,8 @@ function QuickLinks() {
           {link.fillIcon}
           <a
             href={"/" + link.topic.toLowerCase()}
+            target="_blank"
+            rel="noopener noreferrer"
             className="tracking-[-0.15px] hover:underline text-[11.5px] pl-2"
           >
             {link.topic}

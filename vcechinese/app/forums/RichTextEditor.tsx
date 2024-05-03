@@ -45,6 +45,10 @@ export default function RichTextEditor(props: {
     setValue(editor.getContents());
   }
 
+  const disabled =
+    (props.isNewThreadPost && (title === "" || topic === "" || value === "")) ||
+    (!props.isNewThreadPost && value === "");
+
   return (
     <div className="border-none">
       <link
@@ -63,12 +67,15 @@ export default function RichTextEditor(props: {
       <EditorToolbar toolbarId={props.toolbarId} />
       <div className="flex flex-row gap-4 items-start">
         <button
-          className="flex flex-row w-[65px] my-6 items-center justify-center rounded-md"
+          className={`flex flex-row w-[65px] my-6 items-center justify-center rounded-md ${
+            disabled ? "cursor-not-allowed" : ""
+          }`}
           style={{
             color: COLORS.BRIGHT_BLUE,
             borderColor: hexToRgba(COLORS.BRIGHT_BLUE, 0.9),
             borderWidth: "1px",
           }}
+          disabled={disabled}
           onClick={() =>
             props.isNewThreadPost
               ? postNewThread(
