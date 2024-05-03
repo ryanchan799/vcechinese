@@ -19,6 +19,7 @@ import { currentUserIsAdmin, loggedInCurrentUser } from "./HeaderRhs";
 import { getDownloadURL, ref, uploadString } from "@firebase/storage";
 import { COLORS } from "../_assets/Constants";
 import { hexToRgba } from "../_assets/Utility";
+import { SpinnerLoader } from "./SpinningLoader";
 
 export default function RichTextEditor(props: {
   toolbarId: string;
@@ -26,10 +27,11 @@ export default function RichTextEditor(props: {
   title?: string;
   topic?: string;
   threadId?: string;
-  setOpen: (arg0: boolean) => void;
-  setLoading: (arg0: boolean) => void;
+  setOpen?: (arg0: boolean) => void;
+  setLoading?: (arg0: boolean) => void;
 }) {
   const [value, setValue] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const title = props.title == null ? "" : props.title;
   const topic = props.topic == null ? "" : props.topic;
@@ -49,6 +51,7 @@ export default function RichTextEditor(props: {
         href="https://fonts.googleapis.com/css2?family=Inter:wght@350;700&display=swap"
         rel="stylesheet"
       />
+
       <TextEditor
         modules={getModules(props.toolbarId)}
         formats={toolbarFormats}
@@ -58,30 +61,37 @@ export default function RichTextEditor(props: {
         className="min-h-[200px] w-[650px] border-[1px] border-black border-opacity-10 rounded-t-lg"
       />
       <EditorToolbar toolbarId={props.toolbarId} />
-      <button
-        className="flex flex-row w-[65px] my-6 items-center justify-center rounded-md"
-        style={{
-          color: COLORS.BRIGHT_BLUE,
-          borderColor: hexToRgba(COLORS.BRIGHT_BLUE, 0.9),
-          borderWidth: "1px",
-        }}
-        onClick={() =>
-          props.isNewThreadPost
-            ? postNewThread(
-                title,
-                topic,
-                value,
-                props.setOpen,
-                props.setLoading
-              )
-            : postNewReply(props.threadId ?? "", value, props.setLoading)
-        }
-      >
-        <div className="flex flex-row items-center text-[11px] gap-2 py-[3px] -translate-x-[1px]">
-          <Icons.SendIcon className="w-[9.5px] h-[9.5px]" />
-          <span>{props.isNewThreadPost ? "Post" : "Reply"}</span>
-        </div>
-      </button>
+      <div className="flex flex-row gap-4 items-start">
+        <button
+          className="flex flex-row w-[65px] my-6 items-center justify-center rounded-md"
+          style={{
+            color: COLORS.BRIGHT_BLUE,
+            borderColor: hexToRgba(COLORS.BRIGHT_BLUE, 0.9),
+            borderWidth: "1px",
+          }}
+          onClick={() =>
+            props.isNewThreadPost
+              ? postNewThread(
+                  title,
+                  topic,
+                  value,
+                  props.setOpen!,
+                  props.setLoading!
+                )
+              : postNewReply(props.threadId ?? "", value, setLoading)
+          }
+        >
+          <div className="flex flex-row items-center text-[11px] gap-2 py-[3px] -translate-x-[1px]">
+            <Icons.SendIcon className="w-[9.5px] h-[9.5px]" />
+            <span>{props.isNewThreadPost ? "Post" : "Reply"}</span>
+          </div>
+        </button>
+        {loading ? (
+          <div className="translate-y-[19px]">
+            <SpinnerLoader />
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 }
@@ -254,6 +264,8 @@ async function postNewThread(
 
       setLoading(false);
       setOpen(false);
+
+      window.location.reload();
     });
   } catch (error) {
     setLoading(false);
@@ -267,6 +279,7 @@ async function postNewReply(
   setLoading: (arg0: boolean) => void
 ) {
   try {
+    setLoading(true);
     addImagesToStorage("Reply", value).then(async (val) => {
       const data = {
         replies: arrayUnion({
@@ -283,8 +296,12 @@ async function postNewReply(
 
       console.log(val);
       console.log("Reply posted successfully");
+
+      setLoading(false);
+      window.location.reload();
     });
   } catch (error) {
+    setLoading(false);
     console.error("Failed to post reply:", error);
   }
 }

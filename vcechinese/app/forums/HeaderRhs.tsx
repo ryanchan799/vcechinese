@@ -5,6 +5,7 @@ import { ProfilePictureBig } from "./ProfilePicture";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "@/firebase";
 import { ADMIN_USER } from "../_assets/Constants";
+import Login, { Logout } from "./authentication/Login";
 
 export function Rhs() {
   const [user, setUser] = useState<User | null>();
@@ -31,7 +32,14 @@ export function Rhs() {
             placeholder="Search"
           />
         </div> */}
-        {user == null ? null : <ProfilePictureBig url={user.photoURL} />}
+        {user == null ? (
+          <Login />
+        ) : (
+          <div className="flex flex-row items-center gap-5">
+            <Logout />
+            <ProfilePictureBig url={user.photoURL} />
+          </div>
+        )}
       </div>
     </div>
   );

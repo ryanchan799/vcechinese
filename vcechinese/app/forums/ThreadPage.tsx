@@ -9,13 +9,13 @@ import {
   FORUMS_SIDEBAR_PADDING,
   FORUMS_SIDEBAR_WIDTH,
 } from "../_assets/Constants";
-import Login from "./authentication/Login";
 import { db } from "@/firebase";
 import { getDoc, doc, DocumentData } from "firebase/firestore";
 import { formatTimeDifference, getTopicConfig } from "../_assets/Utility";
 import RichTextEditor, { TextEditor, toolbarFormats } from "./RichTextEditor";
 import { AdminTag } from "./ThreadsRow";
-import { ThreadsIcon } from "../_assets/Icons";
+import { Divider, ThreadsIcon } from "../_assets/Icons";
+import SpinningLoader from "./SpinningLoader";
 
 export default async function ThreadPage(props: { threadId: string }) {
   const thread = await getThread(props.threadId);
@@ -95,12 +95,18 @@ export default async function ThreadPage(props: { threadId: string }) {
                       />
                     </div>
                     <Replies thread={thread} />
-                    <RichTextEditor
-                      toolbarId={FORUMS_TOOLBAR_NEW_REPLY}
-                      isNewThreadPost={false}
-                      threadId={props.threadId}
-                    />
-                    <Login />
+                    <Divider className="my-[70px]" />
+                    <div className="flex flex-col justify-start gap-2 min-h-[600px]">
+                      <div className="flex gap-2 pl-1.5">
+                        <ThreadsIcon className="w-4 h-4 fill-gray-400 opacity-85 translate-y-[4px]" />
+                        <span className="text-md">Write a reply</span>
+                      </div>
+                      <RichTextEditor
+                        toolbarId={FORUMS_TOOLBAR_NEW_REPLY}
+                        isNewThreadPost={false}
+                        threadId={props.threadId}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
