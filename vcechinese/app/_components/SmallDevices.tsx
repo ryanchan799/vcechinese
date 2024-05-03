@@ -1,7 +1,7 @@
 import React from "react";
 import { LaptopIcon } from "../_assets/Icons";
 
-export default function page() {
+export default function SmallDevices() {
   return (
     <div
       className="flex flex-col gap-2 w-screen h-screen items-center justify-center text-center"

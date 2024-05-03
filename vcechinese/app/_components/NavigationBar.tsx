@@ -18,7 +18,7 @@ export default function NavigationBar(props: { tab: PAGE }) {
   );
 }
 
-function Text(props: { text: string }) {
+export function Text(props: { text: string }) {
   return (
     <div className="px-2.5 py-[2px]">
       {props.text === PAGE.TUTORING.toString() ? (
