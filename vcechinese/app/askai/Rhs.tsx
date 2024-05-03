@@ -1,30 +1,34 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import {
   InfoIcon,
   LightBulbIcon,
   MagicIcon,
   PenIcon,
-  SearchIcon,
-  SendIcon,
   SoundwaveIcon,
 } from "../_assets/Icons";
-import { QuestionMarkCircleIcon } from "@heroicons/react/20/solid";
+import Searchbar from "./Searchbar";
+import { SpinnerLoader } from "../forums/SpinningLoader";
 
 export default function Rhs() {
+  const [answer, setAnswer] = useState("");
+  const [loading, setLoading] = useState(false);
+
   return (
     <div className="flex flex-col justify-end pl-16 h-screen w-full pb-12">
       <Heading />
       <Functions />
-      {/* Searchbar */}
-      <div className="flex flex-none w-full h-10 border-[1px] border-gray-200 rounded-[11px] px-4 items-center translate-y-[0.5px]">
-        <SearchIcon className="w-2.5 h-2.5 flex-none fill-gray-400 mr-2" />
-        <input
-          className="w-full text-[12px] font-light outline-none"
-          type="text"
-          placeholder="Start typing away..."
-        />
-        <SendIcon className="w-2.5 h-2.5 flex-none fill-gray-400 ml-2" />
-      </div>
+      <Searchbar setAnswer={setAnswer} setLoading={setLoading} />
+
+      {loading ? (
+        <div className="fixed top-[55px]">
+          <SpinnerLoader />
+        </div>
+      ) : answer === "" ? null : (
+        <div className="fixed flex flex-row px-10 py-6 top-[55px] text-sm font-light w-[700px] leading-[24px] tracking-[0.8px] bg-gray-50 rounded-lg border-[0.5px] border-gray-300">
+          {answer}
+        </div>
+      )}
     </div>
   );
 }
@@ -42,7 +46,7 @@ function Functions() {
   return (
     <div className="flex flex-row gap-4 pb-8">
       {functions.map((f, index) => (
-        <Function heading={f[0]} subheading={f[1]} icon={f[2]} />
+        <Function key={index} heading={f[0]} subheading={f[1]} icon={f[2]} />
       ))}
     </div>
   );

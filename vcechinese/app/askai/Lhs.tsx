@@ -20,7 +20,7 @@ export default function Lhs() {
       <div className="flex flex-col py-8 text-[12.5px] -space-y-[2px] items-start">
         {Object.values(PAGE).map((tab, index) =>
           tab === PAGE.ASKAI ? null : tab === PAGE.RESOURCES ? (
-            <button onClick={() => openInNewTab(RESOURCES)}>
+            <button key={index} onClick={() => openInNewTab(RESOURCES)}>
               <div className="hover:underline">{tab}</div>
             </button>
           ) : (
@@ -28,6 +28,7 @@ export default function Lhs() {
               href={"/" + tab.toLowerCase()}
               target="_blank"
               rel="noopener noreferrer"
+              key={index}
             >
               <div className="hover:underline">{tab}</div>
             </a>

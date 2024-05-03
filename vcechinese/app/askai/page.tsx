@@ -8,10 +8,9 @@ export const metadata = {
 export default function page() {
   return (
     <div className="flex flex-col items-center w-full">
-      <div className="flex flex-row w-[1000px] h-screen">
+      <div className="flex flex-row w-[1000px] h-screen -translate-x-[35px]">
         <Lhs />
         <Rhs />
-        {/* <TogetherApi /> */}
       </div>
     </div>
   );
