@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
+import { FORUMS_CONVERSATION_WIDTH } from "../_assets/Constants";
 
 export default function SpinningLoader() {
   return (
@@ -29,5 +31,29 @@ export function SpinnerLoader() {
         fill="currentFill"
       />
     </svg>
+  );
+}
+
+export function ThreeSecondSpinnerLoader() {
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div className="flex flex-col w-full items-center">
+      {isVisible ? (
+        <div
+          className={`fixed top-0 bg-white flex h-full justify-center items-center z-30 ${FORUMS_CONVERSATION_WIDTH}`}
+        >
+          <SpinnerLoader />
+        </div>
+      ) : null}
+    </div>
   );
 }

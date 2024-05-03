@@ -17,6 +17,7 @@ import { AdminTag } from "./ThreadsRow";
 import { Divider } from "../_assets/Icons";
 import Replies from "./Replies";
 import ReplyBox from "./ReplyBox";
+import { ThreeSecondSpinnerLoader } from "./SpinningLoader";
 
 export default async function ThreadPage(props: { threadId: string }) {
   const thread = await getThread(props.threadId);
@@ -31,6 +32,8 @@ export default async function ThreadPage(props: { threadId: string }) {
       <DummyPadding />
       <div className="flex flex-col flex-grow">
         <div>
+          {/* Spinner */}
+          <ThreeSecondSpinnerLoader />
           {thread == null ? null : (
             <div>
               <title>{"Forums - " + thread.title}</title>

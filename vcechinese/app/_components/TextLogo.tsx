@@ -13,6 +13,9 @@ export default function TextLogo(props: { heading: string; caption: string }) {
           <span className="text-[9px] font-light tracking-[3.5px]">
             {props.caption}
           </span>
+          <span className="text-[7px] font-light pt-[4px] scale-x-[107%] tracking-[0.1px] translate-x-[7px]">
+            MADE BY RYAN CHAN
+          </span>
         </div>
       </div>
     </div>
