@@ -16,7 +16,7 @@ export default function Searchbar(props: { setAnswer: any; setLoading: any }) {
     props.setLoading(false);
   }
 
-  const handleEnterPress = (event) => {
+  const handleEnterPress = (event: { key: string }) => {
     if (event.key === "Enter") {
       askQuestionAndGetAnswer();
     }
