@@ -40,7 +40,7 @@ function Rhs() {
         <Tabs />
       </div>
       <div className="grow"></div>
-      <Dropdown />
+      {/* <Dropdown /> */}
     </div>
   );
 }
