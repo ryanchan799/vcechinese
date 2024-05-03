@@ -9,45 +9,50 @@ import { noToolbarModules } from "./ThreadPage";
 
 export default function Replies(props: { thread: DocumentData }) {
   return (
-    <div className={`${FORUMS_CONVERSATION_WIDTH} pl-[45px] flex flex-col`}>
-      {props.thread.replies.map((reply: DocumentData, index: number) => {
-        return (
-          <div key={index} className="flex flex-row items-start -my-1.5">
-            <div className="flex flex-none w-8 h-8 bg-[#E6E8EB] rounded-full justify-center items-center">
-              <ThreadsIcon className="w-3 h-3 opacity-70" />
-            </div>
-            <div className="flex flex-col pl-[8px] pt-[2px] items-start">
-              <div className="flex flex-row items-center gap-1.5">
-                <span className="text-[10px]" style={{ fontWeight: "550" }}>
-                  {reply.poster}
-                </span>
-                <span className="text-black text-opacity-50 text-[9.5px]">
-                  {formatTimeDifference(reply.date)}
-                </span>
-                {reply.admin ? <AdminTag /> : null}
+    <div
+      className={`${FORUMS_CONVERSATION_WIDTH} relative pl-[45px] -translate-y-[9px] flex flex-col`}
+    >
+      <div>
+        <div className="absolute border-l-[0.2px] border-gray-400 border-opacity-40 h-full translate-x-[15px] -z-50"></div>
+        {props.thread.replies.map((reply: DocumentData, index: number) => {
+          return (
+            <div key={index} className="flex flex-row items-start -my-1.5">
+              <div className="flex flex-none w-8 h-8 bg-[#E6E8EB] rounded-full justify-center items-center">
+                <ThreadsIcon className="w-3 h-3 opacity-70" />
               </div>
-              <TextEditor
-                modules={noToolbarModules}
-                formats={toolbarFormats}
-                readOnly={true}
-                className={`-translate-x-[15px] -translate-y-[10px]`}
-                value={JSON.parse(reply.value)}
-              />
-              <button
-                className="text-[10px] -translate-y-[32px] text-gray-400"
-                onClick={() => {
-                  let divElement = document.getElementById("reply-box");
-                  if (divElement) {
-                    divElement.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
-              >
-                Reply
-              </button>
+              <div className="flex flex-col pl-[8px] pt-[2px] items-start">
+                <div className="flex flex-row items-center gap-1.5">
+                  <span className="text-[10px]" style={{ fontWeight: "550" }}>
+                    {reply.poster}
+                  </span>
+                  <span className="text-black text-opacity-50 text-[9.5px]">
+                    {formatTimeDifference(reply.date)}
+                  </span>
+                  {reply.admin ? <AdminTag /> : null}
+                </div>
+                <TextEditor
+                  modules={noToolbarModules}
+                  formats={toolbarFormats}
+                  readOnly={true}
+                  className={`-translate-x-[15px] -translate-y-[10px]`}
+                  value={JSON.parse(reply.value)}
+                />
+                <button
+                  className="text-[10px] -translate-y-[32px] text-gray-400"
+                  onClick={() => {
+                    let divElement = document.getElementById("reply-box");
+                    if (divElement) {
+                      divElement.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
+                >
+                  Reply
+                </button>
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 }

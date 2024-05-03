@@ -3,6 +3,9 @@ export const TITLE =
 
 export const ADMIN_USER = "LqRO52xWv9SFmkmkb3e3HQWJ31H2";
 
+export const RESOURCES =
+  "https://drive.google.com/drive/folders/1gUQ2-i1bnY1qDwV_RaCRDekDeguVN6it?usp=sharing";
+
 export enum PAGE {
   NOTES = "Notes",
   FORUMS = "Forums",

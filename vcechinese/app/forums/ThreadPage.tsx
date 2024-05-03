@@ -87,13 +87,21 @@ export default async function ThreadPage(props: { threadId: string }) {
                         </div>
                       </div>
                       {/* ThreadConversations */}
-                      <TextEditor
-                        modules={noToolbarModules}
-                        formats={toolbarFormats}
-                        readOnly={true}
-                        className={`pl-[30px] py-1 ${FORUMS_CONVERSATION_WIDTH}`}
-                        value={JSON.parse(thread.value)}
-                      />
+                      <div className="relative">
+                        <div
+                          className="absolute border-l-[0.2px] border-b-[0.2px] border-gray-400 border-opacity-40 h-full w-[45px] translate-x-[18px] rounded-bl-[28px] -z-50"
+                          style={{
+                            opacity: thread.replies.length === 0 ? 0 : 1,
+                          }}
+                        ></div>
+                        <TextEditor
+                          modules={noToolbarModules}
+                          formats={toolbarFormats}
+                          readOnly={true}
+                          className={`pl-[30px] pt-1 pb-6 ${FORUMS_CONVERSATION_WIDTH}`}
+                          value={JSON.parse(thread.value)}
+                        />
+                      </div>
                     </div>
                     <Replies thread={thread} />
                     <Divider className="my-[70px]" />

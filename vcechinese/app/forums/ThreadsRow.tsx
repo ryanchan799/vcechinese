@@ -79,22 +79,22 @@ function Lhs(props: { thread: DocumentData }) {
 }
 
 function Rhs(props: { thread: DocumentData }) {
-  const hasLessThanOrEqualToFourInteractors =
-    props.thread.interactors.length <= 4;
-  const interactors = hasLessThanOrEqualToFourInteractors
+  const max = 5;
+  const hasLessThanOrEqualInteractors = props.thread.interactors.length <= max;
+  const interactors = hasLessThanOrEqualInteractors
     ? props.thread.interactors
-    : props.thread.interactors.slice(-4);
+    : props.thread.interactors.slice(-max);
 
   return (
     <div
       className="flex flex-col items-end mr-2"
       style={{
-        paddingTop: hasLessThanOrEqualToFourInteractors ? "22px" : "7px",
+        paddingTop: hasLessThanOrEqualInteractors ? "22px" : "7px",
       }}
     >
-      {hasLessThanOrEqualToFourInteractors ? null : (
+      {hasLessThanOrEqualInteractors ? null : (
         <span className="text-[8px] pb-[2px] mr-[2px] text-gray-400">{`+${
-          props.thread.interactors.length - 4
+          props.thread.interactors.length - max
         }`}</span>
       )}
       <ProfilePicStack interactors={interactors} />

@@ -24,7 +24,7 @@ export function ProfilePictureTiny(props: { url: string | null }) {
 }
 
 export function ProfilePictureSmall(props: { url: string | null }) {
-  return <ProfilePicture url={props.url} size={16} />;
+  return <ProfilePicture url={props.url} size={14} />;
 }
 
 export function ProfilePictureBig(props: { url: string | null }) {

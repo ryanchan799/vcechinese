@@ -50,7 +50,7 @@ function Tabs() {
 
   function Tab(props: { section: string; isSelected: boolean }) {
     return (
-      <div className="pr-5 text-[15px] font-bold">
+      <button className="pr-5 text-[15px] font-bold">
         <p
           className={
             props.isSelected
@@ -60,7 +60,7 @@ function Tabs() {
         >
           {props.section}
         </p>
-      </div>
+      </button>
     );
   }
 
