@@ -259,7 +259,7 @@ async function postNewThread(
 
       await addDoc(collection(db, "threads"), data);
 
-      console.log(val);
+      // console.log(val);
       console.log("Thread posted successfully");
 
       setLoading(false);
@@ -294,7 +294,7 @@ async function postNewReply(
 
       await updateDoc(doc(db, "threads", threadId), data);
 
-      console.log(val);
+      // console.log(val);
       console.log("Reply posted successfully");
 
       setLoading(false);

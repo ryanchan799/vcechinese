@@ -10,13 +10,14 @@ import {
   FORUMS_SIDEBAR_WIDTH,
 } from "../_assets/Constants";
 import { db } from "@/firebase";
-import { getDoc, doc, DocumentData } from "firebase/firestore";
+import { getDoc, doc } from "firebase/firestore";
 import { formatTimeDifference, getTopicConfig } from "../_assets/Utility";
 import RichTextEditor, { TextEditor, toolbarFormats } from "./RichTextEditor";
 import { AdminTag } from "./ThreadsRow";
 import { Divider, ThreadsIcon } from "../_assets/Icons";
-import SpinningLoader from "./SpinningLoader";
 import Replies from "./Replies";
+import { loggedInCurrentUser } from "./HeaderRhs";
+import ReplyBox from "./ReplyBox";
 
 export default async function ThreadPage(props: { threadId: string }) {
   const thread = await getThread(props.threadId);
@@ -97,17 +98,7 @@ export default async function ThreadPage(props: { threadId: string }) {
                     </div>
                     <Replies thread={thread} />
                     <Divider className="my-[70px]" />
-                    <div className="flex flex-col justify-start gap-2 min-h-[600px]">
-                      <div id="reply-box" className="flex gap-2 pl-1.5">
-                        <ThreadsIcon className="w-4 h-4 fill-gray-400 opacity-85 translate-y-[4px]" />
-                        <span className="text-md">Write a reply</span>
-                      </div>
-                      <RichTextEditor
-                        toolbarId={FORUMS_TOOLBAR_NEW_REPLY}
-                        isNewThreadPost={false}
-                        threadId={props.threadId}
-                      />
-                    </div>
+                    <ReplyBox threadId={props.threadId} />
                   </div>
                 </div>
               </div>
@@ -122,7 +113,7 @@ export default async function ThreadPage(props: { threadId: string }) {
 async function getThread(id: string) {
   const snap = await getDoc(doc(db, "threads", id));
   if (snap.exists()) {
-    console.log("Document data:", snap.data());
+    // console.log("Document data:", snap.data());
     return snap.data();
   } else {
     console.log("No such document");

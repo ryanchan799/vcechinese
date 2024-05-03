@@ -14,7 +14,7 @@ export default function HeaderBar(props: {
   threads?: React.JSX.Element;
 }) {
   return (
-    <div className="flex flex-col w-full items-center overflow-visible">
+    <div className="flex flex-col w-full items-center overflow-visible bg-white">
       <div
         className={HEADER_BAR_WIDTHS.get(props.page)}
         style={{ height: HEADER_BAR_HEIGHT }}

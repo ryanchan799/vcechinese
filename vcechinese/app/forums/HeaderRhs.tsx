@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import { SearchIcon } from "../_assets/Icons";
 import { ProfilePictureBig } from "./ProfilePicture";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "@/firebase";

@@ -11,7 +11,7 @@ export default function Login() {
     e.preventDefault();
     try {
       await googleSignIn();
-      redirect("/forums");
+      window.location.reload();
     } catch (error) {
       console.log(error.message);
     }
