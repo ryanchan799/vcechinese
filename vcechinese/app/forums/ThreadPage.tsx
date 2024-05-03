@@ -16,6 +16,7 @@ import RichTextEditor, { TextEditor, toolbarFormats } from "./RichTextEditor";
 import { AdminTag } from "./ThreadsRow";
 import { Divider, ThreadsIcon } from "../_assets/Icons";
 import SpinningLoader from "./SpinningLoader";
+import Replies from "./Replies";
 
 export default async function ThreadPage(props: { threadId: string }) {
   const thread = await getThread(props.threadId);
@@ -97,7 +98,7 @@ export default async function ThreadPage(props: { threadId: string }) {
                     <Replies thread={thread} />
                     <Divider className="my-[70px]" />
                     <div className="flex flex-col justify-start gap-2 min-h-[600px]">
-                      <div className="flex gap-2 pl-1.5">
+                      <div id="reply-box" className="flex gap-2 pl-1.5">
                         <ThreadsIcon className="w-4 h-4 fill-gray-400 opacity-85 translate-y-[4px]" />
                         <span className="text-md">Write a reply</span>
                       </div>
@@ -114,43 +115,6 @@ export default async function ThreadPage(props: { threadId: string }) {
           )}
         </div>
       </div>
-    </div>
-  );
-}
-
-function Replies(props: { thread: DocumentData }) {
-  return (
-    <div className={`${FORUMS_CONVERSATION_WIDTH} pl-12`}>
-      {props.thread.replies.map((reply: DocumentData, index: number) => {
-        return (
-          <div key={index} className="flex flex-row items-start">
-            <div className="flex flex-none w-8 h-8 bg-[#E6E8EB] rounded-full justify-center items-center">
-              <ThreadsIcon className="w-3 h-3 opacity-70" />
-            </div>
-            <div className="flex flex-col pl-[8px] pt-[2px] items-start">
-              <div className="flex flex-row items-center gap-1.5">
-                <span className="text-[10px]" style={{ fontWeight: "550" }}>
-                  {reply.poster}
-                </span>
-                <span className="text-black text-opacity-50 text-[9.5px]">
-                  {formatTimeDifference(reply.date)}
-                </span>
-                {reply.admin ? <AdminTag /> : null}
-              </div>
-              <TextEditor
-                modules={noToolbarModules}
-                formats={toolbarFormats}
-                readOnly={true}
-                className={`-translate-x-[15px] -translate-y-[10px]`}
-                value={JSON.parse(reply.value)}
-              />
-              <button className="text-[10px] -translate-y-[30px] text-gray-400">
-                Reply
-              </button>
-            </div>
-          </div>
-        );
-      })}
     </div>
   );
 }
@@ -199,7 +163,7 @@ function DummyPadding() {
   );
 }
 
-const noToolbarModules = {
+export const noToolbarModules = {
   toolbar: {
     container: "#" + FORUMS_TOOLBAR_NEW_REPLY,
   },
