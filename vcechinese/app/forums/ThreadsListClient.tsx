@@ -92,13 +92,14 @@ function StickyBar(props: {
           </button>
           <button
             title="Sort by popular"
-            onClick={() =>
+            onClick={() => {
               props.setList(
                 [...props.list].sort(
                   (a, b) => b.replies.length - a.replies.length
                 )
-              )
-            }
+              );
+              props.setReversed(!props.reversed);
+            }}
           >
             <FireIcon className="w-3 h-3 translate-y-[1px]" />
           </button>

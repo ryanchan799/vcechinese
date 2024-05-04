@@ -17,7 +17,7 @@ export default function Searchbar(props: { setAnswer: any; setLoading: any }) {
   }
 
   const handleEnterPress = (event: { key: string }) => {
-    if (event.key === "Enter") {
+    if (event.key === "Enter" && text !== "") {
       askQuestionAndGetAnswer();
     }
   };
@@ -28,7 +28,7 @@ export default function Searchbar(props: { setAnswer: any; setLoading: any }) {
       <input
         className="w-full text-[12px] font-light outline-none"
         type="text"
-        placeholder="Start typing away..."
+        placeholder="撰写一篇分析《无现金生活的利与弊》的评估文..."
         value={text}
         onChange={(event) => setText(event.target.value)}
         onKeyDown={handleEnterPress}
@@ -65,10 +65,10 @@ async function getAnswer(text: string) {
       messages: [
         {
           role: "user",
-          content: text,
+          content: "字数最多400字 - " + text,
         },
       ],
-      max_tokens: 300,
+      max_tokens: 250,
       temperature: 0.7,
       top_k: 50,
       repetition_penalty: 1,
