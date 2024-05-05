@@ -76,14 +76,14 @@ export function getTopicConfig(topic: string, c?: string) {
     case FORUM_TOPIC.GENERAL:
       return new ForumTopic(
         topic.toString(),
-        "#F4AB36",
+        "#DC2D7E",
         <Icons.InfoFillIcon className={className} />,
         <Icons.InfoIcon className={className} />
       );
     case FORUM_TOPIC.ESSAYS:
       return new ForumTopic(
         topic.toString(),
-        "#00A62A",
+        "#5536DA",
         <Icons.PenFillIcon className={className} />,
         <Icons.PenIcon className={className} />
       );
@@ -104,7 +104,7 @@ export function getTopicConfig(topic: string, c?: string) {
     case FORUM_TOPIC.EXAMS:
       return new ForumTopic(
         topic.toString(),
-        "#F4AB36",
+        "#DC2D7E",
         <Icons.LayersStackFillIcon className={className} />,
         <Icons.LayersStackIcon className={className} />
       );

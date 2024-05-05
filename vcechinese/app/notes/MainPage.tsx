@@ -36,7 +36,7 @@ function Document(props: { selected: boolean }) {
       <DummyPadding />
       <div className={props.selected ? "" : "invisible"}>
         <Heading />
-        <div className="text-[16.5px] font-light tracking-wider leading-[32px] py-12 mb-28">
+        <div className="text-[16.5px] font-light tracking-wider leading-[32px] py-12 mb-20">
           <ul>{RenderParagraphs()}</ul>
         </div>
       </div>

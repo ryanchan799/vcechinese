@@ -28,7 +28,7 @@ export default function Searchbar(props: { setAnswer: any; setLoading: any }) {
       <input
         className="w-full text-[12px] font-light outline-none"
         type="text"
-        placeholder="撰写一篇分析《无现金生活的利与弊》的评估文..."
+        placeholder="撰写一篇分析《无现金生活的利与弊》的评估文"
         value={text}
         onChange={(event) => setText(event.target.value)}
         onKeyDown={handleEnterPress}

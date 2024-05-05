@@ -142,9 +142,11 @@ function StickyBar(props: { title: string; topic: string }) {
       {/* <div className="flex border-[1px] rounded-[4px] w-[25px] h-[25px] justify-center items-center">
         <LeftBarIcon className="w-[13.5px] h-[13.5px] translate-x-[0.8px]" />
       </div> */}
-      <div className="text-[10px] space-x-2">
+      <div
+        className={`text-[10px] space-x-2 flex-none flex flex-row items-center ${FORUMS_CONVERSATION_WIDTH}`}
+      >
         <span>{props.topic}</span>
-        <span className="text-[9px] text-black text-opacity-70">
+        <span className="text-[9px] text-black text-opacity-70 truncate">
           {props.title}
         </span>
       </div>

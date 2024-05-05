@@ -38,12 +38,21 @@ export default function page() {
 
 function Rhs() {
   return (
-    <div className="flex flex-grow flex-row items-center">
+    <div className="relative flex flex-grow flex-row items-center">
       <div className="flex" style={{ height: HEADER_BAR_HEIGHT }}>
         <Tabs />
       </div>
       <div className="grow"></div>
       {/* <Dropdown /> */}
+      <div>
+        <div className="flex flex-row items-end gap-2">
+          <div className="flex flex-col items-end -space-y-0.5">
+            <span className="text-[10px] text-gray-400">加我微信</span>
+            <span className="text-[12px]">ryan03austrump</span>
+          </div>
+          <img src="/images/Wechat.jpg" alt="wechat" className="w-12 h-12" />
+        </div>
+      </div>
     </div>
   );
 }

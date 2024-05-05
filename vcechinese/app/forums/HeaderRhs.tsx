@@ -20,7 +20,14 @@ export function Rhs() {
   }, []);
 
   return (
-    <div className="flex flex-grow">
+    <div className="flex flex-grow items-center">
+      <div className="flex flex-row items-end gap-2">
+        <img src="/images/Wechat.jpg" alt="wechat" className="w-12 h-12" />
+        <div className="flex flex-col items-start -space-y-0.5">
+          <span className="text-[10px] text-gray-400">加我微信</span>
+          <span className="text-[12px]">ryan03austrump</span>
+        </div>
+      </div>
       <div className="grow"></div>
       <div className="flex gap-4">
         {/* <div className="flex w-[300px] h-8 border-[1px] border-gray-200 rounded-full px-4 items-center translate-y-[0.5px]">
@@ -31,6 +38,7 @@ export function Rhs() {
             placeholder="Search"
           />
         </div> */}
+
         {user == null ? (
           <Login />
         ) : (
