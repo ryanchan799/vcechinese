@@ -313,10 +313,10 @@ async function postNewReply(
   }
 }
 
-async function addImagesToStorage(title: string, val: string) {
-  var value = val;
+async function addImagesToStorage(title: string, val: any) {
+  const value = val;
   if (value.length != 0) {
-    value.ops.map(async (block, index: number) => {
+    value.ops.map(async (block: any, index: number) => {
       if (block.insert.image != null) {
         const storageRef = ref(
           storage,
