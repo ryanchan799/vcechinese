@@ -1,11 +1,6 @@
-"use client";
-import React, { useEffect } from "react";
-import { RESOURCES } from "../_assets/Constants";
+import React from "react";
+import Redirect from "./Redirect";
 
 export default function page() {
-  useEffect(() => {
-    window.location.href = RESOURCES;
-  }, []);
-
-  return <div></div>;
+  return <Redirect />;
 }

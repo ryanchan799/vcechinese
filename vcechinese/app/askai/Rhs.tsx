@@ -76,26 +76,41 @@ const functions = [
   [
     "Write an essay",
     "写作不再是难题，全智能的小助手随时为你助力！",
-    <PenIcon className="w-2.5 h-2.5 flex-none translate-y-[4px]" />,
+    <PenIcon
+      key="askai-pen"
+      className="w-2.5 h-2.5 flex-none translate-y-[4px]"
+    />,
   ],
   [
     "Polish my essay",
     "作文不够好？文字不够美？一键润色帮你轻松解决！",
-    <MagicIcon className="w-2.5 h-2.5 flex-none translate-y-[4px]" />,
+    <MagicIcon
+      key="askai-magic"
+      className="w-2.5 h-2.5 flex-none translate-y-[4px]"
+    />,
   ],
   [
     "Script my oral",
     "科技在手，口试竟变得如此简单！你离高分不远了。",
-    <SoundwaveIcon className="w-2.5 h-2.5 flex-none translate-y-[4px]" />,
+    <SoundwaveIcon
+      key="askai-soundwave"
+      className="w-2.5 h-2.5 flex-none translate-y-[4px]"
+    />,
   ],
   [
     "Explore study tips",
     "学习讲究方法，线上学习轻松又有趣，一切困难轻松解决！",
-    <LightBulbIcon className="w-2.5 h-2.5 flex-none translate-y-[4px]" />,
+    <LightBulbIcon
+      key="askai-lightbulb"
+      className="w-2.5 h-2.5 flex-none translate-y-[4px]"
+    />,
   ],
   [
     "Ask anything",
     "有想问的就快来问吧，答案都在这里哦！",
-    <InfoIcon className="w-2.5 h-2.5 flex-none translate-y-[4px]" />,
+    <InfoIcon
+      key="askai-info"
+      className="w-2.5 h-2.5 flex-none translate-y-[4px]"
+    />,
   ],
 ];
