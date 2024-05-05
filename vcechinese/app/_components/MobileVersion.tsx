@@ -6,7 +6,7 @@ export default function MobileVersion() {
     <div className="fixed top-48 flex flex-col w-full h-full items-center gap-20 z-50 visible md:invisible">
       <div className="flex flex-row items-center gap-1.5">
         <LaptopIcon className="w-2.5 h-2.5" />
-        <span className="text-[10px] font-light">
+        <span className="text-[10px]">
           Use desktop version for the most optimal experience.
         </span>
       </div>
