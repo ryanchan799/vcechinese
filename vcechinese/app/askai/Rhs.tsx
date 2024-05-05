@@ -55,7 +55,7 @@ function Functions() {
 function Function(props: {
   heading: string;
   subheading: string;
-  icon: JSX.Element;
+  icon: string | JSX.Element;
 }) {
   return (
     <div className="flex flex-row flex-none w-[150px] items-start gap-1.5">
