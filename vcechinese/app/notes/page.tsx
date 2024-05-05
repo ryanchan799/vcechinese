@@ -50,7 +50,7 @@ function Rhs() {
             <span className="text-[10px] text-gray-400">加我微信</span>
             <span className="text-[12px]">ryan03austrump</span>
           </div>
-          <img src="/images/Wechat.jpg" alt="wechat" className="w-12 h-12" />
+          <img src="/images/Wechat.jpg" alt="wechat" className="w-14 h-14" />
         </div>
       </div>
     </div>
