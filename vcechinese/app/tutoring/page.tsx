@@ -14,7 +14,7 @@ export default function page() {
         <NavigationBar tab={PAGE.TUTORING} />
         <HeaderBar
           page={PAGE.TUTORING}
-          caption="精心定制的课程让你快速进步"
+          caption="帮你轻松搞定你最不擅长的一科"
           rhs={<Rhs />}
         />
       </div>

@@ -21,7 +21,7 @@ export default function page() {
           <div className="sticky top-0 z-40">
             <HeaderBar
               page={PAGE.NOTES}
-              caption="帮你轻松搞定你最不擅长的一科"
+              caption="线上学中文 轻松又有趣"
               rhs={<Rhs />}
             />
           </div>
