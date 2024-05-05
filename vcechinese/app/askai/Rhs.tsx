@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import {
+  Divider,
   InfoIcon,
   LightBulbIcon,
   MagicIcon,
@@ -46,16 +47,21 @@ function Functions() {
   return (
     <div className="flex flex-row gap-4 pb-8">
       {functions.map((f, index) => (
-        <Function key={index} heading={f[0]} subheading={f[1]} icon={f[2]} />
+        <Function
+          key={index}
+          heading={f[0]}
+          subheading={f[1]}
+          icon={functionIcons.get(f[0]) ?? placeholder}
+        />
       ))}
     </div>
   );
 }
 
 function Function(props: {
-  heading: string | JSX.Element;
-  subheading: string | JSX.Element;
-  icon: string | JSX.Element;
+  heading: string;
+  subheading: string;
+  icon: JSX.Element;
 }) {
   return (
     <div className="flex flex-row flex-none w-[150px] items-start gap-1.5">
@@ -73,9 +79,19 @@ function Function(props: {
 }
 
 const functions = [
+  ["Write an essay", "写作不再是难题，全智能的小助手随时为你助力！"],
+  ["Polish my essay", "作文不够好？文字不够美？一键润色帮你轻松解决！"],
+  ["Script my oral", "科技在手，口试竟变得如此简单！你离高分不远了。"],
+  [
+    "Explore study tips",
+    "学习讲究方法，线上学习轻松又有趣，一切困难轻松解决！",
+  ],
+  ["Ask anything", "有想问的就快来问吧，答案都在这里哦！"],
+];
+
+const functionIcons = new Map([
   [
     "Write an essay",
-    "写作不再是难题，全智能的小助手随时为你助力！",
     <PenIcon
       key="askai-pen"
       className="w-2.5 h-2.5 flex-none translate-y-[4px]"
@@ -83,7 +99,6 @@ const functions = [
   ],
   [
     "Polish my essay",
-    "作文不够好？文字不够美？一键润色帮你轻松解决！",
     <MagicIcon
       key="askai-magic"
       className="w-2.5 h-2.5 flex-none translate-y-[4px]"
@@ -91,7 +106,6 @@ const functions = [
   ],
   [
     "Script my oral",
-    "科技在手，口试竟变得如此简单！你离高分不远了。",
     <SoundwaveIcon
       key="askai-soundwave"
       className="w-2.5 h-2.5 flex-none translate-y-[4px]"
@@ -99,7 +113,6 @@ const functions = [
   ],
   [
     "Explore study tips",
-    "学习讲究方法，线上学习轻松又有趣，一切困难轻松解决！",
     <LightBulbIcon
       key="askai-lightbulb"
       className="w-2.5 h-2.5 flex-none translate-y-[4px]"
@@ -107,10 +120,11 @@ const functions = [
   ],
   [
     "Ask anything",
-    "有想问的就快来问吧，答案都在这里哦！",
     <InfoIcon
       key="askai-info"
       className="w-2.5 h-2.5 flex-none translate-y-[4px]"
     />,
   ],
-];
+]);
+
+const placeholder = <PenIcon key="askai-pen" className="" />;
