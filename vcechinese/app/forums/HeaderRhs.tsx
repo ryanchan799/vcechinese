@@ -24,8 +24,8 @@ export function Rhs() {
       <div className="flex flex-row items-end gap-2">
         <img src="/images/Wechat.jpg" alt="wechat" className="w-14 h-14" />
         <div className="flex flex-col items-start -space-y-0.5">
-          <span className="text-[10px] text-gray-400">加我微信</span>
-          <span className="text-[12px]">ryan03austrump</span>
+          <span className="text-[9px] text-gray-400">加我微信</span>
+          <span className="text-[10px]">ryan03austrump</span>
         </div>
       </div>
       <div className="grow"></div>

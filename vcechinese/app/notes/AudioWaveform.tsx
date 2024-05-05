@@ -12,7 +12,7 @@ export default function AudioWaveform() {
     if (!waveform.current) {
       waveform.current = Wavesurfer.create({
         container: "#waveform",
-        barHeight: 1.5,
+        barHeight: 0.65,
         barWidth: 2,
         cursorWidth: 0,
         progressColor: "#111111",
@@ -20,7 +20,7 @@ export default function AudioWaveform() {
         interact: true,
         dragToSeek: true,
       });
-      waveform.current.load("recordings/sampleaudio.MP3");
+      waveform.current.load("recordings/audio1.MP3");
       waveform.current.on("ready", () => {
         const duration = Math.round(waveform.current!.getDuration());
         setAudioDuration(
