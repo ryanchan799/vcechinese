@@ -3,6 +3,7 @@ import NavigationBar from "../_components/NavigationBar";
 import MainPage from "./MainPage";
 import HeaderBar from "../_components/HeaderBar";
 import { HEADER_BAR_HEIGHT, PAGE } from "../_assets/Constants";
+import MobileVersion from "../_components/MobileVersion";
 
 export const metadata = {
   title: "Notes",
@@ -10,7 +11,8 @@ export const metadata = {
 
 export default function page() {
   return (
-    <div>
+    <div className="invisible md:visible">
+      <MobileVersion />
       <div>
         <div>
           <div className="sticky top-0 z-50">

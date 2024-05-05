@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { PAGE, TUTORING_CALENDAR } from "../_assets/Constants";
 import HeaderBar from "../_components/HeaderBar";
 import NavigationBar from "../_components/NavigationBar";
+import MobileVersion from "../_components/MobileVersion";
 
 export const metadata = {
   title: "Tutoring",
@@ -9,7 +10,8 @@ export const metadata = {
 
 export default function page() {
   return (
-    <div className="flex flex-col w-screen h-screen">
+    <div className="flex flex-col w-screen h-screen invisible md:visible">
+      <MobileVersion />
       <div className="h-[55px] z-50">
         <NavigationBar tab={PAGE.TUTORING} />
         <HeaderBar

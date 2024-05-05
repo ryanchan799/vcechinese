@@ -7,10 +7,12 @@ import Sidebar from "../Sidebar";
 import ThreadPage from "../ThreadPage";
 import ThreadsList from "../ThreadsListQuery";
 import "../forums.css";
+import MobileVersion from "@/app/_components/MobileVersion";
 
 export default function page({ params }: { params: { threadId: string } }) {
   return (
     <UserAuthContextProvider>
+      <MobileVersion />
       <Forums threadId={params.threadId} />
     </UserAuthContextProvider>
   );
@@ -18,7 +20,7 @@ export default function page({ params }: { params: { threadId: string } }) {
 
 function Forums(props: { threadId: string }) {
   return (
-    <div className="scrollbar-none overflow-y-auto h-screen">
+    <div className="scrollbar-none overflow-y-auto h-screen invisible md:visible">
       <div>
         <div>
           <div className="sticky top-0 z-50">
