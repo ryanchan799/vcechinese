@@ -11,9 +11,9 @@ export const metadata = {
 
 export default function page() {
   return (
-    <div className="invisible md:visible">
+    <div>
       <MobileVersion />
-      <div>
+      <div className="hidden md:block">
         <div>
           <div className="sticky top-0 z-50">
             <NavigationBar tab={PAGE.NOTES} />

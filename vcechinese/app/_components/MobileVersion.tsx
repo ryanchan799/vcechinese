@@ -3,7 +3,7 @@ import { LaptopIcon } from "../_assets/Icons";
 
 export default function MobileVersion() {
   return (
-    <div className="fixed visible md:invisible flex flex-col w-full h-screen justify-center items-center gap-20 -z-50">
+    <div className="fixed top-48 flex flex-col w-full h-full items-center gap-20 z-50 visible md:invisible">
       <div className="flex flex-row items-center gap-1.5">
         <LaptopIcon className="w-2.5 h-2.5" />
         <span className="text-[10px] font-light">

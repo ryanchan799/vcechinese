@@ -8,11 +8,13 @@ export const metadata = {
 
 export default function page() {
   return (
-    <div className="flex flex-col items-center w-full invisible md:visible">
+    <div>
       <MobileVersion />
-      <div className="flex flex-row w-[1000px] h-screen -translate-x-[35px]">
-        <Lhs />
-        <Rhs />
+      <div className="flex-col items-center w-full hidden md:flex">
+        <div className="flex flex-row w-[1000px] h-screen -translate-x-[35px]">
+          <Lhs />
+          <Rhs />
+        </div>
       </div>
     </div>
   );
