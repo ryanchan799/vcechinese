@@ -53,8 +53,8 @@ function Functions() {
 }
 
 function Function(props: {
-  heading: string;
-  subheading: string;
+  heading: string | JSX.Element;
+  subheading: string | JSX.Element;
   icon: string | JSX.Element;
 }) {
   return (
