@@ -2,9 +2,10 @@
 import React, { useEffect, useState } from "react";
 import {
   FORUMS_LIST_HEADER_HEIGHT,
+  FORUMS_WELCOME_PAGE,
   SELECTED_TOPICS,
 } from "../_assets/Constants";
-import { SortUpDownIcon, EllipsisIcon, FireIcon } from "../_assets/Icons";
+import { SortUpDownIcon, FireIcon } from "../_assets/Icons";
 import { DocumentData } from "firebase/firestore";
 import ThreadsRow from "./ThreadsRow";
 
@@ -13,7 +14,10 @@ export default function ThreadsListClient(props: {
   currThread: string;
 }) {
   const [reversed, setReversed] = useState(false);
-  const [list, setList] = useState(props.threads);
+  const [list, setList] = useState([
+    props.threads.find((thread) => thread.id === FORUMS_WELCOME_PAGE),
+    ...props.threads.filter((thread) => thread.id !== FORUMS_WELCOME_PAGE),
+  ]);
 
   useEffect(() => {
     function handleTopicTagSelection() {

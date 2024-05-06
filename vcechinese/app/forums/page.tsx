@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
+import { FORUMS_WELCOME_PAGE } from "../_assets/Constants";
 
 export default function page() {
-  return redirect("/forums/DumDXzr6ZJlWFI3TvmKg");
+  return redirect("/forums/" + FORUMS_WELCOME_PAGE);
 }

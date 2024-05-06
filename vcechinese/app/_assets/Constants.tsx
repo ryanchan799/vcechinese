@@ -1,6 +1,8 @@
 export const TITLE =
   "The Ultimate Place to Supercharge Your VCE Chinese Studies";
 
+export const FORUMS_WELCOME_PAGE = "DumDXzr6ZJlWFI3TvmKg";
+
 export const RESOURCES =
   "https://drive.google.com/drive/folders/1gUQ2-i1bnY1qDwV_RaCRDekDeguVN6it?usp=sharing";
 
