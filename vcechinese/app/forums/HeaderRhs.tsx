@@ -32,7 +32,7 @@ export function Rhs() {
       <div className="flex gap-4">
         <Logout />
         <Login />
-        <ProfilePictureBig url={user ? user.photoURL : ""} />
+        <span>{user ? user.displayName : "No user"}</span>
         {/* {user == null ? (
           <Login />
         ) : (
