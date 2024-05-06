@@ -15,7 +15,6 @@ import {
   Timestamp,
   updateDoc,
 } from "firebase/firestore";
-import { currentUserIsAdmin, loggedInCurrentUser } from "./HeaderRhs";
 import { getDownloadURL, ref, uploadString } from "@firebase/storage";
 import { COLORS } from "../_assets/Constants";
 import { hexToRgba } from "../_assets/Utility";
@@ -256,17 +255,16 @@ async function postNewThread(
         title: title,
         topic: topic,
         value: JSON.stringify(val),
-        poster: loggedInCurrentUser?.displayName,
+        poster: "Anonymous",
         date: Timestamp.now(),
         replies: [],
-        interactors: [loggedInCurrentUser?.photoURL],
-        admin: currentUserIsAdmin,
+        interactors: [],
+        admin: false,
         isPinned: false,
       };
 
       await addDoc(collection(db, "threads"), data);
 
-      // console.log(val);
       console.log("Thread posted successfully");
 
       setLoading(false);
@@ -291,17 +289,15 @@ async function postNewReply(
       const data = {
         replies: arrayUnion({
           value: JSON.stringify(val),
-          poster: loggedInCurrentUser?.displayName,
+          poster: "Anonymous",
           date: Timestamp.now(),
-          admin: currentUserIsAdmin,
+          admin: false,
         }),
-        interactors: arrayUnion(loggedInCurrentUser?.photoURL),
         date: Timestamp.now(),
       };
 
       await updateDoc(doc(db, "threads", threadId), data);
 
-      // console.log(val);
       console.log("Reply posted successfully");
 
       setLoading(false);
@@ -320,10 +316,7 @@ async function addImagesToStorage(title: string, val: any) {
       if (block.insert.image != null) {
         const storageRef = ref(
           storage,
-          loggedInCurrentUser!.displayName +
-            title +
-            index.toString() +
-            Timestamp.now().toString()
+          title + index.toString() + Timestamp.now().toString()
         );
 
         uploadString(storageRef, block.insert.image, "data_url").then(

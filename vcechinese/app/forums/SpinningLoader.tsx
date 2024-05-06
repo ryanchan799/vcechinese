@@ -46,16 +46,12 @@ export function ThreeSecondSpinnerLoader() {
   }, []);
 
   return (
-    <>
-      {isVisible ? (
-        <div className="flex flex-col w-full h-full items-center bg-white">
-          <div
-            className={`fixed top-0 flex h-full justify-center items-center z-30 ${FORUMS_CONVERSATION_WIDTH}`}
-          >
-            <SpinnerLoader />
-          </div>
-        </div>
-      ) : null}
-    </>
+    <div
+      className={`fixed top-0 flex h-full w-full items-center justify-center ${
+        isVisible ? "bg-white z-30" : "-z-50"
+      }`}
+    >
+      {isVisible ? <SpinnerLoader /> : null}
+    </div>
   );
 }

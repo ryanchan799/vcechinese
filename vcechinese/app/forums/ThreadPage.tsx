@@ -28,12 +28,11 @@ export default async function ThreadPage(props: { threadId: string }) {
   );
 
   return (
-    <div className="flex" style={{ fontWeight: 320 }}>
+    <div className="flex flex-grow" style={{ fontWeight: 320 }}>
       <DummyPadding />
-      <div className="flex flex-col flex-grow">
-        <div>
-          {/* Spinner */}
-          <ThreeSecondSpinnerLoader />
+      <div className="grow h-full w-full flex items-center justify-center">
+        <ThreeSecondSpinnerLoader />
+        <div className="w-full">
           {thread == null ? null : (
             <div>
               <title>{"Forums - " + thread.title}</title>

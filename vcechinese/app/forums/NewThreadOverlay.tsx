@@ -2,12 +2,9 @@
 import { FORUM_TOPIC, FORUMS_TOOLBAR_NEW_THREAD } from "../_assets/Constants";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import RichTextEditor from "./RichTextEditor";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ForumTopic, getTopicConfig, hexToRgba } from "../_assets/Utility";
 import SpinningLoader from "./SpinningLoader";
-import { auth } from "@/firebase";
-import { User, onAuthStateChanged } from "firebase/auth";
-import { Lock } from "./ReplyBox";
 
 export default function NewThreadOverlay(props: {
   setOpen: (value: boolean) => void;
@@ -15,15 +12,6 @@ export default function NewThreadOverlay(props: {
   const [title, setTitle] = useState("");
   const [topic, setTopic] = useState("");
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState<User | null>();
-
-  useEffect(() => {
-    return () => {
-      onAuthStateChanged(auth, (currentUser) => {
-        setUser(currentUser);
-      });
-    };
-  }, []);
 
   return (
     <div className="fixed top-0 left-0 flex items-center justify-center h-screen w-screen bg-black bg-opacity-45">
@@ -31,27 +19,14 @@ export default function NewThreadOverlay(props: {
       <div className="overflow-scroll max-h-[90%] scrollbar-none">
         <div className="flex flex-col bg-white justify-center rounded-lg">
           <Header setOpen={props.setOpen} />
-          {user == null ? (
-            <div className="px-14 pt-8 pb-4">
-              <Lock />
-            </div>
-          ) : null}
-          <div
-            className={
-              user == null
-                ? "cursor-not-allowed pointer-events-none opacity-55"
-                : ""
-            }
-          >
-            <Editor
-              title={title}
-              topic={topic}
-              setTitle={setTitle}
-              setTopic={setTopic}
-              setOpen={props.setOpen}
-              setLoading={setLoading}
-            />
-          </div>
+          <Editor
+            title={title}
+            topic={topic}
+            setTitle={setTitle}
+            setTopic={setTopic}
+            setOpen={props.setOpen}
+            setLoading={setLoading}
+          />
         </div>
       </div>
     </div>
