@@ -15,7 +15,6 @@ export function Rhs() {
         setUser(currentUser);
         loggedInCurrentUser = currentUser;
         currentUserIsAdmin = currentUser?.uid == ADMIN_USER;
-        console.log("12:02pm currentUser", currentUser);
       });
     };
   }, []);
