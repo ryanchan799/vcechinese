@@ -5,19 +5,22 @@ import React, { useEffect, useState } from "react";
 import { SearchIcon, SendIcon } from "../_assets/Icons";
 import { COLORS } from "../_assets/Constants";
 
-export default function Searchbar(props: { setAnswer: any; setLoading: any }) {
-  const [text, setText] = useState("");
-
+export default function Searchbar(props: {
+  question: string;
+  setQuestion: any;
+  setAnswer: any;
+  setLoading: any;
+}) {
   async function askQuestionAndGetAnswer() {
-    console.log("askQuestionAndGetAnswer", text);
+    console.log("askQuestionAndGetAnswer", props.question);
     props.setLoading(true);
-    const answer = await getAnswer(text);
+    const answer = await getAnswer(props.question);
     props.setAnswer(answer);
     props.setLoading(false);
   }
 
   const handleEnterPress = (event: { key: string }) => {
-    if (event.key === "Enter" && text !== "") {
+    if (event.key === "Enter" && props.question !== "") {
       askQuestionAndGetAnswer();
     }
   };
@@ -29,13 +32,15 @@ export default function Searchbar(props: { setAnswer: any; setLoading: any }) {
         className="w-full text-[12px] font-light outline-none"
         type="text"
         placeholder="撰写一篇分析《无现金生活的利与弊》的评估文"
-        value={text}
-        onChange={(event) => setText(event.target.value)}
+        value={props.question}
+        onChange={(event) => props.setQuestion(event.target.value)}
         onKeyDown={handleEnterPress}
       />
       <button
-        disabled={text === ""}
-        style={{ color: text === "" ? "#9ca3af" : COLORS.BRIGHT_BLUE }}
+        disabled={props.question === ""}
+        style={{
+          color: props.question === "" ? "#9ca3af" : COLORS.BRIGHT_BLUE,
+        }}
         onClick={askQuestionAndGetAnswer}
       >
         <SendIcon className="w-2.5 h-2.5 flex-none ml-2" />

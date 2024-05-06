@@ -6,12 +6,14 @@ import {
   LightBulbIcon,
   MagicIcon,
   PenIcon,
+  RobotIcon,
   SoundwaveIcon,
 } from "../_assets/Icons";
 import Searchbar from "./Searchbar";
 import { SpinnerLoader } from "../forums/SpinningLoader";
 
 export default function Rhs() {
+  const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -19,15 +21,29 @@ export default function Rhs() {
     <div className="flex flex-col justify-end pl-16 h-screen w-full pb-12">
       <Heading />
       <Functions />
-      <Searchbar setAnswer={setAnswer} setLoading={setLoading} />
+      <Searchbar
+        question={question}
+        setQuestion={setQuestion}
+        setAnswer={setAnswer}
+        setLoading={setLoading}
+      />
 
       {loading ? (
         <div className="fixed top-[55px]">
           <SpinnerLoader />
         </div>
       ) : answer === "" ? null : (
-        <div className="fixed flex flex-row px-10 py-6 top-[55px] text-sm font-light w-[700px] leading-[24px] tracking-[0.8px] bg-gray-50 rounded-lg border-[0.5px] border-gray-300">
-          {answer}
+        // Question & Answer Box
+        <div className="fixed flex flex-col flex-none w-[650px] top-[55px] border-[0.5px] border-gray-300 rounded-md">
+          <div className="bg-gray-500 text-black text-opacity-35 bg-opacity-10 text-[9px] px-3 py-1 border-b-[0.5px] border-gray-300 rounded-t-md">
+            <div className="flex flex-row items-center gap-1.5">
+              <RobotIcon className="w-2.5 h-2.5" />
+              <span>{question}</span>
+            </div>
+          </div>
+          <div className="px-10 py-5 text-[13px] font-light leading-[23px] tracking-[0.5px] bg-gray-50 rounded-b-md">
+            {answer}
+          </div>
         </div>
       )}
     </div>
