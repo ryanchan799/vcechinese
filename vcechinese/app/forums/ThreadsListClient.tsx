@@ -95,7 +95,7 @@ function StickyBar(props: {
             onClick={() => {
               props.setList(
                 [...props.list].sort(
-                  (a, b) => b.replies.length - a.replies.length
+                  (a, b) => a.replies.length - b.replies.length
                 )
               );
               props.setReversed(!props.reversed);

@@ -1,6 +1,10 @@
-import type { Metadata } from "next";
 import "./globals.css";
 import { inter } from "./_assets/Fonts";
+import { TITLE } from "./_assets/Constants";
+
+export const metadata = {
+  title: TITLE,
+};
 
 export default function RootLayout({
   children,

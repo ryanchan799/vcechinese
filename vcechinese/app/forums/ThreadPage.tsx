@@ -90,12 +90,11 @@ export default async function ThreadPage(props: { threadId: string }) {
                       </div>
                       {/* ThreadConversations */}
                       <div className="relative">
-                        <div
-                          className="absolute border-l-[0.2px] border-b-[0.2px] border-gray-400 border-opacity-40 h-full w-[45px] translate-x-[18px] rounded-bl-[28px] -z-50"
-                          style={{
-                            opacity: thread.replies.length === 0 ? 0 : 1,
-                          }}
-                        ></div>
+                        <div className="absolute border-l-[0.2px] border-b-[0.2px] border-gray-400 border-opacity-40 h-full w-[45px] translate-x-[18px] rounded-bl-[28px] -z-50"></div>
+                        <FadingMask
+                          visible={thread.replies.length === 0}
+                          replies={false}
+                        />
                         <TextEditor
                           modules={noToolbarModules}
                           formats={toolbarFormats}
@@ -170,3 +169,18 @@ export const noToolbarModules = {
     container: "#" + FORUMS_TOOLBAR_NEW_REPLY,
   },
 };
+
+export function FadingMask(props: { visible: boolean; replies: boolean }) {
+  return (
+    <div
+      className={`absolute bottom-0 w-[100px] -z-50 ${
+        props.replies ? "translate-y-8 h-[60px]" : "translate-y-4 h-[80px]"
+      }`}
+      style={{
+        backgroundImage:
+          "linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 50%)",
+        opacity: props.visible ? 1 : 0,
+      }}
+    ></div>
+  );
+}

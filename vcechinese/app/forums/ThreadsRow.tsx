@@ -1,7 +1,7 @@
 "use client";
 import { DocumentData } from "firebase/firestore";
 import React from "react";
-import { Divider, PinIcon } from "../_assets/Icons";
+import { Divider, PinIcon, ThreadsIcon } from "../_assets/Icons";
 import {
   getTopicConfig,
   formatTimeDifference,
@@ -79,38 +79,23 @@ function Lhs(props: { thread: DocumentData }) {
 }
 
 function Rhs(props: { thread: DocumentData }) {
-  const max = 5;
-  const hasLessThanOrEqualInteractors = props.thread.interactors.length <= max;
-  const interactors = hasLessThanOrEqualInteractors
-    ? props.thread.interactors
-    : props.thread.interactors.slice(-max);
-
   return (
-    <div
-      className="flex flex-col items-end mr-2"
-      style={{
-        paddingTop: hasLessThanOrEqualInteractors ? "22px" : "7px",
-      }}
-    >
-      {hasLessThanOrEqualInteractors ? null : (
-        <span className="text-[8px] pb-[2px] mr-[2px] text-gray-400">{`+${
-          props.thread.interactors.length - max
-        }`}</span>
-      )}
-      <ProfilePicStack interactors={interactors} />
+    <div className="flex flex-row gap-1 items-center mt-6 mr-3 text-[8px] text-gray-500 opacity-85">
+      <ThreadsIcon className="w-2 h-2" />
+      {props.thread.replies.length}
     </div>
   );
 }
 
-function ProfilePicStack(props: { interactors: string[] }) {
-  return (
-    <div className="flex flex-row space-x-[2px] justify-end">
-      {props.interactors.map((user, index) => (
-        <ProfilePictureSmall key={index} url={user} />
-      ))}
-    </div>
-  );
-}
+// function ProfilePicStack(props: { interactors: string[] }) {
+//   return (
+//     <div className="flex flex-row space-x-[2px] justify-end">
+//       {props.interactors.map((user, index) => (
+//         <ProfilePictureSmall key={index} url={user} />
+//       ))}
+//     </div>
+//   );
+// }
 
 export function AdminTag() {
   return (

@@ -5,7 +5,7 @@ import { ThreadsIcon } from "../_assets/Icons";
 import { formatTimeDifference } from "../_assets/Utility";
 import { TextEditor, toolbarFormats } from "./RichTextEditor";
 import { AdminTag } from "./ThreadsRow";
-import { noToolbarModules } from "./ThreadPage";
+import { FadingMask, noToolbarModules } from "./ThreadPage";
 
 export default function Replies(props: { thread: DocumentData }) {
   return (
@@ -14,6 +14,10 @@ export default function Replies(props: { thread: DocumentData }) {
     >
       <div>
         <div className="absolute border-l-[0.2px] border-gray-400 border-opacity-40 h-full translate-x-[15px] -z-50"></div>
+        <FadingMask
+          visible={props.thread.replies.length !== 0}
+          replies={true}
+        />
         {props.thread.replies.map((reply: DocumentData, index: number) => {
           return (
             <div key={index} className="flex flex-row items-start -my-1.5">
