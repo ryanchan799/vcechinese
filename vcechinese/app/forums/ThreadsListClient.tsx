@@ -13,11 +13,19 @@ export default function ThreadsListClient(props: {
   threads: DocumentData[];
   currThread: string;
 }) {
+  const welcomePageThread = props.threads.find(
+    (thread) => thread.id === FORUMS_WELCOME_PAGE
+  );
+  const remainingThreads = props.threads.filter(
+    (thread) => thread.id !== FORUMS_WELCOME_PAGE
+  );
+
   const [reversed, setReversed] = useState(false);
-  const [list, setList] = useState([
-    props.threads.find((thread) => thread.id === FORUMS_WELCOME_PAGE),
-    ...props.threads.filter((thread) => thread.id !== FORUMS_WELCOME_PAGE),
-  ]);
+  const [list, setList] = useState(
+    welcomePageThread
+      ? [welcomePageThread, ...remainingThreads]
+      : remainingThreads
+  );
 
   useEffect(() => {
     function handleTopicTagSelection() {
