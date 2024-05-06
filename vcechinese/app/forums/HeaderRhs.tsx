@@ -30,17 +30,14 @@ export function Rhs() {
       </div>
       <div className="grow"></div>
       <div className="flex gap-4">
-        <Logout />
-        <Login />
-        <span>{user ? user.displayName : "No user"}</span>
-        {/* {user == null ? (
+        {user == null ? (
           <Login />
         ) : (
           <div className="flex flex-row items-center gap-5">
             <Logout />
             <ProfilePictureBig url={user.photoURL} />
           </div>
-        )} */}
+        )}
       </div>
     </div>
   );

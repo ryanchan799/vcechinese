@@ -5,7 +5,7 @@ import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAVLGHTvj7XuAvoMAjjAW5U9B-2WC46c-M",
-  authDomain: "vcechinese.com",
+  authDomain: "app-vcechinese.firebaseapp.com",
   projectId: "app-vcechinese",
   storageBucket: "app-vcechinese.appspot.com",
   messagingSenderId: "57841991893",
