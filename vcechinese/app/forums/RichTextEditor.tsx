@@ -44,9 +44,15 @@ export default function RichTextEditor(props: {
     setValue(editor.getContents());
   }
 
+  const empty = '{"ops":[{"insert":"\\n"}]}';
   const disabled =
-    (props.isNewThreadPost && (title === "" || topic === "" || value === "")) ||
-    (!props.isNewThreadPost && value === "");
+    (props.isNewThreadPost &&
+      (title === "" ||
+        topic === "" ||
+        value === "" ||
+        JSON.stringify(value) === empty)) ||
+    (!props.isNewThreadPost &&
+      (value === "" || JSON.stringify(value) === empty));
 
   return (
     <div className="border-none">
