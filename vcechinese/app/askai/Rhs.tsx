@@ -36,9 +36,9 @@ export default function Rhs() {
         // Question & Answer Box
         <div className="fixed flex flex-col flex-none w-[650px] top-[55px] border-[0.5px] border-gray-300 rounded-md">
           <div className="bg-gray-500 text-black text-opacity-35 bg-opacity-10 text-[9px] px-3 py-1 border-b-[0.5px] border-gray-300 rounded-t-md">
-            <div className="flex flex-row items-center gap-1.5">
-              <RobotIcon className="w-2.5 h-2.5" />
-              <span>{question}</span>
+            <div className="flex flex-row items-center gap-1.5 text-ellipsis">
+              <RobotIcon className="w-2.5 h-2.5 flex-none" />
+              <span className="truncate">{question}</span>
             </div>
           </div>
           <div className="px-10 py-5 text-[13px] font-light leading-[23px] tracking-[0.5px] bg-gray-50 rounded-b-md">
