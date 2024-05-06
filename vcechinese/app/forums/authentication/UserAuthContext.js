@@ -33,6 +33,7 @@ export function UserAuthContextProvider({ children }) {
         if (currentUser) {
           const ref = doc(db, "users", currentUser.uid);
           const snap = await getDoc(ref);
+          console.log("Logged in successfully,", currentUser.displayName);
 
           if (!snap.exists()) {
             const data = {
