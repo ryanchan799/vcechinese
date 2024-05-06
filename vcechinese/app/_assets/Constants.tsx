@@ -1,5 +1,5 @@
 export const TITLE =
-  "vcechinese.com - The Ultimate Place to Supercharge Your VCE Chinese Studies";
+  "The Ultimate Place to Supercharge Your VCE Chinese Studies";
 
 export const RESOURCES =
   "https://drive.google.com/drive/folders/1gUQ2-i1bnY1qDwV_RaCRDekDeguVN6it?usp=sharing";
