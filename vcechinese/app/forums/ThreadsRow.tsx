@@ -71,7 +71,7 @@ function Lhs(props: { thread: DocumentData }) {
         </span>
         {props.thread.admin ? <AdminTag /> : null}
         <span className="text-[9px] text-gray-500 text-opacity-70">
-          {formatTimeDifference(props.thread.date)}
+          {formatTimeDifference(props.thread.latestDate)}
         </span>
       </div>
     </div>

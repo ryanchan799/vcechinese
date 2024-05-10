@@ -68,7 +68,8 @@ export default async function ThreadPage(props: { threadId: string }) {
                           </div>
                           <div className="flex flex-row items-center">
                             <span className="text-black text-opacity-50 text-[9.5px]">
-                              {formatTimeDifference(thread.date)} in
+                              {formatTimeDifference(thread.originalThreadDate)}{" "}
+                              in
                             </span>
                             <div
                               className="flex flex-row items-center gap-[2px] px-1"

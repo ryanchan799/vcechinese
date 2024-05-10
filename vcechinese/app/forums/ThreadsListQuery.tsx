@@ -15,7 +15,7 @@ export default async function ThreadsList(props: { threadId: string }) {
     query(
       collection(db, "threads"),
       orderBy("isPinned", "desc"),
-      orderBy("date", "desc")
+      orderBy("latestDate", "desc")
     )
   ).then((snapshot) =>
     snapshot.docs.map((doc) => ({

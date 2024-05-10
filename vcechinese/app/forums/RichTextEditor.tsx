@@ -262,7 +262,8 @@ async function postNewThread(
         topic: topic,
         value: JSON.stringify(val),
         poster: "Anonymous",
-        date: Timestamp.now(),
+        originalThreadDate: Timestamp.now(),
+        latestDate: Timestamp.now(),
         replies: [],
         interactors: [],
         admin: false,
@@ -299,7 +300,7 @@ async function postNewReply(
           date: Timestamp.now(),
           admin: false,
         }),
-        date: Timestamp.now(),
+        latestDate: Timestamp.now(),
       };
 
       await updateDoc(doc(db, "threads", threadId), data);
